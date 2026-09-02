@@ -42,6 +42,10 @@ closed-loop 효과와 별개이며 최종 평가 전 관찰로만 기록한다.
 9/10이 feedback 후 10/10으로 증가했다. H1b를 일반적으로 지지하기에는 표본과 rescue
 건수가 부족하며, closed-loop 구현 가능성을 확인한 결과로만 사용한다.
 
+후속 30-trajectory 반복 실험에서는 first-attempt recovery 26/30이 최대 3 iterations 후
+30/30으로 증가했고 네 trajectory가 feedback으로 추가 복구됐다. 이는 현재 value-fault
+집합에서 H1b와 일치하지만, 단일 topology이므로 외부 일반화 근거는 아니다.
+
 ## 핵심 지표
 
 ### 진단

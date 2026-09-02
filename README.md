@@ -103,6 +103,11 @@ v0.2 결과는 [docs/value_fault_repeat_v0_2_results.md](docs/value_fault_repeat
 기록합니다. 10개 trajectory 중 첫 시도는 9개를 복구했고, 실패 evidence를 받은 두 번째
 iteration이 나머지 1개를 복구했습니다. 이는 구현 검증이며 최종 성능 주장이 아닙니다.
 
+fault당 3개 trajectory의 반복 closed-loop 결과와 deterministic ratio-grid baseline은
+[docs/repeated_closed_loop_and_baseline_v1_0.md](docs/repeated_closed_loop_and_baseline_v1_0.md)에
+정리합니다. closed loop는 first-attempt 26/30에서 최종 30/30으로 네 건을 추가 복구했고,
+grid baseline도 10/10을 복구했지만 65회의 candidate simulation을 사용했습니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.

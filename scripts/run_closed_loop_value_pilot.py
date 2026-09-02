@@ -257,6 +257,7 @@ def main() -> int:
     finals = [_read_json(path) for path in sorted(output_root.glob("*/trajectory_*/final.json"))]
     first_rows = []
     last_rows = []
+    all_iteration_rows = []
     for final in finals:
         trajectory_dir = (
             output_root
@@ -267,6 +268,10 @@ def main() -> int:
         last_rows.append(
             _read_json(trajectory_dir / f"iteration_{final['iterations_used']}.json")
         )
+        all_iteration_rows.extend(
+            _read_json(path) for path in sorted(trajectory_dir.glob("iteration_*.json"))
+        )
+    initial_fault_simulation_calls = len({row["fault_id"] for row in finals})
     summary = {
         "experiment_id": protocol["experiment_id"],
         "trajectory_count": len(finals),
@@ -291,6 +296,17 @@ def main() -> int:
             row.get("diagnosis_correct") is True for row in last_rows
         ),
         "total_agent_calls": sum(row["iterations_used"] for row in finals),
+        "accepted_candidate_simulation_calls": sum(
+            row.get("patch_accepted") is True for row in all_iteration_rows
+        ),
+        "initial_fault_simulation_calls": initial_fault_simulation_calls,
+        "total_simulator_calls": (
+            sum(row.get("patch_accepted") is True for row in all_iteration_rows)
+            + initial_fault_simulation_calls
+        ),
+        "api_or_schema_failure_count": sum(
+            row.get("outcome") == "API_OR_SCHEMA_FAILURE" for row in all_iteration_rows
+        ),
         "mean_iterations": (
             sum(row["iterations_used"] for row in finals) / len(finals) if finals else 0.0
         ),

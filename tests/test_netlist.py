@@ -5,12 +5,21 @@ import unittest
 from rf_repair.netlist import (
     replace_component_with_resistor,
     restore_component_from_fault_resistor,
+    scale_spice_value,
     set_component_value,
     set_port_impedance,
 )
 
 
 class NetlistPatchTest(unittest.TestCase):
+    def test_scales_spice_value_and_preserves_suffix(self) -> None:
+        self.assertEqual(scale_spice_value("3.2p", 2.0), "6.4p")
+        self.assertEqual(scale_spice_value("10meg", 0.5), "5meg")
+
+    def test_rejects_nonpositive_spice_scale(self) -> None:
+        with self.assertRaisesRegex(ValueError, "positive"):
+            scale_spice_value("3.2p", 0.0)
+
     def test_replaces_exactly_bound_component(self) -> None:
         source = "C1 in out 1p\nC2 out 0 2p\n.end\n"
         patched = set_component_value(

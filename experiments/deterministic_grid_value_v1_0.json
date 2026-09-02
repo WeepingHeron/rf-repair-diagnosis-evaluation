@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "status": "FROZEN_DETERMINISTIC_BASELINE",
+  "experiment_id": "deterministic_grid_value_v1_0",
+  "condition": "DETERMINISTIC_COMPONENT_RATIO_GRID",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "fault_manifest": "faults/pilot/bpf_value_fault_candidates.json",
+  "fault_manifest_sha256": "f28b580d32df1fb63b27e9bf46c656af6b9f419613703462486c55bd1575fd76",
+  "case_count": 10,
+  "component_order": ["C1", "C2", "C3", "L1", "L2", "L3"],
+  "candidate_multipliers": [0.5, 0.7692307692307692, 1.4285714285714286, 2.0],
+  "maximum_candidate_simulations_per_case": 24,
+  "stop_on_first_specification_pass": true,
+  "claim_boundary": "Deterministic search baseline with a larger simulator-call budget; not an equal-cost comparison."
+}

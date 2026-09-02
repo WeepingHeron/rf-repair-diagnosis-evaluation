@@ -2,6 +2,27 @@
 
 from __future__ import annotations
 
+import re
+
+
+_SPICE_NUMBER = re.compile(
+    r"^(?P<number>(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)"
+    r"(?P<suffix>meg|[tgkmunpf]?)$",
+    re.IGNORECASE,
+)
+
+
+def scale_spice_value(value: str, multiplier: float) -> str:
+    """Scale a simple positive SPICE value while preserving its SI suffix."""
+
+    match = _SPICE_NUMBER.fullmatch(value)
+    if match is None or multiplier <= 0:
+        raise ValueError("value and multiplier must be positive simple SPICE numbers")
+    scaled = float(match.group("number")) * multiplier
+    if not scaled > 0:
+        raise ValueError("scaled SPICE value must be positive")
+    return f"{scaled:.12g}{match.group('suffix')}"
+
 
 def set_component_value(
     source: str,
