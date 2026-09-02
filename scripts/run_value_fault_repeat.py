@@ -15,7 +15,13 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from rf_repair.agent import apply_restricted_patch, load_local_api_key, request_proposal
+from rf_repair.agent import (
+    PROMPT_VERSION,
+    SCHEMA_VERSION,
+    apply_restricted_patch,
+    load_local_api_key,
+    request_proposal,
+)
 from rf_repair.benchmark import aggregate_runs
 from rf_repair.netlist import set_component_value
 from rf_repair.simulator import run_sparameter_simulation
@@ -70,16 +76,36 @@ def _safe_failure_row(*, fault_id: str, repetition: int, stage: str, error: Exce
         row["response_status"] = response_status
     if incomplete_reason is not None:
         row["incomplete_reason"] = incomplete_reason
+    output_text_sha256 = getattr(error, "output_text_sha256", None)
+    if output_text_sha256 is not None:
+        row["output_text_sha256"] = output_text_sha256
+        row["output_text_chars"] = getattr(error, "output_text_chars", 0)
+    validation_error_count = getattr(error, "validation_error_count", None)
+    if validation_error_count is not None:
+        row["validation_error_count"] = validation_error_count
     return row
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, default=DEFAULT_PROTOCOL_PATH)
+    parser.add_argument(
+        "--max-new-attempts",
+        type=int,
+        default=None,
+        help="Cost guard: issue at most this many new API requests, then stop cleanly.",
+    )
     args = parser.parse_args()
     protocol_path = args.protocol if args.protocol.is_absolute() else ROOT / args.protocol
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     output_root = ROOT / "build" / "experiments" / protocol["experiment_id"]
+    evidence_mode = protocol.get("agent_evidence_mode", "netlist_spec_and_spice")
+    if evidence_mode not in {"netlist_and_spec", "netlist_spec_and_spice"}:
+        raise ValueError(f"unsupported agent_evidence_mode: {evidence_mode}")
+    if protocol.get("prompt_version", PROMPT_VERSION) != PROMPT_VERSION:
+        raise ValueError("protocol prompt_version does not match implementation")
+    if protocol.get("agent_schema_version", SCHEMA_VERSION) != SCHEMA_VERSION:
+        raise ValueError("protocol agent_schema_version does not match implementation")
     spec = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
     healthy_source = HEALTHY_NETLIST.read_text(encoding="utf-8")
     cases = _load_cases(protocol)
@@ -90,6 +116,7 @@ def main() -> int:
 
     load_local_api_key(ROOT / ".env.local")
     rows: list[dict[str, Any]] = []
+    new_attempts = 0
     for case in cases:
         case_dir = output_root / case["fault_id"]
         faulty_source = set_component_value(
@@ -111,20 +138,38 @@ def main() -> int:
                 rows.append(json.loads(run_path.read_text(encoding="utf-8")))
                 print(f"reuse {case['fault_id']} run {repetition}/{repeats}")
                 continue
+            if (
+                args.max_new_attempts is not None
+                and new_attempts >= args.max_new_attempts
+            ):
+                continue
 
+            new_attempts += 1
             try:
                 proposal, api_metadata = request_proposal(
                     netlist=faulty_source,
                     spec=spec,
-                    metrics=faulty_metrics,
+                    metrics=(
+                        faulty_metrics
+                        if evidence_mode == "netlist_spec_and_spice"
+                        else None
+                    ),
                     model=protocol["model"],
                     max_output_tokens=int(protocol["max_output_tokens"]),
+                    reasoning_effort=protocol.get("reasoning_effort", "low"),
+                    timeout_seconds=float(protocol.get("request_timeout_seconds", 90)),
+                    max_retries=int(protocol.get("automatic_api_retries", 0)),
                 )
             except Exception as error:
                 row = _safe_failure_row(
                     fault_id=case["fault_id"], repetition=repetition, stage="api", error=error
                 )
                 _write_json(run_path, row)
+                raw_output = getattr(error, "raw_output", "")
+                if raw_output:
+                    (case_dir / f"invalid_output_run_{repetition}.txt").write_text(
+                        raw_output, encoding="utf-8"
+                    )
                 rows.append(row)
                 print(f"fail {case['fault_id']} run {repetition}/{repeats}: api")
                 continue
@@ -147,6 +192,10 @@ def main() -> int:
                 "input_tokens": usage.get("input_tokens", 0),
                 "output_tokens": usage.get("output_tokens", 0),
                 "total_tokens": usage.get("total_tokens", 0),
+                "output_text_sha256": api_metadata.get("output_text_sha256"),
+                "output_text_chars": api_metadata.get("output_text_chars"),
+                "prompt_version": api_metadata.get("prompt_version"),
+                "agent_schema_version": api_metadata.get("schema_version"),
             }
             try:
                 repaired_source = apply_restricted_patch(faulty_source, proposal.repair)
@@ -183,6 +232,8 @@ def main() -> int:
     }
     _write_json(output_root / "summary.json", summary)
     print(json.dumps(summary, indent=2))
+    if args.max_new_attempts is not None:
+        return 0
     return 0 if summary["complete"] else 1
 
 

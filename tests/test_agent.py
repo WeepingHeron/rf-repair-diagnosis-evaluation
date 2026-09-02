@@ -16,6 +16,14 @@ class AgentBoundaryTest(unittest.TestCase):
         self.assertNotIn("healthy_value", payload)
         self.assertNotIn("ground_truth", payload)
 
+    def test_input_can_exclude_spice_metrics_for_llm_only_condition(self) -> None:
+        payload = build_agent_input(
+            netlist="C1 in out 2p\n.end\n",
+            spec={"target": 1},
+            metrics=None,
+        )
+        self.assertNotIn("measured_simulation", payload)
+
     def test_applies_one_allowlisted_value_patch(self) -> None:
         patch = RepairPatch(operation="set_value", component="C1", proposed_value="1.5p")
         repaired = apply_restricted_patch("C1 in out 2p\n.end\n", patch)

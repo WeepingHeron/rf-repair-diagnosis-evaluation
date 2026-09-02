@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "status": "FROZEN_PRELIMINARY_COMPARISON",
+  "experiment_id": "comparison_spice_v1_0",
+  "condition": "LLM_WITH_INITIAL_SPICE_EVIDENCE",
+  "agent_evidence_mode": "netlist_spec_and_spice",
+  "prompt_version": "value_one_edit_v1",
+  "agent_schema_version": "agent_proposal_v1",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "fault_manifest": "faults/pilot/bpf_value_fault_candidates.json",
+  "fault_manifest_sha256": "f28b580d32df1fb63b27e9bf46c656af6b9f419613703462486c55bd1575fd76",
+  "case_count": 10,
+  "repetitions_per_case": 3,
+  "planned_api_calls": 30,
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "max_output_tokens": 2000,
+  "response_storage": false,
+  "request_timeout_seconds": 90,
+  "automatic_api_retries": 0,
+  "max_agent_edits": 1,
+  "claim_boundary": "Preliminary controlled comparison on ten synthetic value faults; not a final benchmark or hardware claim."
+}

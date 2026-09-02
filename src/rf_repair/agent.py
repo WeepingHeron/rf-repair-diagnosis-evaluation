@@ -5,21 +5,25 @@ from __future__ import annotations
 import json
 import os
 import re
+from hashlib import sha256
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
 from openai import OpenAI
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from rf_repair.netlist import set_component_value
 
 
 MODEL = "gpt-5.6-luna"
+PROMPT_VERSION = "value_one_edit_v1"
+SCHEMA_VERSION = "agent_proposal_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
     r"^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+|(?:meg|[tgkmunpf]))?$",
     re.IGNORECASE,
 )
+EvidenceText = Annotated[str, Field(max_length=200)]
 
 
 class Diagnosis(BaseModel):
@@ -28,7 +32,7 @@ class Diagnosis(BaseModel):
     component: Literal["C1", "C2", "C3", "L1", "L2", "L3"]
     fault_type: Literal["value_too_low", "value_too_high", "unknown_direction"]
     confidence: float = Field(ge=0.0, le=1.0)
-    evidence: list[str] = Field(min_length=1, max_length=3)
+    evidence: list[EvidenceText] = Field(min_length=1, max_length=2)
 
 
 class RepairPatch(BaseModel):
@@ -46,20 +50,37 @@ class AgentProposal(BaseModel):
     repair: RepairPatch
 
 
-class ProposalUnavailable(RuntimeError):
-    """A response completed without a parseable structured proposal."""
+class ProposalResponseError(RuntimeError):
+    """Base error retaining safe response metadata and local raw evidence."""
 
     def __init__(
         self,
         *,
+        message: str,
         response_status: str,
         incomplete_reason: str | None,
         usage: dict,
+        raw_output: str,
     ) -> None:
-        super().__init__("model returned no parseable proposal")
+        super().__init__(message)
         self.response_status = response_status
         self.incomplete_reason = incomplete_reason
         self.usage = usage
+        self.raw_output = raw_output
+        self.output_text_sha256 = sha256(raw_output.encode("utf-8")).hexdigest()
+        self.output_text_chars = len(raw_output)
+
+
+class ProposalUnavailable(ProposalResponseError):
+    """The API response did not contain a complete output text."""
+
+
+class ProposalSchemaInvalid(ProposalResponseError):
+    """The returned output text failed local schema validation."""
+
+    def __init__(self, *, validation_error_count: int, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.validation_error_count = validation_error_count
 
 
 def load_local_api_key(path: Path) -> None:
@@ -81,15 +102,16 @@ def load_local_api_key(path: Path) -> None:
     raise RuntimeError(f"OPENAI_API_KEY is missing from {path}")
 
 
-def build_agent_input(*, netlist: str, spec: dict, metrics: dict) -> str:
+def build_agent_input(*, netlist: str, spec: dict, metrics: dict | None) -> str:
     """Build the agent-visible evidence bundle; no healthy netlist or manifest."""
 
-    payload = {
+    payload: dict = {
         "task": "Diagnose one component-value fault and propose exactly one repair edit.",
         "faulty_netlist": netlist,
         "target_specification": spec,
-        "measured_simulation": metrics,
     }
+    if metrics is not None:
+        payload["measured_simulation"] = metrics
     return json.dumps(payload, indent=2, sort_keys=True)
 
 
@@ -97,43 +119,76 @@ def request_proposal(
     *,
     netlist: str,
     spec: dict,
-    metrics: dict,
+    metrics: dict | None,
     client: OpenAI | None = None,
     model: str = MODEL,
     max_output_tokens: int = 700,
+    reasoning_effort: Literal["none", "low", "medium", "high"] = "low",
+    timeout_seconds: float = 90.0,
+    max_retries: int = 0,
 ) -> tuple[AgentProposal, dict]:
     """Request one structured proposal and return safe usage metadata."""
 
     # Hidden SDK retries would make one logical experiment row consume multiple
     # requests. Keep each attempt explicit and bound transport wait time.
-    api = client or OpenAI(timeout=90.0, max_retries=0)
-    response = api.responses.parse(
+    api = client or OpenAI(timeout=timeout_seconds, max_retries=max_retries)
+    response = api.responses.create(
         model=model,
-        reasoning={"effort": "low"},
+        reasoning={"effort": reasoning_effort},
         max_output_tokens=max_output_tokens,
         store=False,
-        text_format=AgentProposal,
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": SCHEMA_VERSION,
+                "schema": AgentProposal.model_json_schema(),
+                "strict": True,
+            },
+            "verbosity": "low",
+        },
         instructions=(
             "You are diagnosing an ideal lumped 100 MHz RF band-pass filter. "
             "Use only the supplied faulty netlist, target specification, and measured "
             "simulation. The healthy netlist and injected-fault manifest are unavailable. "
             "Choose one R/L/C value edit only. Do not claim success; an external ngspice "
-            "validator will decide. proposed_value must be one positive SPICE numeric token."
+            "validator will decide. proposed_value must be one positive SPICE numeric token. "
+            "Keep each evidence string under 200 characters."
         ),
         input=build_agent_input(netlist=netlist, spec=spec, metrics=metrics),
     )
     usage = response.usage.model_dump(mode="json") if response.usage else {}
-    proposal = response.output_parsed
-    if proposal is None:
-        incomplete_reason = (
-            response.incomplete_details.reason if response.incomplete_details else None
-        )
+    raw_output = response.output_text
+    incomplete_reason = (
+        response.incomplete_details.reason if response.incomplete_details else None
+    )
+    common_error = {
+        "response_status": response.status,
+        "incomplete_reason": incomplete_reason,
+        "usage": usage,
+        "raw_output": raw_output,
+    }
+    if response.status != "completed" or not raw_output:
         raise ProposalUnavailable(
-            response_status=response.status,
-            incomplete_reason=incomplete_reason,
-            usage=usage,
+            message="model returned no complete output text",
+            **common_error,
         )
-    metadata = {"model": response.model, "response_status": response.status, "usage": usage}
+    try:
+        proposal = AgentProposal.model_validate_json(raw_output)
+    except ValidationError as error:
+        raise ProposalSchemaInvalid(
+            message="model output failed local schema validation",
+            validation_error_count=error.error_count(),
+            **common_error,
+        ) from None
+    metadata = {
+        "model": response.model,
+        "response_status": response.status,
+        "usage": usage,
+        "output_text_sha256": sha256(raw_output.encode("utf-8")).hexdigest(),
+        "output_text_chars": len(raw_output),
+        "prompt_version": PROMPT_VERSION,
+        "schema_version": SCHEMA_VERSION,
+    }
     return proposal, metadata
 
 
