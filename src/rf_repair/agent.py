@@ -26,6 +26,7 @@ CLOSED_LOOP_PROMPT_VERSION = "value_closed_loop_v1"
 SCHEMA_VERSION = "agent_proposal_v1"
 STRUCTURAL_PROMPT_VERSION = "structural_closed_loop_v1"
 STRUCTURAL_NORMALIZED_PROMPT_VERSION = "structural_closed_loop_v2"
+STRUCTURAL_PORT_ROLE_PROMPT_VERSION = "structural_closed_loop_port_role_v1"
 STRUCTURAL_SCHEMA_VERSION = "agent_proposal_structural_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
@@ -329,10 +330,16 @@ def request_structural_proposal(
     if prompt_version not in {
         STRUCTURAL_PROMPT_VERSION,
         STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+        STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
     }:
         raise ValueError(f"unsupported structural prompt_version: {prompt_version}")
-    normalized_guidance = (
+    port_role_guidance = (
         " VPORT1 is the source/input port and VPORT2 is the load/output port. "
+        if prompt_version
+        in {STRUCTURAL_NORMALIZED_PROMPT_VERSION, STRUCTURAL_PORT_ROLE_PROMPT_VERSION}
+        else ""
+    )
+    normalized_guidance = (
         "Engineering units such as nH, pF, or ohm are accepted and deterministically "
         "canonicalized to SPICE tokens without changing their numeric meaning."
         if prompt_version == STRUCTURAL_NORMALIZED_PROMPT_VERSION
@@ -362,6 +369,7 @@ def request_structural_proposal(
             "proposed_z0 and set proposed_value to null. Do not claim success; an external "
             "ngspice validator decides. Previous failed attempts may be supplied; do not "
             "repeat a failed patch. Keep evidence concise."
+            + port_role_guidance
             + normalized_guidance
         ),
         input=json.dumps(payload, indent=2, sort_keys=True),

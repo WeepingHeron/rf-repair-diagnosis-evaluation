@@ -28,7 +28,7 @@ used to separate the two interface changes:
 |---|---|---|
 | Strict v1.0 | Off | Off |
 | Unit-only v1.2 | On | Off |
-| Port-role-only v1.3 | Off | On |
+| Port-role-only v1.4 | Off | On |
 | Combined v1.1 | On | On |
 
 All four arms use the same six cases, three trajectories per case, validator, model,
@@ -48,3 +48,11 @@ tests limited transfer to new cases rather than generalization to arbitrary RF c
 Report the primary result, same-case interface ablation, and holdout confirmation in
 separate table sections. Do not replace the primary 46/48 result with a combined
 post-improvement total.
+
+## Withdrawn run
+
+Port-role protocol v1.3 was stopped after seven completed trajectories. Its selected
+prompt version also told the model that engineering-unit strings were accepted, while
+the executor intentionally retained strict syntax. This contradicted the intended
+single-factor comparison. Its partial outputs are excluded, and v1.4 replaces it with
+a prompt that adds only the VPORT role sentence.

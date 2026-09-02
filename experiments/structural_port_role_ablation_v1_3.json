@@ -1,6 +1,6 @@
 {
   "schema_version": "1.3.0",
-  "status": "FROZEN_INTERFACE_ABLATION",
+  "status": "WITHDRAWN_BEFORE_COMPLETION",
   "experiment_id": "structural_port_role_ablation_v1_3",
   "condition": "PORT_ROLE_PROMPT_WITH_STRICT_SYNTAX",
   "prompt_version": "structural_closed_loop_v2",
@@ -21,5 +21,5 @@
   "candidate_edits_per_iteration": 1,
   "candidate_base": "original_faulty_netlist",
   "normalize_engineering_quantities": false,
-  "claim_boundary": "Ablation using the original six structural cases; isolates port-role prompt clarification from unit canonicalization."
+  "claim_boundary": "Withdrawn after seven completed trajectories because prompt v2 also stated that engineering units were accepted while canonicalization was disabled. Partial results are excluded."
 }

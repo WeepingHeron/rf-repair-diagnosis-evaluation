@@ -18,6 +18,7 @@ if str(SRC) not in sys.path:
 from rf_repair.agent import (
     STRUCTURAL_PROMPT_VERSION,
     STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+    STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
     STRUCTURAL_SCHEMA_VERSION,
     apply_structural_restricted_patch,
     load_local_api_key,
@@ -101,6 +102,7 @@ def main() -> int:
     if protocol["prompt_version"] not in {
         STRUCTURAL_PROMPT_VERSION,
         STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+        STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
     }:
         raise ValueError("structural prompt version mismatch")
     if protocol["agent_schema_version"] != STRUCTURAL_SCHEMA_VERSION:
