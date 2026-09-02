@@ -46,6 +46,15 @@ class AgentProposal(BaseModel):
     repair: RepairPatch
 
 
+class ProposalUnavailable(RuntimeError):
+    """A response completed without a parseable structured proposal."""
+
+    def __init__(self, *, response_status: str, incomplete_reason: str | None) -> None:
+        super().__init__("model returned no parseable proposal")
+        self.response_status = response_status
+        self.incomplete_reason = incomplete_reason
+
+
 def load_local_api_key(path: Path) -> None:
     """Load only OPENAI_API_KEY from a local env file without printing it."""
 
@@ -84,6 +93,7 @@ def request_proposal(
     metrics: dict,
     client: OpenAI | None = None,
     model: str = MODEL,
+    max_output_tokens: int = 700,
 ) -> tuple[AgentProposal, dict]:
     """Request one structured proposal and return safe usage metadata."""
 
@@ -91,7 +101,7 @@ def request_proposal(
     response = api.responses.parse(
         model=model,
         reasoning={"effort": "low"},
-        max_output_tokens=700,
+        max_output_tokens=max_output_tokens,
         store=False,
         text_format=AgentProposal,
         instructions=(
@@ -105,7 +115,13 @@ def request_proposal(
     )
     proposal = response.output_parsed
     if proposal is None:
-        raise RuntimeError("model returned no parseable proposal")
+        incomplete_reason = (
+            response.incomplete_details.reason if response.incomplete_details else None
+        )
+        raise ProposalUnavailable(
+            response_status=response.status,
+            incomplete_reason=incomplete_reason,
+        )
     usage = response.usage.model_dump(mode="json") if response.usage else {}
     metadata = {"model": response.model, "response_status": response.status, "usage": usage}
     return proposal, metadata

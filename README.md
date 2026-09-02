@@ -67,6 +67,20 @@ PYTHONPATH=src .venv/bin/python scripts/run_llm_fault_pilot.py
 현재 pilot 모델은 `gpt-5.6-luna`, reasoning effort는 `low`, 출력 상한은 700 token,
 API 저장은 비활성화합니다. 단일 호출 결과는 benchmark 성능으로 주장하지 않습니다.
 
+동결된 10개 value fault를 각각 3회 실행하는 반복 파일럿:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/run_value_fault_repeat.py
+```
+
+프로토콜은 `experiments/value_fault_repeat_v0_1.json`에 고정되어 있습니다. 실행 결과는
+`build/experiments/value_fault_repeat_v0_1/`에 저장되며, 중단 후 같은 명령을 실행하면
+완료된 호출은 재사용하고 누락된 호출만 이어서 수행합니다.
+
+2026-09-02에 수행한 30회 파이프라인 파일럿의 결과와 해석 한계는
+[docs/value_fault_repeat_v0_1_results.md](docs/value_fault_repeat_v0_1_results.md)에
+기록합니다. API 운영 실패가 포함되어 있으므로 이를 최종 모델 성능으로 사용하지 않습니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.
