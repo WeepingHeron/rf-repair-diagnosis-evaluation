@@ -13,7 +13,8 @@ ngspice와 결정적 검증기가 성능 복구 여부를 판정하는 연구 �
 - 제외 범위: 실제 PCB/RFIC 동작, 하드웨어 측정, fabrication sign-off
 
 상세한 범위와 연구질문은 [docs/research_scope.md](docs/research_scope.md)와
-[docs/research_questions.md](docs/research_questions.md)에 기록합니다.
+[docs/research_questions.md](docs/research_questions.md)에 기록합니다. 합성 fault의
+정확한 의미와 한계는 [docs/fault_model.md](docs/fault_model.md)를 따릅니다.
 
 ## 현재 상태
 

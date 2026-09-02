@@ -2,7 +2,11 @@ from __future__ import annotations
 
 import unittest
 
-from rf_repair.netlist import set_component_value
+from rf_repair.netlist import (
+    replace_component_with_resistor,
+    set_component_value,
+    set_port_impedance,
+)
 
 
 class NetlistPatchTest(unittest.TestCase):
@@ -41,7 +45,32 @@ class NetlistPatchTest(unittest.TestCase):
                 new_value="2",
             )
 
+    def test_replaces_component_with_explicit_fault_resistor(self) -> None:
+        patched = replace_component_with_resistor(
+            "C1 in out 1p\n.end\n",
+            component="C1",
+            expected_value="1p",
+            resistance="1T",
+        )
+        self.assertIn("RFAULTC1 in out 1T", patched)
+        self.assertNotIn("C1 in out 1p", patched)
+
+    def test_changes_exactly_bound_port_impedance(self) -> None:
+        source = "VPORT2 out 0 DC 0 AC 1 portnum 2 z0 50\n.end\n"
+        patched = set_port_impedance(
+            source, port="VPORT2", expected_z0="50", new_z0="100"
+        )
+        self.assertIn("VPORT2 out 0 DC 0 AC 1 portnum 2 z0 100", patched)
+
+    def test_rejects_port_impedance_mismatch(self) -> None:
+        with self.assertRaisesRegex(ValueError, "healthy z0 mismatch"):
+            set_port_impedance(
+                "VPORT1 in 0 DC 0 AC 1 portnum 1 z0 50\n.end\n",
+                port="VPORT1",
+                expected_z0="75",
+                new_z0="25",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
-
