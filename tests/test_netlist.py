@@ -4,6 +4,7 @@ import unittest
 
 from rf_repair.netlist import (
     replace_component_with_resistor,
+    restore_component_from_fault_resistor,
     set_component_value,
     set_port_impedance,
 )
@@ -69,6 +70,25 @@ class NetlistPatchTest(unittest.TestCase):
                 port="VPORT1",
                 expected_z0="75",
                 new_z0="25",
+            )
+
+    def test_restores_component_from_bound_fault_resistor(self) -> None:
+        restored = restore_component_from_fault_resistor(
+            "RFAULTC1 in out 1T\n.end\n",
+            component="C1",
+            expected_resistance="1T",
+            healthy_value="1p",
+        )
+        self.assertIn("C1 in out 1p", restored)
+        self.assertNotIn("RFAULTC1", restored)
+
+    def test_rejects_fault_resistance_mismatch(self) -> None:
+        with self.assertRaisesRegex(ValueError, "fault resistance mismatch"):
+            restore_component_from_fault_resistor(
+                "RFAULTL2 mid 0 1m\n.end\n",
+                component="L2",
+                expected_resistance="1T",
+                healthy_value="4n",
             )
 
 

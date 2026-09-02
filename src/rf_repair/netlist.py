@@ -109,3 +109,38 @@ def set_port_impedance(
     if matches != 1:
         raise ValueError(f"expected exactly one {port}, found {matches}")
     return "\n".join(output) + "\n"
+
+
+def restore_component_from_fault_resistor(
+    source: str,
+    *,
+    component: str,
+    expected_resistance: str,
+    healthy_value: str,
+) -> str:
+    """Restore one R/L/C component from the evaluator's open/short resistor."""
+
+    normalized_component = component.upper()
+    if not normalized_component.startswith(("R", "L", "C")):
+        raise ValueError("only R, L, and C components are supported in the MVP")
+    fault_name = f"RFAULT{normalized_component}"
+
+    matches = 0
+    output: list[str] = []
+    for line in source.splitlines():
+        tokens = line.split()
+        if tokens and tokens[0].upper() == fault_name:
+            matches += 1
+            if len(tokens) != 4:
+                raise ValueError(f"unsupported fault resistor syntax for {component}")
+            if tokens[3] != expected_resistance:
+                raise ValueError(
+                    f"fault resistance mismatch for {component}: "
+                    f"expected {expected_resistance!r}, found {tokens[3]!r}"
+                )
+            line = f"{normalized_component} {tokens[1]} {tokens[2]} {healthy_value}"
+        output.append(line)
+
+    if matches != 1:
+        raise ValueError(f"expected exactly one {fault_name}, found {matches}")
+    return "\n".join(output) + "\n"
