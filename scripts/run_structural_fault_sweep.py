@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -43,13 +44,20 @@ def _inject(source: str, case: dict[str, Any]) -> str:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--manifest", type=Path, default=MANIFEST_PATH)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    args = parser.parse_args()
+    manifest_path = args.manifest if args.manifest.is_absolute() else ROOT / args.manifest
+    output_root = args.output_root if args.output_root.is_absolute() else ROOT / args.output_root
+
     healthy_source = HEALTHY_NETLIST.read_text(encoding="utf-8")
     spec = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
-    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     summaries: list[dict[str, Any]] = []
 
     for case in manifest["cases"]:
-        case_dir = OUTPUT_ROOT / case["fault_id"]
+        case_dir = output_root / case["fault_id"]
         case_dir.mkdir(parents=True, exist_ok=True)
         faulty_netlist = case_dir / "faulty.cir"
         faulty_netlist.write_text(_inject(healthy_source, case), encoding="utf-8")
@@ -82,8 +90,8 @@ def main() -> int:
         ),
         "cases": summaries,
     }
-    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT_ROOT / "summary.json").write_text(
+    output_root.mkdir(parents=True, exist_ok=True)
+    (output_root / "summary.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"
     )
     print(json.dumps(summary, indent=2))
@@ -92,4 +100,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

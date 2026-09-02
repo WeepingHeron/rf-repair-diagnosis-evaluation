@@ -109,6 +109,8 @@ def main() -> int:
     if hashlib.sha256(raw_manifest).hexdigest() != protocol["fault_manifest_sha256"]:
         raise ValueError("fault manifest does not match frozen protocol hash")
     cases = json.loads(raw_manifest)["cases"]
+    if len(cases) != int(protocol["case_count"]):
+        raise ValueError("fault manifest case count does not match frozen protocol")
     selected_cases = (
         [case for case in cases if case["fault_id"] == args.fault_id]
         if args.fault_id

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "status": "FROZEN_INTERFACE_HOLDOUT",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "visibility": "EVALUATOR_ONLY",
+  "cases": [
+    {
+      "fault_id": "bpf_c3_open_holdout",
+      "component": "C3",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.183098862p",
+      "fault_resistance": "1T",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "bpf_c3_short_holdout",
+      "component": "C3",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.183098862p",
+      "fault_resistance": "1m",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "bpf_l1_open_holdout",
+      "component": "L1",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "795.774715n",
+      "fault_resistance": "1T",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "bpf_l3_short_holdout",
+      "component": "L3",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "795.774715n",
+      "fault_resistance": "1m",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "bpf_input_z0_100_holdout",
+      "component": "VPORT1",
+      "fault_type": "source_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "100",
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_output_z0_25_holdout",
+      "component": "VPORT2",
+      "fault_type": "load_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "25",
+      "severity": "high"
+    }
+  ]
+}
