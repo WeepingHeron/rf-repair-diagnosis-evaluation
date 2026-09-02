@@ -27,6 +27,7 @@ SCHEMA_VERSION = "agent_proposal_v1"
 STRUCTURAL_PROMPT_VERSION = "structural_closed_loop_v1"
 STRUCTURAL_NORMALIZED_PROMPT_VERSION = "structural_closed_loop_v2"
 STRUCTURAL_PORT_ROLE_PROMPT_VERSION = "structural_closed_loop_port_role_v1"
+STRUCTURAL_BLIND_PROMPT_VERSION = "structural_closed_loop_blind_v2"
 STRUCTURAL_SCHEMA_VERSION = "agent_proposal_structural_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
@@ -292,13 +293,21 @@ def apply_restricted_patch(source: str, patch: RepairPatch) -> str:
 def _request_common_metadata(response, *, prompt_version: str, schema_version: str) -> dict:
     usage = response.usage.model_dump(mode="json") if response.usage else {}
     return {
+        "response_id": response.id,
         "model": response.model,
         "response_status": response.status,
+        "incomplete_reason": (
+            response.incomplete_details.reason
+            if response.incomplete_details
+            else None
+        ),
+        "response_created_at": response.created_at,
         "usage": usage,
         "output_text_sha256": sha256(response.output_text.encode("utf-8")).hexdigest(),
         "output_text_chars": len(response.output_text),
         "prompt_version": prompt_version,
         "schema_version": schema_version,
+        "output_text": response.output_text,
     }
 
 
@@ -331,6 +340,7 @@ def request_structural_proposal(
         STRUCTURAL_PROMPT_VERSION,
         STRUCTURAL_NORMALIZED_PROMPT_VERSION,
         STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
+        STRUCTURAL_BLIND_PROMPT_VERSION,
     }:
         raise ValueError(f"unsupported structural prompt_version: {prompt_version}")
     port_role_guidance = (
@@ -344,6 +354,14 @@ def request_structural_proposal(
         "canonicalized to SPICE tokens without changing their numeric meaning."
         if prompt_version == STRUCTURAL_NORMALIZED_PROMPT_VERSION
         else ""
+    )
+    blind_guidance = (
+        " A line named RFAULT1 is a neutral placeholder replacing one unknown reactive "
+        "component. Its name does not identify the original component. Infer which missing "
+        "component belongs at those two nodes from the supplied topology and measurements."
+        if prompt_version == STRUCTURAL_BLIND_PROMPT_VERSION
+        else " A line named RFAULT<component> represents a synthetic open (1T ohm) or "
+        "short (1m ohm) replacement of that original reactive component."
     )
     response = api.responses.create(
         model=model,
@@ -361,8 +379,8 @@ def request_structural_proposal(
         },
         instructions=(
             "Diagnose one fault in an ideal lumped 100 MHz RF band-pass filter. "
-            "A line named RFAULT<component> represents a synthetic open (1T ohm) or "
-            "short (1m ohm) replacement of that original reactive component. RF ports "
+            + blind_guidance
+            + " RF ports "
             "have explicit z0 values. Choose exactly one repair: restore_component for "
             "an RFAULT line, or set_port_impedance for VPORT1/VPORT2. For restore_component "
             "set proposed_value and set proposed_z0 to null. For set_port_impedance set "
@@ -410,6 +428,7 @@ def apply_structural_restricted_patch(
     patch: StructuralRepairPatch,
     *,
     normalize_quantities: bool = False,
+    neutral_fault_resistor_name: str | None = None,
 ) -> str:
     """Apply one operation-specific structural repair with no free-form netlist edit."""
 
@@ -428,8 +447,12 @@ def apply_structural_restricted_patch(
         )
         if not _SPICE_VALUE.fullmatch(proposed_value):
             raise ValueError("proposed_value is not a permitted SPICE numeric token")
-        fault_name = f"RFAULT{patch.component}"
-        matches = [line.split() for line in source.splitlines() if line.split() and line.split()[0].upper() == fault_name]
+        fault_name = neutral_fault_resistor_name or f"RFAULT{patch.component}"
+        matches = [
+            line.split()
+            for line in source.splitlines()
+            if line.split() and line.split()[0].upper() == fault_name
+        ]
         if len(matches) != 1 or len(matches[0]) != 4:
             raise ValueError("matching synthetic fault resistor was not found")
         return restore_component_from_fault_resistor(
@@ -437,6 +460,7 @@ def apply_structural_restricted_patch(
             component=patch.component,
             expected_resistance=matches[0][3],
             healthy_value=proposed_value,
+            fault_name=fault_name,
         )
 
     if patch.operation == "set_port_impedance":

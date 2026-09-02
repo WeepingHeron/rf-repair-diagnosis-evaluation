@@ -81,6 +81,17 @@ class NetlistPatchTest(unittest.TestCase):
         self.assertIn("RFAULTC1 in out 1T", patched)
         self.assertNotIn("C1 in out 1p", patched)
 
+    def test_replaces_component_with_neutral_fault_resistor(self) -> None:
+        patched = replace_component_with_resistor(
+            "L2 mid 0 4n\n.end\n",
+            component="L2",
+            expected_value="4n",
+            resistance="1T",
+            fault_name="RFAULT1",
+        )
+        self.assertIn("RFAULT1 mid 0 1T", patched)
+        self.assertNotIn("L2", patched)
+
     def test_changes_exactly_bound_port_impedance(self) -> None:
         source = "VPORT2 out 0 DC 0 AC 1 portnum 2 z0 50\n.end\n"
         patched = set_port_impedance(
@@ -106,6 +117,17 @@ class NetlistPatchTest(unittest.TestCase):
         )
         self.assertIn("C1 in out 1p", restored)
         self.assertNotIn("RFAULTC1", restored)
+
+    def test_restores_component_from_neutral_fault_resistor(self) -> None:
+        restored = restore_component_from_fault_resistor(
+            "RFAULT1 mid 0 1T\n.end\n",
+            component="L2",
+            expected_resistance="1T",
+            healthy_value="4n",
+            fault_name="RFAULT1",
+        )
+        self.assertIn("L2 mid 0 4n", restored)
+        self.assertNotIn("RFAULT1", restored)
 
     def test_rejects_fault_resistance_mismatch(self) -> None:
         with self.assertRaisesRegex(ValueError, "fault resistance mismatch"):

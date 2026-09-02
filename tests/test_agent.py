@@ -69,6 +69,35 @@ class AgentBoundaryTest(unittest.TestCase):
         )
         self.assertIn("C1 n1 mid 3.183p", repaired)
 
+    def test_restores_component_from_neutral_placeholder(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="L2",
+            proposed_value="3.978873577n",
+            proposed_z0=None,
+        )
+        repaired = apply_structural_restricted_patch(
+            "RFAULT1 mid 0 1T\n.end\n",
+            patch,
+            neutral_fault_resistor_name="RFAULT1",
+        )
+        self.assertIn("L2 mid 0 3.978873577n", repaired)
+
+    def test_wrong_component_is_not_corrected_by_neutral_placeholder(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="C1",
+            proposed_value="3.183098862p",
+            proposed_z0=None,
+        )
+        repaired = apply_structural_restricted_patch(
+            "RFAULT1 mid 0 1T\n.end\n",
+            patch,
+            neutral_fault_resistor_name="RFAULT1",
+        )
+        self.assertIn("C1 mid 0 3.183098862p", repaired)
+        self.assertNotIn("L2", repaired)
+
     def test_restores_component_after_unit_canonicalization(self) -> None:
         patch = StructuralRepairPatch(
             operation="restore_component",

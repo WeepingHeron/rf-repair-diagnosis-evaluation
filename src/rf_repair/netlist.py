@@ -91,12 +91,17 @@ def replace_component_with_resistor(
     component: str,
     expected_value: str,
     resistance: str,
+    fault_name: str | None = None,
 ) -> str:
     """Replace one bound R/L/C element with an explicit fault resistor."""
 
     normalized_component = component.upper()
     if not normalized_component.startswith(("R", "L", "C")):
         raise ValueError("only R, L, and C components are supported in the MVP")
+
+    replacement_name = (fault_name or f"RFAULT{normalized_component}").upper()
+    if not re.fullmatch(r"RFAULT[A-Z0-9_]+", replacement_name):
+        raise ValueError("fault resistor name is not permitted")
 
     matches = 0
     output: list[str] = []
@@ -111,7 +116,7 @@ def replace_component_with_resistor(
                     f"healthy value mismatch for {component}: "
                     f"expected {expected_value!r}, found {tokens[3]!r}"
                 )
-            line = f"RFAULT{normalized_component} {tokens[1]} {tokens[2]} {resistance}"
+            line = f"{replacement_name} {tokens[1]} {tokens[2]} {resistance}"
         output.append(line)
 
     if matches != 1:
@@ -164,19 +169,22 @@ def restore_component_from_fault_resistor(
     component: str,
     expected_resistance: str,
     healthy_value: str,
+    fault_name: str | None = None,
 ) -> str:
     """Restore one R/L/C component from the evaluator's open/short resistor."""
 
     normalized_component = component.upper()
     if not normalized_component.startswith(("R", "L", "C")):
         raise ValueError("only R, L, and C components are supported in the MVP")
-    fault_name = f"RFAULT{normalized_component}"
+    target_fault_name = (fault_name or f"RFAULT{normalized_component}").upper()
+    if not re.fullmatch(r"RFAULT[A-Z0-9_]+", target_fault_name):
+        raise ValueError("fault resistor name is not permitted")
 
     matches = 0
     output: list[str] = []
     for line in source.splitlines():
         tokens = line.split()
-        if tokens and tokens[0].upper() == fault_name:
+        if tokens and tokens[0].upper() == target_fault_name:
             matches += 1
             if len(tokens) != 4:
                 raise ValueError(f"unsupported fault resistor syntax for {component}")
@@ -189,5 +197,5 @@ def restore_component_from_fault_resistor(
         output.append(line)
 
     if matches != 1:
-        raise ValueError(f"expected exactly one {fault_name}, found {matches}")
+        raise ValueError(f"expected exactly one {target_fault_name}, found {matches}")
     return "\n".join(output) + "\n"

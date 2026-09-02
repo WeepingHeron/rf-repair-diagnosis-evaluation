@@ -4,8 +4,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata as importlib_metadata
 import json
+import platform
+import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +20,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from rf_repair.agent import (
+    STRUCTURAL_BLIND_PROMPT_VERSION,
     STRUCTURAL_PROMPT_VERSION,
     STRUCTURAL_NORMALIZED_PROMPT_VERSION,
     STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
@@ -39,6 +44,17 @@ def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+def _command_output(command: list[str]) -> str | None:
+    try:
+        completed = subprocess.run(
+            command, cwd=ROOT, capture_output=True, text=True, check=False
+        )
+    except OSError:
+        return None
+    output = (completed.stdout or completed.stderr).strip()
+    return output.splitlines()[0] if output else None
+
+
 def _inject(source: str, case: dict[str, Any]) -> str:
     if case["operation"] == "replace_with_resistor":
         return replace_component_with_resistor(
@@ -46,6 +62,7 @@ def _inject(source: str, case: dict[str, Any]) -> str:
             component=case["component"],
             expected_value=case["healthy_value"],
             resistance=case["fault_resistance"],
+            fault_name=case.get("fault_name"),
         )
     if case["operation"] == "set_port_impedance":
         return set_port_impedance(
@@ -103,6 +120,7 @@ def main() -> int:
         STRUCTURAL_PROMPT_VERSION,
         STRUCTURAL_NORMALIZED_PROMPT_VERSION,
         STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
+        STRUCTURAL_BLIND_PROMPT_VERSION,
     }:
         raise ValueError("structural prompt version mismatch")
     if protocol["agent_schema_version"] != STRUCTURAL_SCHEMA_VERSION:
@@ -130,6 +148,24 @@ def main() -> int:
     spec = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
     healthy_source = HEALTHY_NETLIST.read_text(encoding="utf-8")
     output_root = ROOT / "build" / "experiments" / protocol["experiment_id"]
+    environment_path = output_root / "run_environment.json"
+    if not environment_path.exists():
+        _write_json(
+            environment_path,
+            {
+                "started_at_utc": datetime.now(timezone.utc).isoformat(),
+                "git_commit": _command_output(["git", "rev-parse", "HEAD"]),
+                "protocol_path": str(protocol_path.relative_to(ROOT)),
+                "protocol_sha256": hashlib.sha256(
+                    protocol_path.read_bytes()
+                ).hexdigest(),
+                "fault_manifest_sha256": hashlib.sha256(raw_manifest).hexdigest(),
+                "python_version": platform.python_version(),
+                "openai_package_version": importlib_metadata.version("openai"),
+                "ngspice_version": _command_output(["ngspice", "--version"]),
+                "response_storage": protocol.get("response_storage", False),
+            },
+        )
     load_local_api_key(ROOT / ".env.local")
     new_trajectories = 0
 
@@ -188,6 +224,8 @@ def main() -> int:
                             "proposed_fault_type": proposal.diagnosis.fault_type,
                             "proposed_value": proposal.repair.proposed_value,
                             "proposed_z0": proposal.repair.proposed_z0,
+                            "diagnosis_confidence": proposal.diagnosis.confidence,
+                            "diagnosis_evidence": proposal.diagnosis.evidence,
                             "component_correct": proposal.diagnosis.component
                             == case["component"],
                             "diagnosis_correct": (
@@ -195,6 +233,16 @@ def main() -> int:
                                 and proposal.diagnosis.fault_type == case["fault_type"]
                             ),
                             "usage": metadata["usage"],
+                            "response_id": metadata["response_id"],
+                            "model": metadata["model"],
+                            "response_status": metadata["response_status"],
+                            "incomplete_reason": metadata["incomplete_reason"],
+                            "response_created_at": metadata["response_created_at"],
+                            "output_text": metadata["output_text"],
+                            "output_text_sha256": metadata["output_text_sha256"],
+                            "output_text_chars": metadata["output_text_chars"],
+                            "prompt_version": metadata["prompt_version"],
+                            "schema_version": metadata["schema_version"],
                         }
                     )
                 except Exception as error:
@@ -210,6 +258,14 @@ def main() -> int:
                             "response_status": getattr(error, "response_status", None),
                             "incomplete_reason": getattr(error, "incomplete_reason", None),
                             "usage": usage,
+                            "output_text_sha256": getattr(
+                                error, "output_text_sha256", None
+                            ),
+                            "output_text_chars": getattr(
+                                error, "output_text_chars", None
+                            ),
+                            "prompt_version": protocol["prompt_version"],
+                            "schema_version": protocol["agent_schema_version"],
                         }
                     )
                     raw_output = getattr(error, "raw_output", "")
@@ -229,6 +285,9 @@ def main() -> int:
                         proposal.repair,
                         normalize_quantities=bool(
                             protocol.get("normalize_engineering_quantities", False)
+                        ),
+                        neutral_fault_resistor_name=protocol.get(
+                            "neutral_fault_resistor_name"
                         ),
                     )
                     row["patch_accepted"] = True

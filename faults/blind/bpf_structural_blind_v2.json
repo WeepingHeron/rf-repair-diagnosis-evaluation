@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "status": "FROZEN_BLIND_STRUCTURAL_FAULT_SET",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "visibility": "EVALUATOR_ONLY",
+  "fault_encoding": "Reactive components are replaced by the neutral name RFAULT1 so the injected component label is not shown to the agent.",
+  "cases": [
+    {
+      "fault_id": "blind_c1_open",
+      "component": "C1",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.183098862p",
+      "fault_resistance": "1T",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "blind_c1_short",
+      "component": "C1",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.183098862p",
+      "fault_resistance": "1m",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "blind_l2_open",
+      "component": "L2",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.978873577n",
+      "fault_resistance": "1T",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "blind_c2_short",
+      "component": "C2",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "636.619772p",
+      "fault_resistance": "1m",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "blind_input_z0_25",
+      "component": "VPORT1",
+      "fault_type": "source_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "25",
+      "severity": "high"
+    },
+    {
+      "fault_id": "blind_output_z0_100",
+      "component": "VPORT2",
+      "fault_type": "load_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "100",
+      "severity": "high"
+    }
+  ]
+}
