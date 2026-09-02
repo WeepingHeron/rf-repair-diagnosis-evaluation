@@ -108,6 +108,16 @@ fault당 3개 trajectory의 반복 closed-loop 결과와 deterministic ratio-gri
 정리합니다. closed loop는 first-attempt 26/30에서 최종 30/30으로 네 건을 추가 복구했고,
 grid baseline도 10/10을 복구했지만 65회의 candidate simulation을 사용했습니다.
 
+open/short/port mismatch용 제한 스키마와 strict-syntax 결과는
+[docs/structural_closed_loop_v1_0_results.md](docs/structural_closed_loop_v1_0_results.md),
+현재 논문용 통합 표는 [docs/paper_results_tables.md](docs/paper_results_tables.md)에
+기록합니다.
+
+strict syntax 실패 후 별도로 수행한 단위-normalized structural v1.1 결과는
+[docs/structural_normalized_v1_1_results.md](docs/structural_normalized_v1_1_results.md)에
+기록합니다. 이는 두 interface 변경을 함께 적용한 post-hoc 결과이므로 최종 benchmark와
+구분합니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.

@@ -4,6 +4,7 @@ import unittest
 
 from rf_repair.netlist import (
     replace_component_with_resistor,
+    normalize_spice_quantity,
     restore_component_from_fault_resistor,
     scale_spice_value,
     set_component_value,
@@ -12,6 +13,21 @@ from rf_repair.netlist import (
 
 
 class NetlistPatchTest(unittest.TestCase):
+    def test_normalizes_bounded_engineering_units(self) -> None:
+        self.assertEqual(
+            normalize_spice_quantity("3.978873577nH", expected_unit="H"),
+            "3.978873577n",
+        )
+        self.assertEqual(
+            normalize_spice_quantity("3.978873577e-9 H", expected_unit="H"),
+            "3.978873577e-9",
+        )
+        self.assertEqual(normalize_spice_quantity("50 ohm", expected_unit="ohm"), "50")
+
+    def test_rejects_wrong_engineering_unit(self) -> None:
+        with self.assertRaisesRegex(ValueError, "does not match"):
+            normalize_spice_quantity("3.9pF", expected_unit="H")
+
     def test_scales_spice_value_and_preserves_suffix(self) -> None:
         self.assertEqual(scale_spice_value("3.2p", 2.0), "6.4p")
         self.assertEqual(scale_spice_value("10meg", 0.5), "5meg")

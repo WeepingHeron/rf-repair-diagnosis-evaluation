@@ -10,6 +10,32 @@ _SPICE_NUMBER = re.compile(
     r"(?P<suffix>meg|[tgkmunpf]?)$",
     re.IGNORECASE,
 )
+_ENGINEERING_QUANTITY = re.compile(
+    r"^\s*(?P<number>(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)"
+    r"(?P<prefix>meg|[tgkmunpf])?\s*(?P<unit>h|f|ohm|Ω)?\s*$",
+    re.IGNORECASE,
+)
+
+
+def normalize_spice_quantity(value: str, *, expected_unit: str) -> str:
+    """Canonicalize a bounded engineering quantity to one SPICE value token."""
+
+    match = _ENGINEERING_QUANTITY.fullmatch(value)
+    if match is None:
+        raise ValueError("quantity is not a permitted engineering value")
+    observed_unit = (match.group("unit") or "").lower()
+    normalized_expected = expected_unit.lower()
+    allowed_units = {
+        "h": {"", "h"},
+        "f": {"", "f"},
+        "ohm": {"", "ohm", "ω"},
+    }
+    if normalized_expected not in allowed_units:
+        raise ValueError(f"unsupported expected unit: {expected_unit}")
+    if observed_unit not in allowed_units[normalized_expected]:
+        raise ValueError("quantity unit does not match component type")
+    prefix = (match.group("prefix") or "").lower()
+    return f"{match.group('number')}{prefix}"
 
 
 def scale_spice_value(value: str, multiplier: float) -> str:

@@ -12,13 +12,21 @@ from typing import Annotated, Literal
 from openai import OpenAI
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from rf_repair.netlist import set_component_value
+from rf_repair.netlist import (
+    normalize_spice_quantity,
+    restore_component_from_fault_resistor,
+    set_component_value,
+    set_port_impedance,
+)
 
 
 MODEL = "gpt-5.6-luna"
 PROMPT_VERSION = "value_one_edit_v1"
 CLOSED_LOOP_PROMPT_VERSION = "value_closed_loop_v1"
 SCHEMA_VERSION = "agent_proposal_v1"
+STRUCTURAL_PROMPT_VERSION = "structural_closed_loop_v1"
+STRUCTURAL_NORMALIZED_PROMPT_VERSION = "structural_closed_loop_v2"
+STRUCTURAL_SCHEMA_VERSION = "agent_proposal_structural_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
     r"^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+|(?:meg|[tgkmunpf]))?$",
@@ -49,6 +57,37 @@ class AgentProposal(BaseModel):
 
     diagnosis: Diagnosis
     repair: RepairPatch
+
+
+class StructuralDiagnosis(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    component: Literal["C1", "C2", "C3", "L1", "L2", "L3", "VPORT1", "VPORT2"]
+    fault_type: Literal[
+        "open",
+        "short",
+        "source_impedance_mismatch",
+        "load_impedance_mismatch",
+        "unknown",
+    ]
+    confidence: float = Field(ge=0.0, le=1.0)
+    evidence: list[EvidenceText] = Field(min_length=1, max_length=2)
+
+
+class StructuralRepairPatch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    operation: Literal["restore_component", "set_port_impedance"]
+    component: Literal["C1", "C2", "C3", "L1", "L2", "L3", "VPORT1", "VPORT2"]
+    proposed_value: str | None
+    proposed_z0: str | None
+
+
+class StructuralAgentProposal(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    diagnosis: StructuralDiagnosis
+    repair: StructuralRepairPatch
 
 
 class ProposalResponseError(RuntimeError):
@@ -247,3 +286,178 @@ def apply_restricted_patch(source: str, patch: RepairPatch) -> str:
         expected_value=current_value,
         new_value=patch.proposed_value,
     )
+
+
+def _request_common_metadata(response, *, prompt_version: str, schema_version: str) -> dict:
+    usage = response.usage.model_dump(mode="json") if response.usage else {}
+    return {
+        "model": response.model,
+        "response_status": response.status,
+        "usage": usage,
+        "output_text_sha256": sha256(response.output_text.encode("utf-8")).hexdigest(),
+        "output_text_chars": len(response.output_text),
+        "prompt_version": prompt_version,
+        "schema_version": schema_version,
+    }
+
+
+def request_structural_proposal(
+    *,
+    netlist: str,
+    spec: dict,
+    metrics: dict,
+    feedback_history: list[dict] | None = None,
+    client: OpenAI | None = None,
+    model: str = MODEL,
+    max_output_tokens: int = 2000,
+    reasoning_effort: Literal["none", "low", "medium", "high"] = "low",
+    timeout_seconds: float = 90.0,
+    max_retries: int = 0,
+    prompt_version: str = STRUCTURAL_PROMPT_VERSION,
+) -> tuple[StructuralAgentProposal, dict]:
+    """Request a bounded open/short/port-mismatch repair proposal."""
+
+    api = client or OpenAI(timeout=timeout_seconds, max_retries=max_retries)
+    payload = {
+        "task": "Diagnose one structural or port-impedance fault and propose one repair.",
+        "faulty_netlist": netlist,
+        "target_specification": spec,
+        "measured_simulation": metrics,
+    }
+    if feedback_history:
+        payload["previous_attempts"] = feedback_history
+    if prompt_version not in {
+        STRUCTURAL_PROMPT_VERSION,
+        STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+    }:
+        raise ValueError(f"unsupported structural prompt_version: {prompt_version}")
+    normalized_guidance = (
+        " VPORT1 is the source/input port and VPORT2 is the load/output port. "
+        "Engineering units such as nH, pF, or ohm are accepted and deterministically "
+        "canonicalized to SPICE tokens without changing their numeric meaning."
+        if prompt_version == STRUCTURAL_NORMALIZED_PROMPT_VERSION
+        else ""
+    )
+    response = api.responses.create(
+        model=model,
+        reasoning={"effort": reasoning_effort},
+        max_output_tokens=max_output_tokens,
+        store=False,
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": STRUCTURAL_SCHEMA_VERSION,
+                "schema": StructuralAgentProposal.model_json_schema(),
+                "strict": True,
+            },
+            "verbosity": "low",
+        },
+        instructions=(
+            "Diagnose one fault in an ideal lumped 100 MHz RF band-pass filter. "
+            "A line named RFAULT<component> represents a synthetic open (1T ohm) or "
+            "short (1m ohm) replacement of that original reactive component. RF ports "
+            "have explicit z0 values. Choose exactly one repair: restore_component for "
+            "an RFAULT line, or set_port_impedance for VPORT1/VPORT2. For restore_component "
+            "set proposed_value and set proposed_z0 to null. For set_port_impedance set "
+            "proposed_z0 and set proposed_value to null. Do not claim success; an external "
+            "ngspice validator decides. Previous failed attempts may be supplied; do not "
+            "repeat a failed patch. Keep evidence concise."
+            + normalized_guidance
+        ),
+        input=json.dumps(payload, indent=2, sort_keys=True),
+    )
+    metadata = _request_common_metadata(
+        response,
+        prompt_version=prompt_version,
+        schema_version=STRUCTURAL_SCHEMA_VERSION,
+    )
+    raw_output = response.output_text
+    incomplete_reason = (
+        response.incomplete_details.reason if response.incomplete_details else None
+    )
+    common_error = {
+        "response_status": response.status,
+        "incomplete_reason": incomplete_reason,
+        "usage": metadata["usage"],
+        "raw_output": raw_output,
+    }
+    if response.status != "completed" or not raw_output:
+        raise ProposalUnavailable(
+            message="model returned no complete structural output text",
+            **common_error,
+        )
+    try:
+        proposal = StructuralAgentProposal.model_validate_json(raw_output)
+    except ValidationError as error:
+        raise ProposalSchemaInvalid(
+            message="structural output failed local schema validation",
+            validation_error_count=error.error_count(),
+            **common_error,
+        ) from None
+    return proposal, metadata
+
+
+def apply_structural_restricted_patch(
+    source: str,
+    patch: StructuralRepairPatch,
+    *,
+    normalize_quantities: bool = False,
+) -> str:
+    """Apply one operation-specific structural repair with no free-form netlist edit."""
+
+    if patch.operation == "restore_component":
+        if not patch.component.startswith(("R", "L", "C")) or patch.component.startswith("V"):
+            raise ValueError("restore_component requires an R/L/C component")
+        if patch.proposed_value is None or patch.proposed_z0 is not None:
+            raise ValueError("restore_component fields are inconsistent")
+        proposed_value = (
+            normalize_spice_quantity(
+                patch.proposed_value,
+                expected_unit="H" if patch.component.startswith("L") else "F",
+            )
+            if normalize_quantities
+            else patch.proposed_value
+        )
+        if not _SPICE_VALUE.fullmatch(proposed_value):
+            raise ValueError("proposed_value is not a permitted SPICE numeric token")
+        fault_name = f"RFAULT{patch.component}"
+        matches = [line.split() for line in source.splitlines() if line.split() and line.split()[0].upper() == fault_name]
+        if len(matches) != 1 or len(matches[0]) != 4:
+            raise ValueError("matching synthetic fault resistor was not found")
+        return restore_component_from_fault_resistor(
+            source,
+            component=patch.component,
+            expected_resistance=matches[0][3],
+            healthy_value=proposed_value,
+        )
+
+    if patch.operation == "set_port_impedance":
+        if not patch.component.startswith("VPORT"):
+            raise ValueError("set_port_impedance requires VPORT1 or VPORT2")
+        if patch.proposed_z0 is None or patch.proposed_value is not None:
+            raise ValueError("set_port_impedance fields are inconsistent")
+        proposed_z0 = (
+            normalize_spice_quantity(patch.proposed_z0, expected_unit="ohm")
+            if normalize_quantities
+            else patch.proposed_z0
+        )
+        if not _SPICE_VALUE.fullmatch(proposed_z0):
+            raise ValueError("proposed_z0 is not a permitted SPICE numeric token")
+        port_lines = [line.split() for line in source.splitlines() if line.split() and line.split()[0].upper() == patch.component]
+        if len(port_lines) != 1:
+            raise ValueError("matching RF port was not found")
+        tokens = port_lines[0]
+        lowered = [token.lower() for token in tokens]
+        if "z0" not in lowered:
+            raise ValueError("RF port has no z0 value")
+        current_z0 = tokens[lowered.index("z0") + 1]
+        if current_z0.lower() == proposed_z0.lower():
+            raise ValueError("repair must change the port impedance")
+        return set_port_impedance(
+            source,
+            port=patch.component,
+            expected_z0=current_z0,
+            new_z0=proposed_z0,
+        )
+
+    raise ValueError(f"unsupported structural repair operation: {patch.operation}")

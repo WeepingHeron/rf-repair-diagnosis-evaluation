@@ -2,7 +2,13 @@ from __future__ import annotations
 
 import unittest
 
-from rf_repair.agent import RepairPatch, apply_restricted_patch, build_agent_input
+from rf_repair.agent import (
+    RepairPatch,
+    StructuralRepairPatch,
+    apply_restricted_patch,
+    apply_structural_restricted_patch,
+    build_agent_input,
+)
 
 
 class AgentBoundaryTest(unittest.TestCase):
@@ -50,6 +56,52 @@ class AgentBoundaryTest(unittest.TestCase):
         patch = RepairPatch(operation="set_value", component="L2", proposed_value="4n")
         with self.assertRaisesRegex(ValueError, "must change"):
             apply_restricted_patch("L2 mid 0 4n\n.end\n", patch)
+
+    def test_restores_synthetic_open_component(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="C1",
+            proposed_value="3.183p",
+            proposed_z0=None,
+        )
+        repaired = apply_structural_restricted_patch(
+            "RFAULTC1 n1 mid 1T\n.end\n", patch
+        )
+        self.assertIn("C1 n1 mid 3.183p", repaired)
+
+    def test_restores_component_after_unit_canonicalization(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="L2",
+            proposed_value="3.978873577nH",
+            proposed_z0=None,
+        )
+        repaired = apply_structural_restricted_patch(
+            "RFAULTL2 mid 0 1T\n.end\n", patch, normalize_quantities=True
+        )
+        self.assertIn("L2 mid 0 3.978873577n", repaired)
+
+    def test_repairs_port_impedance(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="set_port_impedance",
+            component="VPORT2",
+            proposed_value=None,
+            proposed_z0="50",
+        )
+        repaired = apply_structural_restricted_patch(
+            "VPORT2 out 0 DC 0 AC 1 portnum 2 z0 100\n.end\n", patch
+        )
+        self.assertIn("z0 50", repaired)
+
+    def test_rejects_cross_operation_fields(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="L2",
+            proposed_value="3.9n",
+            proposed_z0="50",
+        )
+        with self.assertRaisesRegex(ValueError, "inconsistent"):
+            apply_structural_restricted_patch("RFAULTL2 mid 0 1T\n.end\n", patch)
 
 
 if __name__ == "__main__":

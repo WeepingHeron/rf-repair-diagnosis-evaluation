@@ -35,5 +35,24 @@ fault 후보는 다음을 모두 만족할 때만 평가 case로 사용할 수 �
 4. fault 회로가 하나 이상의 필수 specification을 위반한다.
 5. fault manifest는 Agent에게 제공되지 않는다.
 
-현재 `faults/pilot/`의 사례는 최종 benchmark로 동결되지 않은 후보이다.
+`faults/pilot/`이라는 경로명은 초기 생성 위치를 나타낸다. 각 실행 프로토콜은 사용하는
+manifest의 SHA-256을 고정하므로 실행 중 사례 변경은 거부된다. 다만 이 사례 집합은 하나의
+topology에서 만든 합성 fault이므로 외부 일반화를 위한 최종 benchmark라는 의미는 아니다.
 
+## Agent repair 연산 경계
+
+- value fault: `set_value`
+- synthetic open/short: `restore_component`
+- port mismatch: `set_port_impedance`
+
+Agent는 위 구조화 연산만 제안하며 전체 netlist 문자열을 생성하거나 임의 노드를 추가할 수
+없다. evaluator는 현재 대상과 정확히 결합한 뒤 한 연산만 적용한다.
+
+Structural normalized v1.1에서는 숫자 의미를 바꾸지 않는 다음 표기 변환만 허용한다.
+
+- inductance: `nH`, `uH`, 또는 `H`를 ngspice 숫자 token으로 변환
+- capacitance: `pF`, `nF`, 또는 `F`를 ngspice 숫자 token으로 변환
+- impedance: `ohm` 또는 `Ω` 표기를 제거해 숫자 token으로 변환
+
+부품 종류와 물리 단위가 맞지 않거나 자유 형식 수식이 포함되면 변환하지 않고 patch를
+거부한다. 이 canonicalizer는 값 선택, 최적화 또는 정상값 추정을 수행하지 않는다.
