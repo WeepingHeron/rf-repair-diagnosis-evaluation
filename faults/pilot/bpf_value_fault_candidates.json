@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.1.0",
+  "status": "PILOT_NOT_FROZEN",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "visibility": "EVALUATOR_ONLY",
+  "cases": [
+    {
+      "fault_id": "bpf_c1_x0p5",
+      "component": "C1",
+      "fault_type": "value_too_low",
+      "healthy_value": "3.183098862p",
+      "faulty_value": "1.591549431p",
+      "scale": 0.5,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_c1_x0p7",
+      "component": "C1",
+      "fault_type": "value_too_low",
+      "healthy_value": "3.183098862p",
+      "faulty_value": "2.228169203p",
+      "scale": 0.7,
+      "severity": "medium"
+    },
+    {
+      "fault_id": "bpf_c1_x1p3",
+      "component": "C1",
+      "fault_type": "value_too_high",
+      "healthy_value": "3.183098862p",
+      "faulty_value": "4.138028521p",
+      "scale": 1.3,
+      "severity": "medium"
+    },
+    {
+      "fault_id": "bpf_c1_x2",
+      "component": "C1",
+      "fault_type": "value_too_high",
+      "healthy_value": "3.183098862p",
+      "faulty_value": "6.366197724p",
+      "scale": 2.0,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_l1_x0p5",
+      "component": "L1",
+      "fault_type": "value_too_low",
+      "healthy_value": "795.774715n",
+      "faulty_value": "397.8873575n",
+      "scale": 0.5,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_l1_x2",
+      "component": "L1",
+      "fault_type": "value_too_high",
+      "healthy_value": "795.774715n",
+      "faulty_value": "1591.54943n",
+      "scale": 2.0,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_l2_x0p5",
+      "component": "L2",
+      "fault_type": "value_too_low",
+      "healthy_value": "3.978873577n",
+      "faulty_value": "1.989436789n",
+      "scale": 0.5,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_l2_x2",
+      "component": "L2",
+      "fault_type": "value_too_high",
+      "healthy_value": "3.978873577n",
+      "faulty_value": "7.957747154n",
+      "scale": 2.0,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_c2_x0p5",
+      "component": "C2",
+      "fault_type": "value_too_low",
+      "healthy_value": "636.619772p",
+      "faulty_value": "318.309886p",
+      "scale": 0.5,
+      "severity": "high"
+    },
+    {
+      "fault_id": "bpf_c2_x2",
+      "component": "C2",
+      "fault_type": "value_too_high",
+      "healthy_value": "636.619772p",
+      "faulty_value": "1273.239544p",
+      "scale": 2.0,
+      "severity": "high"
+    }
+  ]
+}
+
