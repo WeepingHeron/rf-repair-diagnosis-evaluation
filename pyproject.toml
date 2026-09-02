@@ -3,3 +3,7 @@ name = "spice-grounded-rf-repair"
 version = "0.1.0"
 description = "Simulator-verified LLM agent research for lumped RF circuit fault diagnosis and repair"
 requires-python = ">=3.12"
+dependencies = [
+  "openai==3.7.0",
+  "pydantic==2.13.5",
+]

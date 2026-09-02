@@ -18,8 +18,10 @@ ngspice와 결정적 검증기가 성능 복구 여부를 판정하는 연구 �
 
 ## 현재 상태
 
-`2026-09-02`: 연구 범위와 초기 연구질문을 동결하고 ngspice 실행 환경을
-검증하는 단계입니다. 아직 benchmark 결과나 과학적 성능을 주장하지 않습니다.
+`2026-09-02`: 정상 baseline, 16개 fault 후보, 16개 one-edit oracle repair를
+결정적으로 검증했습니다. 실제 LLM 호출 1건도 전체 closed loop를 통과했지만,
+이는 파이프라인 smoke pilot이며 아직 benchmark 결과나 과학적 성능을 주장하지
+않습니다. 상세 기록은 [docs/live_pilot_log.md](docs/live_pilot_log.md)에 있습니다.
 
 ## 환경 확인
 
@@ -27,6 +29,14 @@ ngspice와 결정적 검증기가 성능 복구 여부를 판정하는 연구 �
 
 - Python 3.12 이상
 - ngspice 47
+- OpenAI Python SDK 3.7.0 (LLM pilot만 필요)
+
+저장소 전용 환경 설치:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -e .
+```
 
 Smoke test:
 
@@ -45,6 +55,17 @@ PYTHONPATH=src python3 -m unittest discover -s tests -v
 
 baseline은 이상적인 집중소자 시뮬레이션이며 실제 RF 부품 또는 하드웨어 측정값이
 아닙니다. 현재 specification은 fault pilot 이전의 draft 상태입니다.
+
+실제 LLM pilot은 저장소 루트의 `.env.local`에 `OPENAI_API_KEY`가 있을 때만
+명시적으로 실행합니다. 정상 netlist와 fault manifest는 Agent 입력에서 제외되며,
+응답은 한 번의 부품 값 수정으로 제한됩니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/run_llm_fault_pilot.py
+```
+
+현재 pilot 모델은 `gpt-5.6-luna`, reasoning effort는 `low`, 출력 상한은 700 token,
+API 저장은 비활성화합니다. 단일 호출 결과는 benchmark 성능으로 주장하지 않습니다.
 
 ## 재현성과 신뢰성 원칙
 
