@@ -49,6 +49,28 @@ v1.1은 strict 결과를 본 뒤 단위 canonicalization과 port-role 설명을 
 | VPORT2 fault-type confusion | 3 | 위치와 repair 성공, source/load label 오분류 |
 | API/schema failure | 0 | 현재 v1.0 value/structural closed-loop에서 관측되지 않음 |
 
+## 표 4. Interface improvement ablation
+
+`Ablation`은 여러 변경을 한꺼번에 평가하지 않고 한 요인씩 분리하는 실험이다.
+
+| 조건 | 단위 변환 | 포트 역할 설명 | Final recovery | Final diagnosis | Agent calls |
+|---|---|---|---:|---:|---:|
+| Strict v1.0 | Off | Off | 16/18 (88.9%) | 15/18 (83.3%) | 22 |
+| Unit-only v1.2 | On | Off | 18/18 (100.0%) | 15/18 (83.3%) | 21 |
+| Port-role-only v1.4 | Off | On | 17/18 (94.4%) | 16/18 (88.9%) | 24 |
+| Combined v1.1 | On | On | 18/18 (100.0%) | 18/18 (100.0%) | 21 |
+
+## 표 5. Improved-interface holdout confirmation
+
+`Holdout`은 개선 과정에서 사용하지 않고 별도 확인용으로 남겨둔 사례다.
+
+| Fault cases | Trajectories | First recovery | Final recovery | Final localization | Final diagnosis | Agent calls |
+|---:|---:|---:|---:|---:|---:|---:|
+| 6 | 18 | 18/18 (100.0%) | 18/18 (100.0%) | 18/18 (100.0%) | 17/18 (94.4%) | 18 |
+
+Holdout은 같은 회로 topology 안의 새 합성 fault이므로 arbitrary RF circuits에 대한 외부
+일반화 결과가 아니다. 중단된 port-role v1.3의 부분 실행 7건은 모든 표에서 제외했다.
+
 ## 논문용 핵심 관찰
 
 1. Raw initial SPICE metrics를 one-shot 입력에 추가하는 것만으로는 현재 value-fault

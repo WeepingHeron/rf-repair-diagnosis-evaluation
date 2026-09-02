@@ -23,6 +23,9 @@ def main() -> int:
     grid = _summary("deterministic_grid_value_v1_0")
     structural_strict = _summary("closed_loop_structural_repeat_v1_0")
     structural_normalized = _summary("closed_loop_structural_normalized_v1_1")
+    structural_unit_only = _summary("structural_unit_normalization_ablation_v1_2")
+    structural_port_only = _summary("structural_port_role_ablation_v1_4")
+    structural_holdout = _summary("structural_interface_holdout_v1_0")
 
     rows = [
         {
@@ -108,6 +111,41 @@ def main() -> int:
             + structural_normalized["total_agent_calls"],
             "candidate_simulations": value_loop["accepted_candidate_simulation_calls"]
             + structural_normalized["accepted_candidate_simulation_calls"],
+        },
+        "interface_ablation": [
+            {
+                "condition": name,
+                "trajectories": summary["trajectory_count"],
+                "first_recovery": summary["first_iteration_recovery_count"],
+                "final_recovery": summary["final_recovery_count"],
+                "final_localization": summary["final_component_localization_count"],
+                "final_diagnosis": summary["final_full_diagnosis_count"],
+                "agent_calls": summary["total_agent_calls"],
+                "candidate_simulations": summary[
+                    "accepted_candidate_simulation_calls"
+                ],
+                "tokens": summary["recorded_total_tokens"],
+            }
+            for name, summary in [
+                ("strict", structural_strict),
+                ("unit_only", structural_unit_only),
+                ("port_role_only", structural_port_only),
+                ("unit_and_port_role", structural_normalized),
+            ]
+        ],
+        "interface_holdout": {
+            "trajectories": structural_holdout["trajectory_count"],
+            "first_recovery": structural_holdout["first_iteration_recovery_count"],
+            "final_recovery": structural_holdout["final_recovery_count"],
+            "final_localization": structural_holdout[
+                "final_component_localization_count"
+            ],
+            "final_diagnosis": structural_holdout["final_full_diagnosis_count"],
+            "agent_calls": structural_holdout["total_agent_calls"],
+            "candidate_simulations": structural_holdout[
+                "accepted_candidate_simulation_calls"
+            ],
+            "tokens": structural_holdout["recorded_total_tokens"],
         },
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
