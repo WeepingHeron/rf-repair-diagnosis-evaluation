@@ -24,6 +24,16 @@ class AgentBoundaryTest(unittest.TestCase):
         )
         self.assertNotIn("measured_simulation", payload)
 
+    def test_input_can_include_closed_loop_feedback(self) -> None:
+        payload = build_agent_input(
+            netlist="C1 in out 2p\n.end\n",
+            spec={"target": 1},
+            metrics={"simulation_converged": True},
+            feedback_history=[{"iteration": 1, "outcome": "SPECIFICATION_VIOLATION"}],
+        )
+        self.assertIn("previous_attempts", payload)
+        self.assertIn("SPECIFICATION_VIOLATION", payload)
+
     def test_applies_one_allowlisted_value_patch(self) -> None:
         patch = RepairPatch(operation="set_value", component="C1", proposed_value="1.5p")
         repaired = apply_restricted_patch("C1 in out 2p\n.end\n", patch)

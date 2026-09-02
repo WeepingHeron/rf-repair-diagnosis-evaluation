@@ -17,6 +17,7 @@ from rf_repair.netlist import set_component_value
 
 MODEL = "gpt-5.6-luna"
 PROMPT_VERSION = "value_one_edit_v1"
+CLOSED_LOOP_PROMPT_VERSION = "value_closed_loop_v1"
 SCHEMA_VERSION = "agent_proposal_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
@@ -102,7 +103,13 @@ def load_local_api_key(path: Path) -> None:
     raise RuntimeError(f"OPENAI_API_KEY is missing from {path}")
 
 
-def build_agent_input(*, netlist: str, spec: dict, metrics: dict | None) -> str:
+def build_agent_input(
+    *,
+    netlist: str,
+    spec: dict,
+    metrics: dict | None,
+    feedback_history: list[dict] | None = None,
+) -> str:
     """Build the agent-visible evidence bundle; no healthy netlist or manifest."""
 
     payload: dict = {
@@ -112,7 +119,29 @@ def build_agent_input(*, netlist: str, spec: dict, metrics: dict | None) -> str:
     }
     if metrics is not None:
         payload["measured_simulation"] = metrics
+    if feedback_history:
+        payload["previous_attempts"] = feedback_history
     return json.dumps(payload, indent=2, sort_keys=True)
+
+
+def _instructions(prompt_version: str) -> str:
+    if prompt_version not in {PROMPT_VERSION, CLOSED_LOOP_PROMPT_VERSION}:
+        raise ValueError(f"unsupported prompt_version: {prompt_version}")
+    feedback_instruction = (
+        " Previous repair attempts may be supplied. Use their deterministic rejection or "
+        "simulation feedback to propose a different candidate; do not repeat a failed patch."
+        if prompt_version == CLOSED_LOOP_PROMPT_VERSION
+        else ""
+    )
+    return (
+        "You are diagnosing an ideal lumped 100 MHz RF band-pass filter. "
+        "Use only the supplied faulty netlist, target specification, and available evidence. "
+        "The healthy netlist and injected-fault manifest are unavailable. "
+        "Choose one R/L/C value edit only. Do not claim success; an external ngspice "
+        "validator will decide. proposed_value must be one positive SPICE numeric token. "
+        "Keep each evidence string under 200 characters."
+        + feedback_instruction
+    )
 
 
 def request_proposal(
@@ -126,6 +155,8 @@ def request_proposal(
     reasoning_effort: Literal["none", "low", "medium", "high"] = "low",
     timeout_seconds: float = 90.0,
     max_retries: int = 0,
+    prompt_version: str = PROMPT_VERSION,
+    feedback_history: list[dict] | None = None,
 ) -> tuple[AgentProposal, dict]:
     """Request one structured proposal and return safe usage metadata."""
 
@@ -146,15 +177,13 @@ def request_proposal(
             },
             "verbosity": "low",
         },
-        instructions=(
-            "You are diagnosing an ideal lumped 100 MHz RF band-pass filter. "
-            "Use only the supplied faulty netlist, target specification, and measured "
-            "simulation. The healthy netlist and injected-fault manifest are unavailable. "
-            "Choose one R/L/C value edit only. Do not claim success; an external ngspice "
-            "validator will decide. proposed_value must be one positive SPICE numeric token. "
-            "Keep each evidence string under 200 characters."
+        instructions=_instructions(prompt_version),
+        input=build_agent_input(
+            netlist=netlist,
+            spec=spec,
+            metrics=metrics,
+            feedback_history=feedback_history,
         ),
-        input=build_agent_input(netlist=netlist, spec=spec, metrics=metrics),
     )
     usage = response.usage.model_dump(mode="json") if response.usage else {}
     raw_output = response.output_text
@@ -186,7 +215,7 @@ def request_proposal(
         "usage": usage,
         "output_text_sha256": sha256(raw_output.encode("utf-8")).hexdigest(),
         "output_text_chars": len(raw_output),
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": prompt_version,
         "schema_version": SCHEMA_VERSION,
     }
     return proposal, metadata

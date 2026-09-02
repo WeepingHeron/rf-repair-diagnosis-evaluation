@@ -159,6 +159,7 @@ def main() -> int:
                     reasoning_effort=protocol.get("reasoning_effort", "low"),
                     timeout_seconds=float(protocol.get("request_timeout_seconds", 90)),
                     max_retries=int(protocol.get("automatic_api_retries", 0)),
+                    prompt_version=protocol.get("prompt_version", PROMPT_VERSION),
                 )
             except Exception as error:
                 row = _safe_failure_row(

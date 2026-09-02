@@ -98,6 +98,11 @@ v0.2 결과는 [docs/value_fault_repeat_v0_2_results.md](docs/value_fault_repeat
 현재 10-case pilot에서는 raw SPICE metrics 추가가 성능을 높이지 않았으며, 다음 단계는
 실패한 repair 결과를 다시 제공하는 최대 3-iteration closed loop입니다.
 
+최대 3-iteration closed-loop pipeline pilot 결과는
+[docs/closed_loop_value_pilot_v0_1_results.md](docs/closed_loop_value_pilot_v0_1_results.md)에
+기록합니다. 10개 trajectory 중 첫 시도는 9개를 복구했고, 실패 evidence를 받은 두 번째
+iteration이 나머지 1개를 복구했습니다. 이는 구현 검증이며 최종 성능 주장이 아닙니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.

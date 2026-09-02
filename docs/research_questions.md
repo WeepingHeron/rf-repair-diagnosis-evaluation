@@ -38,6 +38,10 @@ fault 유형, severity 및 미관측 회로 topology에 따라 진단과 복구 
 2026-09-02의 10-case preliminary comparison에서는 H1a가 지지되지 않았다. 이는 H1b의
 closed-loop 효과와 별개이며 최종 평가 전 관찰로만 기록한다.
 
+같은 날 수행한 10-trajectory closed-loop pipeline pilot에서는 first-attempt recovery
+9/10이 feedback 후 10/10으로 증가했다. H1b를 일반적으로 지지하기에는 표본과 rescue
+건수가 부족하며, closed-loop 구현 가능성을 확인한 결과로만 사용한다.
+
 ## 핵심 지표
 
 ### 진단
