@@ -35,6 +35,16 @@ python3 scripts/run_smoke.py
 
 성공하면 `build/smoke/` 아래에 ngspice 로그와 raw 결과가 생성됩니다.
 
+100 MHz band-pass baseline과 결정적 specification 검사:
+
+```bash
+python3 scripts/run_bpf_baseline.py
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+```
+
+baseline은 이상적인 집중소자 시뮬레이션이며 실제 RF 부품 또는 하드웨어 측정값이
+아닙니다. 현재 specification은 fault pilot 이전의 draft 상태입니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.
@@ -42,4 +52,3 @@ python3 scripts/run_smoke.py
 3. 문법, 허용된 수정, simulation convergence, specification 만족 여부를 각각 검사합니다.
 4. 실패한 simulator call도 실험 비용에 포함합니다.
 5. 파일럿 이후 prompt, specification, validator를 동결하고 최종 평가와 분리합니다.
-

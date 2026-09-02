@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1.0",
+  "fault_id": "bpf_c1_x2",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "ground_truth": {
+    "component": "C1",
+    "fault_type": "value_too_high",
+    "operation": "set_value",
+    "healthy_value": "3.183098862p",
+    "faulty_value": "6.366197724p",
+    "scale": 2.0,
+    "severity": "pilot_high"
+  },
+  "visibility": "EVALUATOR_ONLY"
+}
+

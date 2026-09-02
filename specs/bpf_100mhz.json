@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "status": "BASELINE_PASSING_DRAFT_SPEC",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "model_scope": "ideal_lumped_components",
+  "reference_impedance_ohm": 50.0,
+  "target_center_frequency_hz": 100000000.0,
+  "fractional_bandwidth": 0.1,
+  "constraints": {
+    "center_frequency_relative_tolerance_max": 0.02,
+    "s21_at_center_db_min": -0.25,
+    "s11_at_center_db_max": -20.0,
+    "s21_at_lower_passband_edge_db_min": -3.5,
+    "s21_at_upper_passband_edge_db_min": -3.5,
+    "s21_at_lower_stopband_db_max": -15.0,
+    "s21_at_upper_stopband_db_max": -15.0
+  },
+  "measurement_frequencies_hz": {
+    "lower_stopband": 70000000.0,
+    "lower_passband_edge": 95000000.0,
+    "center": 100000000.0,
+    "upper_passband_edge": 105000000.0,
+    "upper_stopband": 140000000.0
+  },
+  "claim_boundary": "Simulator-only benchmark; not hardware or fabrication assurance."
+}
