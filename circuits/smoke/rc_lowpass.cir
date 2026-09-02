@@ -1,0 +1,8 @@
+* Environment smoke test only; not an RF benchmark circuit.
+V1 in 0 AC 1
+R1 in out 1k
+C1 out 0 1n
+.ac dec 10 1k 10meg
+.save v(in) v(out)
+.end
+
