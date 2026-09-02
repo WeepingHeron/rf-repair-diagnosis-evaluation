@@ -49,10 +49,17 @@ class AgentProposal(BaseModel):
 class ProposalUnavailable(RuntimeError):
     """A response completed without a parseable structured proposal."""
 
-    def __init__(self, *, response_status: str, incomplete_reason: str | None) -> None:
+    def __init__(
+        self,
+        *,
+        response_status: str,
+        incomplete_reason: str | None,
+        usage: dict,
+    ) -> None:
         super().__init__("model returned no parseable proposal")
         self.response_status = response_status
         self.incomplete_reason = incomplete_reason
+        self.usage = usage
 
 
 def load_local_api_key(path: Path) -> None:
@@ -97,7 +104,9 @@ def request_proposal(
 ) -> tuple[AgentProposal, dict]:
     """Request one structured proposal and return safe usage metadata."""
 
-    api = client or OpenAI()
+    # Hidden SDK retries would make one logical experiment row consume multiple
+    # requests. Keep each attempt explicit and bound transport wait time.
+    api = client or OpenAI(timeout=90.0, max_retries=0)
     response = api.responses.parse(
         model=model,
         reasoning={"effort": "low"},
@@ -113,6 +122,7 @@ def request_proposal(
         ),
         input=build_agent_input(netlist=netlist, spec=spec, metrics=metrics),
     )
+    usage = response.usage.model_dump(mode="json") if response.usage else {}
     proposal = response.output_parsed
     if proposal is None:
         incomplete_reason = (
@@ -121,8 +131,8 @@ def request_proposal(
         raise ProposalUnavailable(
             response_status=response.status,
             incomplete_reason=incomplete_reason,
+            usage=usage,
         )
-    usage = response.usage.model_dump(mode="json") if response.usage else {}
     metadata = {"model": response.model, "response_status": response.status, "usage": usage}
     return proposal, metadata
 

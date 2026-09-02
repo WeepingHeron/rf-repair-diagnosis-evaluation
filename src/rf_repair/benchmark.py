@@ -17,6 +17,9 @@ def aggregate_runs(rows: list[dict[str, Any]], *, expected_attempts: int) -> dic
         raise ValueError("observed rows exceed planned attempts")
 
     api_completed = sum(row.get("api_completed") is True for row in rows)
+    api_response_received = sum(
+        row.get("api_response_received", row.get("api_completed")) is True for row in rows
+    )
     structured = sum(row.get("structured_response") is True for row in rows)
     component_correct = sum(row.get("component_correct") is True for row in rows)
     diagnosis_correct = sum(row.get("diagnosis_correct") is True for row in rows)
@@ -44,6 +47,7 @@ def aggregate_runs(rows: list[dict[str, Any]], *, expected_attempts: int) -> dic
         "observed_attempts": len(rows),
         "complete": len(rows) == expected_attempts,
         "counts": {
+            "api_response_received": api_response_received,
             "api_completed": api_completed,
             "structured_response": structured,
             "component_correct": component_correct,
@@ -53,6 +57,7 @@ def aggregate_runs(rows: list[dict[str, Any]], *, expected_attempts: int) -> dic
             "specification_recovered": recovered,
         },
         "rates": {
+            "api_response_rate": _rate(api_response_received, expected_attempts),
             "api_completion_rate": _rate(api_completed, expected_attempts),
             "structured_response_rate": _rate(structured, expected_attempts),
             "component_localization_accuracy": _rate(component_correct, expected_attempts),

@@ -81,6 +81,18 @@ PYTHONPATH=src .venv/bin/python scripts/run_value_fault_repeat.py
 [docs/value_fault_repeat_v0_1_results.md](docs/value_fault_repeat_v0_1_results.md)에
 기록합니다. API 운영 실패가 포함되어 있으므로 이를 최종 모델 성능으로 사용하지 않습니다.
 
+v0.2 diagnostic repeat는 1,200-token 출력 상한과 incomplete-response metadata를
+사용하며 v0.1 결과를 덮어쓰지 않습니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/run_value_fault_repeat.py \
+  --protocol experiments/value_fault_repeat_v0_2.json
+```
+
+v0.2 결과는 [docs/value_fault_repeat_v0_2_results.md](docs/value_fault_repeat_v0_2_results.md)에
+기록합니다. 30회 중 26회가 구조화 응답을 반환했고 24회가 제한된 patch 적용 후 모든
+결정적 spec을 회복했습니다. 이 역시 diagnostic repeat이며 최종 benchmark가 아닙니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.

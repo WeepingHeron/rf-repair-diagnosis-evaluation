@@ -11,6 +11,7 @@ class BenchmarkAggregationTest(unittest.TestCase):
             {
                 "fault_id": "f1",
                 "api_completed": True,
+                "api_response_received": True,
                 "structured_response": True,
                 "component_correct": True,
                 "diagnosis_correct": True,
@@ -25,6 +26,7 @@ class BenchmarkAggregationTest(unittest.TestCase):
             {
                 "fault_id": "f1",
                 "api_completed": False,
+                "api_response_received": False,
                 "structured_response": False,
                 "component_correct": False,
                 "diagnosis_correct": False,
@@ -39,6 +41,7 @@ class BenchmarkAggregationTest(unittest.TestCase):
             summary["rates"]["recovery_rate_given_structured_response"], 1.0
         )
         self.assertFalse(summary["complete"])
+        self.assertEqual(summary["rates"]["api_response_rate"], 1 / 3)
         self.assertEqual(summary["usage"]["total_tokens"], 15)
 
     def test_component_consistency_uses_observed_structured_outputs(self) -> None:

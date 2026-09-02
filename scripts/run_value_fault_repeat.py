@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-import json
+import argparse
 import hashlib
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -21,10 +22,9 @@ from rf_repair.simulator import run_sparameter_simulation
 from rf_repair.validator import validate_bpf_metrics
 
 
-PROTOCOL_PATH = ROOT / "experiments" / "value_fault_repeat_v0_1.json"
+DEFAULT_PROTOCOL_PATH = ROOT / "experiments" / "value_fault_repeat_v0_1.json"
 HEALTHY_NETLIST = ROOT / "circuits" / "bpf_100mhz" / "butterworth_3rd.cir"
 SPEC_PATH = ROOT / "specs" / "bpf_100mhz.json"
-OUTPUT_ROOT = ROOT / "build" / "experiments" / "value_fault_repeat_v0_1"
 
 
 def _load_cases(protocol: dict[str, Any]) -> list[dict[str, Any]]:
@@ -46,10 +46,13 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 
 def _safe_failure_row(*, fault_id: str, repetition: int, stage: str, error: Exception) -> dict:
+    response_status = getattr(error, "response_status", None)
+    usage = getattr(error, "usage", {})
     row = {
         "fault_id": fault_id,
         "repetition": repetition,
-        "api_completed": stage != "api",
+        "api_response_received": response_status is not None,
+        "api_completed": response_status == "completed" if stage == "api" else True,
         "structured_response": False,
         "component_correct": False,
         "diagnosis_correct": False,
@@ -58,8 +61,10 @@ def _safe_failure_row(*, fault_id: str, repetition: int, stage: str, error: Exce
         "specification_recovered": False,
         "failure_stage": stage,
         "error_type": type(error).__name__,
+        "input_tokens": usage.get("input_tokens", 0),
+        "output_tokens": usage.get("output_tokens", 0),
+        "total_tokens": usage.get("total_tokens", 0),
     }
-    response_status = getattr(error, "response_status", None)
     incomplete_reason = getattr(error, "incomplete_reason", None)
     if response_status is not None:
         row["response_status"] = response_status
@@ -69,7 +74,12 @@ def _safe_failure_row(*, fault_id: str, repetition: int, stage: str, error: Exce
 
 
 def main() -> int:
-    protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--protocol", type=Path, default=DEFAULT_PROTOCOL_PATH)
+    args = parser.parse_args()
+    protocol_path = args.protocol if args.protocol.is_absolute() else ROOT / args.protocol
+    protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
+    output_root = ROOT / "build" / "experiments" / protocol["experiment_id"]
     spec = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
     healthy_source = HEALTHY_NETLIST.read_text(encoding="utf-8")
     cases = _load_cases(protocol)
@@ -81,7 +91,7 @@ def main() -> int:
     load_local_api_key(ROOT / ".env.local")
     rows: list[dict[str, Any]] = []
     for case in cases:
-        case_dir = OUTPUT_ROOT / case["fault_id"]
+        case_dir = output_root / case["fault_id"]
         faulty_source = set_component_value(
             healthy_source,
             component=case["component"],
@@ -124,6 +134,7 @@ def main() -> int:
                 "fault_id": case["fault_id"],
                 "repetition": repetition,
                 "api_completed": api_metadata.get("response_status") == "completed",
+                "api_response_received": True,
                 "structured_response": True,
                 "proposed_component": proposal.diagnosis.component,
                 "proposed_fault_type": proposal.diagnosis.fault_type,
@@ -170,7 +181,7 @@ def main() -> int:
         "claim_boundary": protocol["claim_boundary"],
         **aggregate_runs(rows, expected_attempts=expected),
     }
-    _write_json(OUTPUT_ROOT / "summary.json", summary)
+    _write_json(output_root / "summary.json", summary)
     print(json.dumps(summary, indent=2))
     return 0 if summary["complete"] else 1
 
