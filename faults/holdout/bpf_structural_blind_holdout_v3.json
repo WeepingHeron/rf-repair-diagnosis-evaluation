@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "status": "FROZEN_CONFIRMATORY_BLIND_HOLDOUT",
+  "circuit_id": "bpf_100mhz_butterworth_3rd",
+  "visibility": "EVALUATOR_ONLY",
+  "screened_at": "2026-09-03",
+  "screening_result": "6/6 injected faults failed specification and 6/6 exact one-edit restorations passed",
+  "selection_rule": "Each case must fail the frozen specification after injection and pass after exact one-edit restoration. No LLM output is used during screening.",
+  "fault_encoding": "Reactive components are replaced by neutral RFAULT1 so the injected component label is not shown to the agent.",
+  "cases": [
+    {
+      "fault_id": "holdout_l1_open",
+      "component": "L1",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "795.774715n",
+      "fault_resistance": "1T",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "holdout_c3_open",
+      "component": "C3",
+      "fault_type": "open",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.183098862p",
+      "fault_resistance": "1T",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "holdout_l3_short",
+      "component": "L3",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "795.774715n",
+      "fault_resistance": "1m",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "holdout_l2_short",
+      "component": "L2",
+      "fault_type": "short",
+      "operation": "replace_with_resistor",
+      "healthy_value": "3.978873577n",
+      "fault_resistance": "1m",
+      "fault_name": "RFAULT1",
+      "severity": "structural"
+    },
+    {
+      "fault_id": "holdout_input_z0_100",
+      "component": "VPORT1",
+      "fault_type": "source_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "100",
+      "severity": "high"
+    },
+    {
+      "fault_id": "holdout_output_z0_25",
+      "component": "VPORT2",
+      "fault_type": "load_impedance_mismatch",
+      "operation": "set_port_impedance",
+      "healthy_z0": "50",
+      "faulty_z0": "25",
+      "severity": "high"
+    }
+  ]
+}
