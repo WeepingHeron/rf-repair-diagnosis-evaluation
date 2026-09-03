@@ -47,6 +47,7 @@ v1.1은 strict 결과를 본 뒤 단위 canonicalization과 port-role 설명을 
 | Structural v1.1 feedback rescue | 2 | 단위 canonicalization 후 잘못된 값 후보를 simulator feedback으로 교정 |
 | Value final compensatory repair | 3 | L2 fault를 C2 조정으로 복구; localization 실패, functional recovery 성공 |
 | VPORT2 fault-type confusion | 3 | 위치와 repair 성공, source/load label 오분류 |
+| Combined holdout numeric error | 1 | L2의 nH 값을 μH로 제안한 1000배 오류; simulation은 수렴했지만 validator가 FAIL 판정 |
 | API/schema failure | 0 | 현재 v1.0 value/structural closed-loop에서 관측되지 않음 |
 
 ## 표 4. Interface improvement ablation
@@ -60,16 +61,21 @@ v1.1은 strict 결과를 본 뒤 단위 canonicalization과 port-role 설명을 
 | Port-role-only v1.4 | Off | On | 17/18 (94.4%) | 16/18 (88.9%) | 24 |
 | Combined v1.1 | On | On | 18/18 (100.0%) | 18/18 (100.0%) | 21 |
 
-## 표 5. Improved-interface holdout confirmation
+## 표 5. Blind holdout strict-vs-combined confirmation
 
 `Holdout`은 개선 과정에서 사용하지 않고 별도 확인용으로 남겨둔 사례다.
 
-| Fault cases | Trajectories | First recovery | Final recovery | Final localization | Final diagnosis | Agent calls |
-|---:|---:|---:|---:|---:|---:|---:|
-| 6 | 18 | 18/18 (100.0%) | 18/18 (100.0%) | 18/18 (100.0%) | 17/18 (94.4%) | 18 |
+| 조건 | Fault cases | Trajectories | First recovery | Final recovery | Final localization | Final diagnosis | Agent calls |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Strict holdout | 6 | 18 | 13/18 (72.2%) | 14/18 (77.8%) | 18/18 (100.0%) | 9/18 (50.0%) | 27 |
+| Combined holdout | 6 | 18 | 17/18 (94.4%) | 17/18 (94.4%) | 18/18 (100.0%) | 18/18 (100.0%) | 20 |
 
 Holdout은 같은 회로 topology 안의 새 합성 fault이므로 arbitrary RF circuits에 대한 외부
-일반화 결과가 아니다. 중단된 port-role v1.3의 부분 실행 7건은 모든 표에서 제외했다.
+일반화 결과가 아니다. 모든 holdout fault는 LLM 실행 전에 고장 상태가 specification을
+위반하고 정확한 one-edit repair가 이를 회복함을 deterministic하게 확인했다. Combined의
+유일한 미복구는 `L2 = 3.9788736 uH`를 제안한 사례로, 정상값 `3.978873577 nH`보다
+1000배 컸다. parser와 ngspice는 실행했지만 validator가 specification 미회복으로
+판정했다. 중단된 port-role v1.3의 부분 실행 7건은 모든 표에서 제외했다.
 
 ## 논문용 핵심 관찰
 
@@ -81,7 +87,10 @@ Holdout은 같은 회로 topology 안의 새 합성 fault이므로 arbitrary RF 
    한다.
 4. Structural fault에서는 회로 진단과 실행 가능한 SPICE syntax 사이의 interface failure가
    최종 성공률을 제한했다.
-5. 제한된 단위 canonicalization과 port-role 명시는 post-hoc 실험에서 structural recovery를
-   16/18에서 18/18로 높였지만, 두 변경의 효과는 현재 분리되지 않았다.
+5. 제한된 단위 canonicalization과 fault-label 명시는 development ablation에서 각 요인의
+   역할을 분리했으며, 결합 조건은 recovery와 full diagnosis 모두 18/18이었다.
+6. 같은 회로의 미관측 holdout에서 결합 인터페이스는 strict 대비 final diagnosis를
+   9/18에서 18/18로, recovery를 14/18에서 17/18로 높였다. 그러나 1000배 수치 오류 한
+   건은 구조화 응답만으로 걸러지지 않아 deterministic SPICE 검증이 여전히 필요했다.
 
 모든 수치는 simulator-only 결과다. 실제 부품, PCB, RFIC 또는 계측 성능을 의미하지 않는다.
