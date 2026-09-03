@@ -88,6 +88,21 @@ Combined 조건은 strict 대비 full diagnosis를 55.6%에서 100.0%로, recove
 - 미복구 trajectory의 세 patch는 모두 simulation 전에 parser가 거절했음을 확인했다.
 - unit tests 36개가 통과했다.
 
+## Post-hoc interface replay
+
+Frozen v2.3 결과를 기록한 뒤, canonicalizer가 숫자와 SI prefix 사이의 공백도
+허용하도록 별도 수정했다. 실패 당시 첫 번째 API 응답의 `636.619772 pF`를 그대로
+재생한 결과는 다음과 같다.
+
+- canonical value: `636.619772p`
+- ngspice simulation: converged
+- deterministic validator: PASS
+- 수정 후 전체 unit tests: 37개 PASS
+
+이는 미복구 원인이 회로 진단이나 수정값이 아니라 parser coverage였다는 사후 증거다.
+그러나 결과를 본 뒤 수정한 코드이므로 v2.3 recovery를 18/18로 변경하지 않는다.
+새 parser의 일반 성능을 주장하려면 별도 protocol과 보지 않은 holdout 사례가 필요하다.
+
 ## 비용
 
 2026-09-03 GPT-5.6 Luna 공개 단가와 응답 usage로 계산한 v2.3 비용은

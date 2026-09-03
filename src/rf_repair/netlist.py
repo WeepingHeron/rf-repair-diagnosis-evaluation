@@ -12,7 +12,7 @@ _SPICE_NUMBER = re.compile(
 )
 _ENGINEERING_QUANTITY = re.compile(
     r"^\s*(?P<number>(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)"
-    r"(?P<prefix>meg|[tgkmunpf])?\s*(?P<unit>h|f|ohm|Ω)?\s*$",
+    r"\s*(?P<prefix>meg|[tgkmunpf])?\s*(?P<unit>h|f|ohm|Ω)?\s*$",
     re.IGNORECASE,
 )
 

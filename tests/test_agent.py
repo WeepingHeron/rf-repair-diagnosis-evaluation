@@ -129,6 +129,21 @@ class AgentBoundaryTest(unittest.TestCase):
         )
         self.assertIn("L2 mid 0 3.978873577n", repaired)
 
+    def test_restores_component_after_spaced_prefix_canonicalization(self) -> None:
+        patch = StructuralRepairPatch(
+            operation="restore_component",
+            component="C2",
+            proposed_value="636.619772 pF",
+            proposed_z0=None,
+        )
+        repaired = apply_structural_restricted_patch(
+            "RFAULT1 mid 0 1m\n.end\n",
+            patch,
+            normalize_quantities=True,
+            neutral_fault_resistor_name="RFAULT1",
+        )
+        self.assertIn("C2 mid 0 636.619772p", repaired)
+
     def test_repairs_port_impedance(self) -> None:
         patch = StructuralRepairPatch(
             operation="set_port_impedance",

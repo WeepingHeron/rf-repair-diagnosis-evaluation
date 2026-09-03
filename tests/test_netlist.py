@@ -22,6 +22,10 @@ class NetlistPatchTest(unittest.TestCase):
             normalize_spice_quantity("3.978873577e-9 H", expected_unit="H"),
             "3.978873577e-9",
         )
+        self.assertEqual(
+            normalize_spice_quantity("636.619772 pF", expected_unit="F"),
+            "636.619772p",
+        )
         self.assertEqual(normalize_spice_quantity("50 ohm", expected_unit="ohm"), "50")
 
     def test_rejects_wrong_engineering_unit(self) -> None:
