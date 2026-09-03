@@ -28,6 +28,9 @@ STRUCTURAL_PROMPT_VERSION = "structural_closed_loop_v1"
 STRUCTURAL_NORMALIZED_PROMPT_VERSION = "structural_closed_loop_v2"
 STRUCTURAL_PORT_ROLE_PROMPT_VERSION = "structural_closed_loop_port_role_v1"
 STRUCTURAL_BLIND_PROMPT_VERSION = "structural_closed_loop_blind_v2"
+STRUCTURAL_BLIND_LABEL_PROMPT_VERSION = (
+    "structural_closed_loop_blind_label_guidance_v2"
+)
 STRUCTURAL_SCHEMA_VERSION = "agent_proposal_structural_v1"
 ALLOWED_COMPONENTS = ("C1", "C2", "C3", "L1", "L2", "L3")
 _SPICE_VALUE = re.compile(
@@ -311,6 +314,69 @@ def _request_common_metadata(response, *, prompt_version: str, schema_version: s
     }
 
 
+def structural_instructions(prompt_version: str) -> str:
+    """Build versioned structural instructions for audit and unit testing."""
+
+    allowed_versions = {
+        STRUCTURAL_PROMPT_VERSION,
+        STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+        STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
+        STRUCTURAL_BLIND_PROMPT_VERSION,
+        STRUCTURAL_BLIND_LABEL_PROMPT_VERSION,
+    }
+    if prompt_version not in allowed_versions:
+        raise ValueError(f"unsupported structural prompt_version: {prompt_version}")
+
+    blind_versions = {
+        STRUCTURAL_BLIND_PROMPT_VERSION,
+        STRUCTURAL_BLIND_LABEL_PROMPT_VERSION,
+    }
+    blind_guidance = (
+        " A line named RFAULT1 is a neutral placeholder replacing one unknown reactive "
+        "component. Its name does not identify the original component. Infer which missing "
+        "component belongs at those two nodes from the supplied topology and measurements."
+        if prompt_version in blind_versions
+        else " A line named RFAULT<component> represents a synthetic open (1T ohm) or "
+        "short (1m ohm) replacement of that original reactive component."
+    )
+    port_role_guidance = (
+        " VPORT1 is the source/input port and VPORT2 is the load/output port. "
+        if prompt_version
+        in {
+            STRUCTURAL_NORMALIZED_PROMPT_VERSION,
+            STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
+        }
+        else ""
+    )
+    label_guidance = (
+        " Use fault_type=open when a very high resistance interrupts the intended branch, "
+        "and fault_type=short when a near-zero resistance bypasses the intended reactive "
+        "component. Use source_impedance_mismatch only for VPORT1 and "
+        "load_impedance_mismatch only for VPORT2."
+        if prompt_version == STRUCTURAL_BLIND_LABEL_PROMPT_VERSION
+        else ""
+    )
+    normalized_guidance = (
+        " Engineering units such as nH, pF, or ohm are accepted and deterministically "
+        "canonicalized to SPICE tokens without changing their numeric meaning."
+        if prompt_version == STRUCTURAL_NORMALIZED_PROMPT_VERSION
+        else ""
+    )
+    return (
+        "Diagnose one fault in an ideal lumped 100 MHz RF band-pass filter."
+        + blind_guidance
+        + " RF ports have explicit z0 values. Choose exactly one repair: "
+        "restore_component for an RFAULT line, or set_port_impedance for VPORT1/VPORT2. "
+        "For restore_component set proposed_value and set proposed_z0 to null. For "
+        "set_port_impedance set proposed_z0 and set proposed_value to null. Do not claim "
+        "success; an external ngspice validator decides. Previous failed attempts may be "
+        "supplied; do not repeat a failed patch. Keep evidence concise."
+        + port_role_guidance
+        + label_guidance
+        + normalized_guidance
+    )
+
+
 def request_structural_proposal(
     *,
     netlist: str,
@@ -336,33 +402,6 @@ def request_structural_proposal(
     }
     if feedback_history:
         payload["previous_attempts"] = feedback_history
-    if prompt_version not in {
-        STRUCTURAL_PROMPT_VERSION,
-        STRUCTURAL_NORMALIZED_PROMPT_VERSION,
-        STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
-        STRUCTURAL_BLIND_PROMPT_VERSION,
-    }:
-        raise ValueError(f"unsupported structural prompt_version: {prompt_version}")
-    port_role_guidance = (
-        " VPORT1 is the source/input port and VPORT2 is the load/output port. "
-        if prompt_version
-        in {STRUCTURAL_NORMALIZED_PROMPT_VERSION, STRUCTURAL_PORT_ROLE_PROMPT_VERSION}
-        else ""
-    )
-    normalized_guidance = (
-        "Engineering units such as nH, pF, or ohm are accepted and deterministically "
-        "canonicalized to SPICE tokens without changing their numeric meaning."
-        if prompt_version == STRUCTURAL_NORMALIZED_PROMPT_VERSION
-        else ""
-    )
-    blind_guidance = (
-        " A line named RFAULT1 is a neutral placeholder replacing one unknown reactive "
-        "component. Its name does not identify the original component. Infer which missing "
-        "component belongs at those two nodes from the supplied topology and measurements."
-        if prompt_version == STRUCTURAL_BLIND_PROMPT_VERSION
-        else " A line named RFAULT<component> represents a synthetic open (1T ohm) or "
-        "short (1m ohm) replacement of that original reactive component."
-    )
     response = api.responses.create(
         model=model,
         reasoning={"effort": reasoning_effort},
@@ -377,19 +416,7 @@ def request_structural_proposal(
             },
             "verbosity": "low",
         },
-        instructions=(
-            "Diagnose one fault in an ideal lumped 100 MHz RF band-pass filter. "
-            + blind_guidance
-            + " RF ports "
-            "have explicit z0 values. Choose exactly one repair: restore_component for "
-            "an RFAULT line, or set_port_impedance for VPORT1/VPORT2. For restore_component "
-            "set proposed_value and set proposed_z0 to null. For set_port_impedance set "
-            "proposed_z0 and set proposed_value to null. Do not claim success; an external "
-            "ngspice validator decides. Previous failed attempts may be supplied; do not "
-            "repeat a failed patch. Keep evidence concise."
-            + port_role_guidance
-            + normalized_guidance
-        ),
+        instructions=structural_instructions(prompt_version),
         input=json.dumps(payload, indent=2, sort_keys=True),
     )
     metadata = _request_common_metadata(

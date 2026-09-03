@@ -20,6 +20,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from rf_repair.agent import (
+    STRUCTURAL_BLIND_LABEL_PROMPT_VERSION,
     STRUCTURAL_BLIND_PROMPT_VERSION,
     STRUCTURAL_PROMPT_VERSION,
     STRUCTURAL_NORMALIZED_PROMPT_VERSION,
@@ -121,6 +122,7 @@ def main() -> int:
         STRUCTURAL_NORMALIZED_PROMPT_VERSION,
         STRUCTURAL_PORT_ROLE_PROMPT_VERSION,
         STRUCTURAL_BLIND_PROMPT_VERSION,
+        STRUCTURAL_BLIND_LABEL_PROMPT_VERSION,
     }:
         raise ValueError("structural prompt version mismatch")
     if protocol["agent_schema_version"] != STRUCTURAL_SCHEMA_VERSION:

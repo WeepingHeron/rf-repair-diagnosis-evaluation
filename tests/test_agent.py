@@ -4,14 +4,33 @@ import unittest
 
 from rf_repair.agent import (
     RepairPatch,
+    STRUCTURAL_BLIND_LABEL_PROMPT_VERSION,
+    STRUCTURAL_BLIND_PROMPT_VERSION,
     StructuralRepairPatch,
     apply_restricted_patch,
     apply_structural_restricted_patch,
     build_agent_input,
+    structural_instructions,
 )
 
 
 class AgentBoundaryTest(unittest.TestCase):
+    def test_blind_prompt_hides_component_name_and_label_mapping(self) -> None:
+        instructions = structural_instructions(STRUCTURAL_BLIND_PROMPT_VERSION)
+        self.assertIn("RFAULT1", instructions)
+        self.assertNotIn("RFAULT<component>", instructions)
+        self.assertNotIn("Use fault_type=open", instructions)
+
+    def test_blind_label_prompt_defines_labels_without_component_leak(self) -> None:
+        instructions = structural_instructions(
+            STRUCTURAL_BLIND_LABEL_PROMPT_VERSION
+        )
+        self.assertIn("RFAULT1", instructions)
+        self.assertNotIn("RFAULT<component>", instructions)
+        self.assertIn("Use fault_type=open", instructions)
+        self.assertIn("source_impedance_mismatch only for VPORT1", instructions)
+        self.assertIn("load_impedance_mismatch only for VPORT2", instructions)
+
     def test_input_contains_no_evaluator_ground_truth_fields(self) -> None:
         payload = build_agent_input(
             netlist="C1 in out 2p\n.end\n",
