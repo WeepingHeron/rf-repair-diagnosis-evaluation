@@ -21,34 +21,35 @@ simulation budget이 크다. 10 deterministic cases와 30 stochastic trajectorie
 | Fault family | Fault cases | Trajectories | First recovery | Final recovery | Final localization | Final diagnosis | Agent calls | Candidate simulations |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Component value | 10 | 30 | 26/30 (86.7%) | 30/30 (100.0%) | 27/30 (90.0%) | 27/30 (90.0%) | 35 | 34 |
-| Open/short/port mismatch, strict syntax | 6 | 18 | 16/18 (88.9%) | 16/18 (88.9%) | 18/18 (100.0%) | 15/18 (83.3%) | 22 | 16 |
-| **합계** | **16** | **48** | **42/48 (87.5%)** | **46/48 (95.8%)** | **45/48 (93.8%)** | **42/48 (87.5%)** | **57** | **50** |
+| Open/short/port mismatch, Blind strict v2 | 6 | 18 | 16/18 (88.9%) | 16/18 (88.9%) | 18/18 (100.0%) | 10/18 (55.6%) | 22 | 16 |
+| **합계** | **16** | **48** | **42/48 (87.5%)** | **46/48 (95.8%)** | **45/48 (93.8%)** | **37/48 (77.1%)** | **57** | **50** |
 
 합계는 현재 두 frozen protocol의 단순 micro-average다. fault family와 난이도가 균등하지
 않으므로 전체 일반화 성능으로 해석하지 않는다.
 
-## 표 2a. Post-hoc structural interface remediation
+## 표 2a. Blind structural interface development
 
 | 조건 | Trajectories | First recovery | Final recovery | Final localization | Final diagnosis | Agent calls | Candidate simulations |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Structural strict syntax v1.0 | 18 | 16/18 (88.9%) | 16/18 (88.9%) | 18/18 (100.0%) | 15/18 (83.3%) | 22 | 16 |
-| Structural normalized + port-role prompt v1.1 | 18 | 16/18 (88.9%) | 18/18 (100.0%) | 18/18 (100.0%) | 18/18 (100.0%) | 21 | 21 |
-| Value v1.0 + normalized structural v1.1 | 48 | 42/48 (87.5%) | 48/48 (100.0%) | 45/48 (93.8%) | 45/48 (93.8%) | 56 | 55 |
+| Blind strict v2 | 18 | 16/18 (88.9%) | 16/18 (88.9%) | 18/18 (100.0%) | 10/18 (55.6%) | 22 | 16 |
+| Unit adapter v2.1 | 18 | 16/18 (88.9%) | 17/18 (94.4%) | 18/18 (100.0%) | 11/18 (61.1%) | 21 | 21 |
+| Label guidance v2.2 | 18 | 14/18 (77.8%) | 16/18 (88.9%) | 18/18 (100.0%) | 18/18 (100.0%) | 26 | 16 |
+| Combined v2.3 | 18 | 17/18 (94.4%) | 17/18 (94.4%) | 18/18 (100.0%) | 18/18 (100.0%) | 20 | 17 |
 
-v1.1은 strict 결과를 본 뒤 단위 canonicalization과 port-role 설명을 함께 변경한 post-hoc
-실험이다. 마지막 합계는 시스템 동작 요약이며 독립적인 최종 benchmark로 사용하지 않는다.
+v2.1~v2.3은 Blind strict 결과를 본 뒤 추가한 개발 실험이다. 따라서 주 결과를 대체하지
+않으며, 독립 확인은 표 5의 미관측 holdout에서 수행한다.
 
 ## 표 3. 실패 및 복구 메커니즘
 
 | 구분 | 건수 | 처리 |
 |---|---:|---|
 | Value trajectory first-attempt failure | 4 | 모두 feedback 후 복구 |
-| Structural final failure | 2 | L2/open은 정확히 진단했으나 `nH`/`H` 표기가 strict patch syntax에서 거부됨 |
-| Structural v1.1 feedback rescue | 2 | 단위 canonicalization 후 잘못된 값 후보를 simulator feedback으로 교정 |
+| Blind strict final failure | 2 | L2/open은 정확히 진단했으나 `nH`/`H` 표기가 strict patch syntax에서 거부됨 |
+| Blind strict label mismatch | 8 | 위치는 맞았지만 open/short 또는 source/load label을 잘못 선택 |
+| Combined development failure | 1 | C2 short 한 trajectory에서 허용 범위 안의 잘못된 값이 반복됨 |
 | Value final compensatory repair | 3 | L2 fault를 C2 조정으로 복구; localization 실패, functional recovery 성공 |
-| VPORT2 fault-type confusion | 3 | 위치와 repair 성공, source/load label 오분류 |
 | Combined holdout numeric error | 1 | L2의 nH 값을 μH로 제안한 1000배 오류; simulation은 수렴했지만 validator가 FAIL 판정 |
-| API/schema failure | 0 | 현재 v1.0 value/structural closed-loop에서 관측되지 않음 |
+| API/schema failure | 0 | 현재 value-primary 및 Blind strict 주 결과에서 관측되지 않음 |
 
 ## 표 4. Interface improvement ablation
 
@@ -56,10 +57,10 @@ v1.1은 strict 결과를 본 뒤 단위 canonicalization과 port-role 설명을 
 
 | 조건 | 단위 변환 | 포트 역할 설명 | Final recovery | Final diagnosis | Agent calls |
 |---|---|---|---:|---:|---:|
-| Strict v1.0 | Off | Off | 16/18 (88.9%) | 15/18 (83.3%) | 22 |
-| Unit-only v1.2 | On | Off | 18/18 (100.0%) | 15/18 (83.3%) | 21 |
-| Port-role-only v1.4 | Off | On | 17/18 (94.4%) | 16/18 (88.9%) | 24 |
-| Combined v1.1 | On | On | 18/18 (100.0%) | 18/18 (100.0%) | 21 |
+| Blind strict v2 | Off | Off | 16/18 (88.9%) | 10/18 (55.6%) | 22 |
+| Unit adapter v2.1 | On | Off | 17/18 (94.4%) | 11/18 (61.1%) | 21 |
+| Label guidance v2.2 | Off | On | 16/18 (88.9%) | 18/18 (100.0%) | 26 |
+| Combined v2.3 | On | On | 17/18 (94.4%) | 18/18 (100.0%) | 20 |
 
 ## 표 5. Blind holdout strict-vs-combined confirmation
 
@@ -88,7 +89,7 @@ Holdout은 같은 회로 topology 안의 새 합성 fault이므로 arbitrary RF 
 4. Structural fault에서는 회로 진단과 실행 가능한 SPICE syntax 사이의 interface failure가
    최종 성공률을 제한했다.
 5. 제한된 단위 canonicalization과 fault-label 명시는 development ablation에서 각 요인의
-   역할을 분리했으며, 결합 조건은 recovery와 full diagnosis 모두 18/18이었다.
+   역할을 분리했으며, 결합 조건은 full diagnosis 18/18과 recovery 17/18이었다.
 6. 같은 회로의 미관측 holdout에서 결합 인터페이스는 strict 대비 final diagnosis를
    9/18에서 18/18로, recovery를 14/18에서 17/18로 높였다. 그러나 1000배 수치 오류 한
    건은 구조화 응답만으로 걸러지지 않아 deterministic SPICE 검증이 여전히 필요했다.
