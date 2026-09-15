@@ -1,0 +1,1970 @@
+{
+  "experiment_id": "reference_robustness_v1",
+  "frozen_at_utc": "2026-09-06T07:18:41.886007+00:00",
+  "api_calls": 0,
+  "scope": "Reused eligible synthetic cohort sensitivity; no hardware or new holdout claim",
+  "cohort": [
+    {
+      "cohort_id": "reference_d1_control",
+      "design_id": "reference_d1",
+      "kind": "control",
+      "source_case_id": "reference_d1_f1",
+      "expected_component": null,
+      "expected_direction": null,
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L402",
+            "nodes": [
+              "N6697",
+              "N2288"
+            ]
+          },
+          {
+            "component": "C610",
+            "nodes": [
+              "N2288",
+              "N8105"
+            ]
+          },
+          {
+            "component": "L381",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "C452",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "L430",
+            "nodes": [
+              "N8105",
+              "N1393"
+            ]
+          },
+          {
+            "component": "C194",
+            "nodes": [
+              "N1393",
+              "N3623"
+            ]
+          }
+        ],
+        "ports": [
+          "N6697",
+          "N3623"
+        ],
+        "line_order": [
+          1,
+          0,
+          5,
+          4,
+          3,
+          2
+        ],
+        "frequency_hz": 115000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d1_f1",
+      "design_id": "reference_d1",
+      "kind": "fault",
+      "source_case_id": "reference_d1_f1",
+      "expected_component": "L402",
+      "expected_direction": "value_too_low",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 2.3103050095e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L402",
+            "nodes": [
+              "N6697",
+              "N2288"
+            ]
+          },
+          {
+            "component": "C610",
+            "nodes": [
+              "N2288",
+              "N8105"
+            ]
+          },
+          {
+            "component": "L381",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "C452",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "L430",
+            "nodes": [
+              "N8105",
+              "N1393"
+            ]
+          },
+          {
+            "component": "C194",
+            "nodes": [
+              "N1393",
+              "N3623"
+            ]
+          }
+        ],
+        "ports": [
+          "N6697",
+          "N3623"
+        ],
+        "line_order": [
+          1,
+          0,
+          5,
+          4,
+          3,
+          2
+        ],
+        "frequency_hz": 115000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d1_f2",
+      "design_id": "reference_d1",
+      "kind": "fault",
+      "source_case_id": "reference_d1_f2",
+      "expected_component": "C452",
+      "expected_direction": "value_too_high",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 5.97276102319e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L402",
+            "nodes": [
+              "N6697",
+              "N2288"
+            ]
+          },
+          {
+            "component": "C610",
+            "nodes": [
+              "N2288",
+              "N8105"
+            ]
+          },
+          {
+            "component": "L381",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "C452",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "L430",
+            "nodes": [
+              "N8105",
+              "N1393"
+            ]
+          },
+          {
+            "component": "C194",
+            "nodes": [
+              "N1393",
+              "N3623"
+            ]
+          }
+        ],
+        "ports": [
+          "N6697",
+          "N3623"
+        ],
+        "line_order": [
+          1,
+          0,
+          5,
+          4,
+          3,
+          2
+        ],
+        "frequency_hz": 115000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d2_control",
+      "design_id": "reference_d2",
+      "kind": "control",
+      "source_case_id": "reference_d2_f1",
+      "expected_component": null,
+      "expected_direction": null,
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L462",
+            "nodes": [
+              "N4454",
+              "N5269"
+            ]
+          },
+          {
+            "component": "C857",
+            "nodes": [
+              "N5269",
+              "N4860"
+            ]
+          },
+          {
+            "component": "L688",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "C427",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "L916",
+            "nodes": [
+              "N4860",
+              "N4169"
+            ]
+          },
+          {
+            "component": "C702",
+            "nodes": [
+              "N4169",
+              "N2285"
+            ]
+          }
+        ],
+        "ports": [
+          "N4454",
+          "N2285"
+        ],
+        "line_order": [
+          5,
+          4,
+          0,
+          1,
+          3,
+          2
+        ],
+        "frequency_hz": 153000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d2_f1",
+      "design_id": "reference_d2",
+      "kind": "fault",
+      "source_case_id": "reference_d2_f1",
+      "expected_component": "C857",
+      "expected_direction": "value_too_low",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 2.09444096196e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L462",
+            "nodes": [
+              "N4454",
+              "N5269"
+            ]
+          },
+          {
+            "component": "C857",
+            "nodes": [
+              "N5269",
+              "N4860"
+            ]
+          },
+          {
+            "component": "L688",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "C427",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "L916",
+            "nodes": [
+              "N4860",
+              "N4169"
+            ]
+          },
+          {
+            "component": "C702",
+            "nodes": [
+              "N4169",
+              "N2285"
+            ]
+          }
+        ],
+        "ports": [
+          "N4454",
+          "N2285"
+        ],
+        "line_order": [
+          5,
+          4,
+          0,
+          1,
+          3,
+          2
+        ],
+        "frequency_hz": 153000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d2_f2",
+      "design_id": "reference_d2",
+      "kind": "fault",
+      "source_case_id": "reference_d2_f2",
+      "expected_component": "L688",
+      "expected_direction": "value_too_high",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 8.31537942604e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L462",
+            "nodes": [
+              "N4454",
+              "N5269"
+            ]
+          },
+          {
+            "component": "C857",
+            "nodes": [
+              "N5269",
+              "N4860"
+            ]
+          },
+          {
+            "component": "L688",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "C427",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "L916",
+            "nodes": [
+              "N4860",
+              "N4169"
+            ]
+          },
+          {
+            "component": "C702",
+            "nodes": [
+              "N4169",
+              "N2285"
+            ]
+          }
+        ],
+        "ports": [
+          "N4454",
+          "N2285"
+        ],
+        "line_order": [
+          5,
+          4,
+          0,
+          1,
+          3,
+          2
+        ],
+        "frequency_hz": 153000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d3_control",
+      "design_id": "reference_d3",
+      "kind": "control",
+      "source_case_id": "reference_d3_f1",
+      "expected_component": null,
+      "expected_direction": null,
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L260",
+            "nodes": [
+              "N9218",
+              "N7269"
+            ]
+          },
+          {
+            "component": "C837",
+            "nodes": [
+              "N7269",
+              "N5649"
+            ]
+          },
+          {
+            "component": "L148",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "C109",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N5649",
+              "N3883"
+            ]
+          },
+          {
+            "component": "C259",
+            "nodes": [
+              "N3883",
+              "N2903"
+            ]
+          }
+        ],
+        "ports": [
+          "N9218",
+          "N2903"
+        ],
+        "line_order": [
+          4,
+          2,
+          3,
+          0,
+          5,
+          1
+        ],
+        "frequency_hz": 203000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d3_f1",
+      "design_id": "reference_d3",
+      "kind": "fault",
+      "source_case_id": "reference_d3_f1",
+      "expected_component": "L444",
+      "expected_direction": "value_too_low",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.03639542071e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L260",
+            "nodes": [
+              "N9218",
+              "N7269"
+            ]
+          },
+          {
+            "component": "C837",
+            "nodes": [
+              "N7269",
+              "N5649"
+            ]
+          },
+          {
+            "component": "L148",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "C109",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N5649",
+              "N3883"
+            ]
+          },
+          {
+            "component": "C259",
+            "nodes": [
+              "N3883",
+              "N2903"
+            ]
+          }
+        ],
+        "ports": [
+          "N9218",
+          "N2903"
+        ],
+        "line_order": [
+          4,
+          2,
+          3,
+          0,
+          5,
+          1
+        ],
+        "frequency_hz": 203000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    },
+    {
+      "cohort_id": "reference_d3_f2",
+      "design_id": "reference_d3",
+      "kind": "fault",
+      "source_case_id": "reference_d3_f2",
+      "expected_component": "C109",
+      "expected_direction": "value_too_high",
+      "current_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 2.63409237344e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "historical_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L260",
+            "nodes": [
+              "N9218",
+              "N7269"
+            ]
+          },
+          {
+            "component": "C837",
+            "nodes": [
+              "N7269",
+              "N5649"
+            ]
+          },
+          {
+            "component": "L148",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "C109",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N5649",
+              "N3883"
+            ]
+          },
+          {
+            "component": "C259",
+            "nodes": [
+              "N3883",
+              "N2903"
+            ]
+          }
+        ],
+        "ports": [
+          "N9218",
+          "N2903"
+        ],
+        "line_order": [
+          4,
+          2,
+          3,
+          0,
+          5,
+          1
+        ],
+        "frequency_hz": 203000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "baseline_0_0",
+      "family": "baseline",
+      "level": "0",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_0",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 0,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_1",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 1,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_2",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 2,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_3",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 3,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_4",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 4,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_5",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 5,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_6",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 6,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_7",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 7,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_8",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 8,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.005_9",
+      "family": "noise",
+      "level": "0.005",
+      "draw": 9,
+      "noise_sigma_db": 0.005,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_0",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 0,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_1",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 1,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_2",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 2,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_3",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 3,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_4",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 4,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_5",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 5,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_6",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 6,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_7",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 7,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_8",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 8,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.01_9",
+      "family": "noise",
+      "level": "0.01",
+      "draw": 9,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_0",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 0,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_1",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 1,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_2",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 2,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_3",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 3,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_4",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 4,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_5",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 5,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_6",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 6,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_7",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 7,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_8",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 8,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.02_9",
+      "family": "noise",
+      "level": "0.02",
+      "draw": 9,
+      "noise_sigma_db": 0.02,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_0",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 0,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_1",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 1,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_2",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 2,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_3",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 3,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_4",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 4,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_5",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 5,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_6",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 6,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_7",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 7,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_8",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 8,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.05_9",
+      "family": "noise",
+      "level": "0.05",
+      "draw": 9,
+      "noise_sigma_db": 0.05,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_0",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_1",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 1,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_2",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 2,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_3",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 3,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_4",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 4,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_5",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 5,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_6",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 6,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_7",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 7,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_8",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 8,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "noise_0.1_9",
+      "family": "noise",
+      "level": "0.1",
+      "draw": 9,
+      "noise_sigma_db": 0.1,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_-0.1_0",
+      "family": "offset",
+      "level": "-0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": -0.1,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_-0.05_0",
+      "family": "offset",
+      "level": "-0.05",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": -0.05,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_-0.02_0",
+      "family": "offset",
+      "level": "-0.02",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": -0.02,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_-0.01_0",
+      "family": "offset",
+      "level": "-0.01",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": -0.01,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_0.01_0",
+      "family": "offset",
+      "level": "0.01",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.01,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_0.02_0",
+      "family": "offset",
+      "level": "0.02",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.02,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_0.05_0",
+      "family": "offset",
+      "level": "0.05",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.05,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "offset_0.1_0",
+      "family": "offset",
+      "level": "0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.1,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_-0.005_0",
+      "family": "frequency",
+      "level": "-0.005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": -0.005,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_-0.001_0",
+      "family": "frequency",
+      "level": "-0.001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": -0.001,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_-0.0005_0",
+      "family": "frequency",
+      "level": "-0.0005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": -0.0005,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_-0.0001_0",
+      "family": "frequency",
+      "level": "-0.0001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": -0.0001,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_0.0001_0",
+      "family": "frequency",
+      "level": "0.0001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0001,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_0.0005_0",
+      "family": "frequency",
+      "level": "0.0005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0005,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_0.001_0",
+      "family": "frequency",
+      "level": "0.001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.001,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "frequency_0.005_0",
+      "family": "frequency",
+      "level": "0.005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.005,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_-0.01_0",
+      "family": "lc_drift",
+      "level": "-0.01",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.01,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_-0.005_0",
+      "family": "lc_drift",
+      "level": "-0.005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.005,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_-0.001_0",
+      "family": "lc_drift",
+      "level": "-0.001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_0.001_0",
+      "family": "lc_drift",
+      "level": "0.001",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_0.005_0",
+      "family": "lc_drift",
+      "level": "0.005",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.005,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "lc_drift_0.01_0",
+      "family": "lc_drift",
+      "level": "0.01",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.01,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_-0.5_0",
+      "family": "rs_model",
+      "level": "-0.5",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": -0.5,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_-0.25_0",
+      "family": "rs_model",
+      "level": "-0.25",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": -0.25,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_-0.1_0",
+      "family": "rs_model",
+      "level": "-0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_0.1_0",
+      "family": "rs_model",
+      "level": "0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_0.25_0",
+      "family": "rs_model",
+      "level": "0.25",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.25,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "rs_model_0.5_0",
+      "family": "rs_model",
+      "level": "0.5",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.5,
+      "parasitic_fraction": 0.0
+    },
+    {
+      "scenario_id": "parasitic_model_-0.5_0",
+      "family": "parasitic_model",
+      "level": "-0.5",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": -0.5
+    },
+    {
+      "scenario_id": "parasitic_model_-0.25_0",
+      "family": "parasitic_model",
+      "level": "-0.25",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": -0.25
+    },
+    {
+      "scenario_id": "parasitic_model_-0.1_0",
+      "family": "parasitic_model",
+      "level": "-0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "parasitic_model_0.1_0",
+      "family": "parasitic_model",
+      "level": "0.1",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "parasitic_model_0.25_0",
+      "family": "parasitic_model",
+      "level": "0.25",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.25
+    },
+    {
+      "scenario_id": "parasitic_model_0.5_0",
+      "family": "parasitic_model",
+      "level": "0.5",
+      "draw": 0,
+      "noise_sigma_db": 0.0,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.0,
+      "rs_fraction": 0.0,
+      "parasitic_fraction": 0.5
+    },
+    {
+      "scenario_id": "combined_-1_0",
+      "family": "combined",
+      "level": "-1",
+      "draw": 0,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_1",
+      "family": "combined",
+      "level": "-1",
+      "draw": 1,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_2",
+      "family": "combined",
+      "level": "-1",
+      "draw": 2,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_3",
+      "family": "combined",
+      "level": "-1",
+      "draw": 3,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_4",
+      "family": "combined",
+      "level": "-1",
+      "draw": 4,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_5",
+      "family": "combined",
+      "level": "-1",
+      "draw": 5,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_6",
+      "family": "combined",
+      "level": "-1",
+      "draw": 6,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_7",
+      "family": "combined",
+      "level": "-1",
+      "draw": 7,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_8",
+      "family": "combined",
+      "level": "-1",
+      "draw": 8,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_-1_9",
+      "family": "combined",
+      "level": "-1",
+      "draw": 9,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": -0.001,
+      "rs_fraction": -0.1,
+      "parasitic_fraction": -0.1
+    },
+    {
+      "scenario_id": "combined_1_0",
+      "family": "combined",
+      "level": "1",
+      "draw": 0,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_1",
+      "family": "combined",
+      "level": "1",
+      "draw": 1,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_2",
+      "family": "combined",
+      "level": "1",
+      "draw": 2,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_3",
+      "family": "combined",
+      "level": "1",
+      "draw": 3,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_4",
+      "family": "combined",
+      "level": "1",
+      "draw": 4,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_5",
+      "family": "combined",
+      "level": "1",
+      "draw": 5,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_6",
+      "family": "combined",
+      "level": "1",
+      "draw": 6,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_7",
+      "family": "combined",
+      "level": "1",
+      "draw": 7,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_8",
+      "family": "combined",
+      "level": "1",
+      "draw": 8,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    },
+    {
+      "scenario_id": "combined_1_9",
+      "family": "combined",
+      "level": "1",
+      "draw": 9,
+      "noise_sigma_db": 0.01,
+      "offset_db": 0.0,
+      "frequency_fraction": 0.0,
+      "lc_drift_fraction": 0.001,
+      "rs_fraction": 0.1,
+      "parasitic_fraction": 0.1
+    }
+  ],
+  "planned": 945,
+  "file_sha256": {
+    "/Users/taehoon/Desktop/\u110c\u1169\u11af\u110b\u1165\u11b8\u1102\u1169\u11ab\u1106\u116e\u11ab2/faults/holdout/reference_diagnosis_v2.json": "787c3d93731b06692e6c983a9b0ab839a8a6dc6eb37d06d57b23f26cf99598c1",
+    "docs/reference_diagnosis_v1_protocol.md": "4b6bff6bcaa13ef75e05e486eee182b0159eebaab49e5bc39982d3db96ea4167",
+    "docs/reference_diagnosis_v2_protocol.md": "7e6e95f671748c08898eeb8c686a5cf03ca8a28a0ca52e924ef24e34bce12722",
+    "docs/reference_robustness_v1_protocol.md": "b36070c0cc3978e57c2e2b1ba577d537d99404d989a30e1c52614c4a3f84008a",
+    "experiments/reference_diagnosis_v1.json": "5c62957e841b3dde2025701914ef98f421df62f428905347e5edcb19d436d3bd",
+    "experiments/reference_diagnosis_v2.json": "5908a33b9f6ab2e8a3075dd2456097998378e068784c8aea917063fc11c9e512",
+    "scripts/prepare_reference_diagnosis_v2.py": "60615f398704eb81f2999a6b84b88c4c16f1b34ed305df580568f8da55d65776",
+    "scripts/run_budget_transfer.py": "b2e79ba653d5b579cb6a32ed861478f0bf60999a3ff60a0e2eb100801cdcb3e4",
+    "scripts/run_reference_diagnosis_v2.py": "d521b0ffc6d1f5d1e10cdd7de805ab622e0799b74d256207e80b24ce14339e6e",
+    "scripts/run_reference_robustness.py": "bbc1e90f9e3e26e961cb550ae1e4ab38a5c086a4972e9d84d2298d41773538d1",
+    "src/rf_repair/agent.py": "bced892ae2eb7df2c42185abdcede2ac08767b8e3aee57c288cdbb1a55f75b78",
+    "src/rf_repair/diagnosis.py": "5543a95a5951f2109fcb9ded32df9c720a6070d6b1c85ffff58b1adf4ba832ab",
+    "src/rf_repair/extensions.py": "edda90f62f9bcbbe7d3db97e061be395f84a149abf9662860ced282e9be518bf",
+    "src/rf_repair/lossy.py": "67ff2cd38134bc5feeb8de58f0780a7c1d45d0c9b017653d6350ecccd801108b",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/nonideal.py": "8f51cfafa2440bb602e932ed4a5bdb4feec6d45344654dbec49363405f9605f1",
+    "src/rf_repair/reference.py": "1dbe413aa77f61f7197cf774cc6c9d92ad4e600c5866c791ff696f5148ff5c18",
+    "src/rf_repair/robustness.py": "e315ef3aaac96fc1cdeb7c12859f56c0f43ee8a0d50a73aa717a0ca81ffb6403",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "tests/test_robustness.py": "a1163319160f7f8208371811b53511ff53d23c746baf65a2ea51ae948c12a860"
+  }
+}

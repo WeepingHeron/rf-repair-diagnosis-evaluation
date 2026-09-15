@@ -1,0 +1,47 @@
+{
+  "experiment_id": "reference_diagnosis_v2",
+  "status": "READY",
+  "frozen_at_utc": "2026-09-06T06:55:02.060746+00:00",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "max_output_tokens": 2000,
+  "max_input_chars": 50000,
+  "case_count": 6,
+  "conditions": [
+    "current_only",
+    "historical_reference",
+    "reference_with_fit"
+  ],
+  "repetitions": 2,
+  "calls_per_trajectory": 1,
+  "max_api_calls": 36,
+  "automatic_retries": 0,
+  "store": false,
+  "manifest": "faults/holdout/reference_diagnosis_v2.json",
+  "prices_per_million": {
+    "input": 0.2,
+    "cached_input": 0.02,
+    "cache_write": 0.25,
+    "output": 1.2
+  },
+  "scope": "Post-prescreen amended eligible-cohort exploration, synthetic historical magnitudes; not full v1 or measured hardware performance",
+  "file_sha256": {
+    "src/rf_repair/reference.py": "1dbe413aa77f61f7197cf774cc6c9d92ad4e600c5866c791ff696f5148ff5c18",
+    "src/rf_repair/diagnosis.py": "5543a95a5951f2109fcb9ded32df9c720a6070d6b1c85ffff58b1adf4ba832ab",
+    "src/rf_repair/lossy.py": "67ff2cd38134bc5feeb8de58f0780a7c1d45d0c9b017653d6350ecccd801108b",
+    "src/rf_repair/nonideal.py": "8f51cfafa2440bb602e932ed4a5bdb4feec6d45344654dbec49363405f9605f1",
+    "src/rf_repair/extensions.py": "edda90f62f9bcbbe7d3db97e061be395f84a149abf9662860ced282e9be518bf",
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "src/rf_repair/agent.py": "bced892ae2eb7df2c42185abdcede2ac08767b8e3aee57c288cdbb1a55f75b78",
+    "scripts/prepare_reference_diagnosis_v2.py": "60615f398704eb81f2999a6b84b88c4c16f1b34ed305df580568f8da55d65776",
+    "scripts/run_reference_diagnosis_v2.py": "d521b0ffc6d1f5d1e10cdd7de805ab622e0799b74d256207e80b24ce14339e6e",
+    "scripts/run_budget_transfer.py": "b2e79ba653d5b579cb6a32ed861478f0bf60999a3ff60a0e2eb100801cdcb3e4",
+    "docs/reference_diagnosis_v2_protocol.md": "7e6e95f671748c08898eeb8c686a5cf03ca8a28a0ca52e924ef24e34bce12722",
+    "docs/reference_diagnosis_v1_protocol.md": "4b6bff6bcaa13ef75e05e486eee182b0159eebaab49e5bc39982d3db96ea4167",
+    "experiments/reference_diagnosis_v1.json": "5c62957e841b3dde2025701914ef98f421df62f428905347e5edcb19d436d3bd",
+    "/Users/taehoon/Desktop/\u110c\u1169\u11af\u110b\u1165\u11b8\u1102\u1169\u11ab\u1106\u116e\u11ab2/faults/holdout/reference_diagnosis_v2.json": "787c3d93731b06692e6c983a9b0ab839a8a6dc6eb37d06d57b23f26cf99598c1"
+  }
+}

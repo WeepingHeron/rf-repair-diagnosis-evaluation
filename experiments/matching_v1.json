@@ -1,0 +1,39 @@
+{
+  "experiment_id": "matching_v1",
+  "frozen_at_utc": "2026-09-06T05:25:37.632911+00:00",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "max_output_tokens": 2000,
+  "max_input_chars": 40000,
+  "case_count": 8,
+  "repetitions": 1,
+  "conditions": [
+    "matching_one_shot"
+  ],
+  "max_iterations": 1,
+  "max_api_calls": 8,
+  "manifest": "faults/holdout/matching_v1.json",
+  "automatic_api_retries": 0,
+  "store": false,
+  "stop_on_success": true,
+  "prices_per_million": {
+    "input": 0.2,
+    "cached_input": 0.02,
+    "cache_write": 0.25,
+    "output": 1.2
+  },
+  "price_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+  "scope": "Prospective exploratory extension after v4 inspection; not a universal generalization claim.",
+  "file_sha256": {
+    "src/rf_repair/extensions.py": "edda90f62f9bcbbe7d3db97e061be395f84a149abf9662860ced282e9be518bf",
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "src/rf_repair/agent.py": "bced892ae2eb7df2c42185abdcede2ac08767b8e3aee57c288cdbb1a55f75b78",
+    "scripts/run_extension.py": "5dcb5c86546dcae1b79d880d455123f1d40b0e3e4be04099e3b430714caf7c7f",
+    "scripts/run_budget_transfer.py": "b2e79ba653d5b579cb6a32ed861478f0bf60999a3ff60a0e2eb100801cdcb3e4",
+    "scripts/prepare_extensions.py": "415ba633c13fc8b01489cacad06bb48424ccb103d61b5fa9b0703bf3a41297e7",
+    "faults/holdout/matching_v1.json": "1f3458313000a76db96ff2e68310db4484df47df7ab697ba7d687da88c56a5ed"
+  }
+}

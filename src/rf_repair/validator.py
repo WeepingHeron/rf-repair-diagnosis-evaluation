@@ -32,6 +32,15 @@ def validate_bpf_metrics(
     if not isinstance(constraints, dict) or not isinstance(samples, dict):
         raise ValueError("spec constraints and metric samples must be objects")
 
+    if "measurement_frequencies_hz" in spec:
+        tolerance = _finite_number(spec.get("measurement_frequency_tolerance_hz", 1.0), "frequency tolerance")
+        if tolerance < 0:
+            raise ValueError("frequency tolerance must be nonnegative")
+        for name, frequency in spec["measurement_frequencies_hz"].items():
+            measured = _finite_number(samples[name].get("measured_frequency_hz"), name)
+            if abs(measured - _finite_number(frequency, name)) > tolerance:
+                return {"verdict": "FAIL", "reason": "MEASUREMENT_FREQUENCY_MISMATCH", "checks": []}
+
     definitions = [
         (
             "center_frequency_relative_tolerance",
@@ -113,4 +122,3 @@ def validate_bpf_metrics(
         else "SPECIFICATION_VIOLATION",
         "checks": checks,
     }
-

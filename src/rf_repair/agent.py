@@ -17,6 +17,7 @@ from rf_repair.netlist import (
     restore_component_from_fault_resistor,
     set_component_value,
     set_port_impedance,
+    validate_component_quantity,
 )
 
 
@@ -270,8 +271,7 @@ def apply_restricted_patch(source: str, patch: RepairPatch) -> str:
 
     if patch.component not in ALLOWED_COMPONENTS:
         raise ValueError(f"component is not allow-listed: {patch.component}")
-    if not _SPICE_VALUE.fullmatch(patch.proposed_value):
-        raise ValueError("proposed_value is not a permitted SPICE numeric token")
+    validate_component_quantity(patch.proposed_value, patch.component)
 
     current_value: str | None = None
     for line in source.splitlines():
@@ -472,8 +472,7 @@ def apply_structural_restricted_patch(
             if normalize_quantities
             else patch.proposed_value
         )
-        if not _SPICE_VALUE.fullmatch(proposed_value):
-            raise ValueError("proposed_value is not a permitted SPICE numeric token")
+        validate_component_quantity(proposed_value, patch.component)
         fault_name = neutral_fault_resistor_name or f"RFAULT{patch.component}"
         matches = [
             line.split()
@@ -500,8 +499,7 @@ def apply_structural_restricted_patch(
             if normalize_quantities
             else patch.proposed_z0
         )
-        if not _SPICE_VALUE.fullmatch(proposed_z0):
-            raise ValueError("proposed_z0 is not a permitted SPICE numeric token")
+        validate_component_quantity(proposed_z0, patch.component)
         port_lines = [line.split() for line in source.splitlines() if line.split() and line.split()[0].upper() == patch.component]
         if len(port_lines) != 1:
             raise ValueError("matching RF port was not found")

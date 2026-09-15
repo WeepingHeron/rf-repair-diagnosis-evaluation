@@ -1,0 +1,3215 @@
+{
+  "selection": "v1 prescreen-eligible cohort, chosen before fit/LLM; six retained, two excluded",
+  "cases": [
+    {
+      "case_id": "reference_d1_f1",
+      "design_id": "reference_d1",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L402",
+            "nodes": [
+              "N6697",
+              "N2288"
+            ]
+          },
+          {
+            "component": "C610",
+            "nodes": [
+              "N2288",
+              "N8105"
+            ]
+          },
+          {
+            "component": "L381",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "C452",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "L430",
+            "nodes": [
+              "N8105",
+              "N1393"
+            ]
+          },
+          {
+            "component": "C194",
+            "nodes": [
+              "N1393",
+              "N3623"
+            ]
+          }
+        ],
+        "ports": [
+          "N6697",
+          "N3623"
+        ],
+        "line_order": [
+          1,
+          0,
+          5,
+          4,
+          3,
+          2
+        ],
+        "frequency_hz": 115000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 115000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 115000000.0,
+          "lower_passband_edge": 105800000.0,
+          "upper_passband_edge": 124200000.00000001,
+          "lower_stopband": 80500000.0,
+          "upper_stopband": 161000000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 2.3103050095e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "component": "L402",
+      "healthy_value": "4.20055456272e-07",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "design_evaluator_only": {
+        "design_id": "reference_d1",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L402",
+              "nodes": [
+                "N6697",
+                "N2288"
+              ]
+            },
+            {
+              "component": "C610",
+              "nodes": [
+                "N2288",
+                "N8105"
+              ]
+            },
+            {
+              "component": "L381",
+              "nodes": [
+                "N8105",
+                "0"
+              ]
+            },
+            {
+              "component": "C452",
+              "nodes": [
+                "N8105",
+                "0"
+              ]
+            },
+            {
+              "component": "L430",
+              "nodes": [
+                "N8105",
+                "N1393"
+              ]
+            },
+            {
+              "component": "C194",
+              "nodes": [
+                "N1393",
+                "N3623"
+              ]
+            }
+          ],
+          "ports": [
+            "N6697",
+            "N3623"
+          ],
+          "line_order": [
+            1,
+            0,
+            5,
+            4,
+            3,
+            2
+          ],
+          "frequency_hz": 115000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L402": 4.2293627419004527e-07,
+          "C610": 4.426612232679695e-12,
+          "L381": 5.534224819925261e-09,
+          "C452": 3.3392486388050506e-10,
+          "L430": 4.2293627419004527e-07,
+          "C194": 4.426612232679695e-12
+        },
+        "healthy_values": {
+          "L402": "4.20055456272e-07",
+          "C610": "4.49048918557e-12",
+          "L381": "5.62329271142e-09",
+          "C452": "3.31820056844e-10",
+          "L430": "4.22317483712e-07",
+          "C194": "4.41579700186e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L402": -0.006811470412160117,
+          "C610": 0.014430211985079853,
+          "L381": 0.016094013957544093,
+          "C452": -0.006303235440717194,
+          "L430": -0.0014630820660346093,
+          "C194": -0.0024432297783649574
+        },
+        "spec": {
+          "target_center_frequency_hz": 115000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 115000000.0,
+            "lower_passband_edge": 105800000.0,
+            "upper_passband_edge": 124200000.00000001,
+            "lower_stopband": 80500000.0,
+            "upper_stopband": 161000000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -6.20848147,
+        "peak_frequency_hz": 111952500.0,
+        "peak_frequency_relative_error": 0.0265,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 115000000.0,
+            "measured_frequency_hz": 115000000.0,
+            "s11_db": -1.43808611,
+            "s21_db": -6.35356976,
+            "s22_db": -4.7364975
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 105800000.0,
+            "measured_frequency_hz": 105800000.0,
+            "s11_db": -0.422403378,
+            "s21_db": -12.1329427,
+            "s22_db": -1.31645936
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 124200000.00000001,
+            "measured_frequency_hz": 124200000.0,
+            "s11_db": -0.533781222,
+            "s21_db": -10.8349437,
+            "s22_db": -0.827197818
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 80500000.0,
+            "measured_frequency_hz": 80500000.0,
+            "s11_db": -0.00266197257,
+            "s21_db": -42.5717128,
+            "s22_db": -0.00485762241
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 161000000.0,
+            "measured_frequency_hz": 161000000.0,
+            "s11_db": -0.0740034168,
+            "s21_db": -26.6293157,
+            "s22_db": -0.0130256824
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 80500000.0,
+            "s11_db": -0.0,
+            "s21_db": -42.57,
+            "s22_db": -0.0
+          },
+          {
+            "frequency_hz": 97750000.0,
+            "s11_db": -0.03,
+            "s21_db": -25.13,
+            "s22_db": -0.09
+          },
+          {
+            "frequency_hz": 105800000.0,
+            "s11_db": -0.42,
+            "s21_db": -12.13,
+            "s22_db": -1.32
+          },
+          {
+            "frequency_hz": 110400000.0,
+            "s11_db": -1.51,
+            "s21_db": -6.42,
+            "s22_db": -6.74
+          },
+          {
+            "frequency_hz": 115000000.0,
+            "s11_db": -1.44,
+            "s21_db": -6.35,
+            "s22_db": -4.74
+          },
+          {
+            "frequency_hz": 119600000.0,
+            "s11_db": -1.17,
+            "s21_db": -7.28,
+            "s22_db": -2.63
+          },
+          {
+            "frequency_hz": 124200000.0,
+            "s11_db": -0.53,
+            "s21_db": -10.83,
+            "s22_db": -0.83
+          },
+          {
+            "frequency_hz": 132250000.0,
+            "s11_db": -0.17,
+            "s21_db": -16.88,
+            "s22_db": -0.15
+          },
+          {
+            "frequency_hz": 161000000.0,
+            "s11_db": -0.07,
+            "s21_db": -26.63,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 80500000.0,
+            "s11_db": -0.01,
+            "s21_db": -39.5,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 97750000.0,
+            "s11_db": -0.15,
+            "s21_db": -18.69,
+            "s22_db": -0.14
+          },
+          {
+            "frequency_hz": 105800000.0,
+            "s11_db": -3.62,
+            "s21_db": -4.28,
+            "s22_db": -3.48
+          },
+          {
+            "frequency_hz": 110400000.0,
+            "s11_db": -18.82,
+            "s21_db": -1.17,
+            "s22_db": -15.84
+          },
+          {
+            "frequency_hz": 115000000.0,
+            "s11_db": -19.57,
+            "s21_db": -0.9,
+            "s22_db": -19.66
+          },
+          {
+            "frequency_hz": 119600000.0,
+            "s11_db": -13.13,
+            "s21_db": -1.22,
+            "s22_db": -14.16
+          },
+          {
+            "frequency_hz": 124200000.0,
+            "s11_db": -3.25,
+            "s21_db": -4.25,
+            "s22_db": -3.34
+          },
+          {
+            "frequency_hz": 132250000.0,
+            "s11_db": -0.21,
+            "s21_db": -16.08,
+            "s22_db": -0.21
+          },
+          {
+            "frequency_hz": 161000000.0,
+            "s11_db": -0.0,
+            "s21_db": -39.3,
+            "s22_db": -0.0
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "L402",
+            "inferred_prefault_value": "4.20053917704e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 0.0030772612779892414
+          },
+          {
+            "component": "C610",
+            "inferred_prefault_value": "8.16956035127e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 1.9523546762720545
+          },
+          {
+            "component": "L430",
+            "inferred_prefault_value": "4.63897239181e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 7.7414758470441685
+          },
+          {
+            "component": "C194",
+            "inferred_prefault_value": "4.90098488169e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 7.741746105589434
+          },
+          {
+            "component": "C452",
+            "inferred_prefault_value": "3.27158171019e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 7.798061881347841
+          },
+          {
+            "component": "L381",
+            "inferred_prefault_value": "5.56950917076e-09",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 7.807310070666915
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "L402",
+          "fault_type": "value_too_low"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.902441323,
+          "peak_frequency_hz": 115172500.0,
+          "peak_frequency_relative_error": 0.0015,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 115000000.0,
+              "measured_frequency_hz": 115000000.0,
+              "s11_db": -19.569054,
+              "s21_db": -0.902693273,
+              "s22_db": -19.6613191
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 105800000.0,
+              "measured_frequency_hz": 105800000.0,
+              "s11_db": -3.62361492,
+              "s21_db": -4.27616192,
+              "s22_db": -3.4759498
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 124200000.00000001,
+              "measured_frequency_hz": 124200000.0,
+              "s11_db": -3.25181932,
+              "s21_db": -4.24853642,
+              "s22_db": -3.33655182
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 80500000.0,
+              "measured_frequency_hz": 80500000.0,
+              "s11_db": -0.0054051741,
+              "s21_db": -39.5038416,
+              "s22_db": -0.00515267159
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 161000000.0,
+              "measured_frequency_hz": 161000000.0,
+              "s11_db": -0.00400237455,
+              "s21_db": -39.3040626,
+              "s22_db": -0.00403973337
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.0015,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.902693273,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -19.569054,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -4.27616192,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -4.24853642,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -39.5038416,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -39.3040626,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    },
+    {
+      "case_id": "reference_d1_f2",
+      "design_id": "reference_d1",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L402",
+            "nodes": [
+              "N6697",
+              "N2288"
+            ]
+          },
+          {
+            "component": "C610",
+            "nodes": [
+              "N2288",
+              "N8105"
+            ]
+          },
+          {
+            "component": "L381",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "C452",
+            "nodes": [
+              "N8105",
+              "0"
+            ]
+          },
+          {
+            "component": "L430",
+            "nodes": [
+              "N8105",
+              "N1393"
+            ]
+          },
+          {
+            "component": "C194",
+            "nodes": [
+              "N1393",
+              "N3623"
+            ]
+          }
+        ],
+        "ports": [
+          "N6697",
+          "N3623"
+        ],
+        "line_order": [
+          1,
+          0,
+          5,
+          4,
+          3,
+          2
+        ],
+        "frequency_hz": 115000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 115000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 115000000.0,
+          "lower_passband_edge": 105800000.0,
+          "upper_passband_edge": 124200000.00000001,
+          "lower_stopband": 80500000.0,
+          "upper_stopband": 161000000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 3.31820056844e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N6697 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N3623 0 DC 0 AC 1 portnum 2 z0 50\nRS_C610 N2288 XRS_C610 0.02\nLS_C610 XRS_C610 XLS_C610 2e-10\nC610 XLS_C610 N8105 4.49048918557e-12\nCP_L402 N6697 N2288 1e-13\nRS_L402 N6697 XRS_L402 0.05\nL402 XRS_L402 N2288 4.20055456272e-07\nRS_C194 N1393 XRS_C194 0.02\nLS_C194 XRS_C194 XLS_C194 2e-10\nC194 XLS_C194 N3623 4.41579700186e-12\nCP_L430 N8105 N1393 1e-13\nRS_L430 N8105 XRS_L430 0.05\nL430 XRS_L430 N1393 4.22317483712e-07\nRS_C452 N8105 XRS_C452 0.02\nLS_C452 XRS_C452 XLS_C452 2e-10\nC452 XLS_C452 0 5.97276102319e-10\nCP_L381 N8105 0 1e-13\nRS_L381 N8105 XRS_L381 0.05\nL381 XRS_L381 0 5.62329271142e-09\n.sp lin 2001 57500000 172500000\n.end\n",
+      "component": "C452",
+      "healthy_value": "3.31820056844e-10",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "design_evaluator_only": {
+        "design_id": "reference_d1",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L402",
+              "nodes": [
+                "N6697",
+                "N2288"
+              ]
+            },
+            {
+              "component": "C610",
+              "nodes": [
+                "N2288",
+                "N8105"
+              ]
+            },
+            {
+              "component": "L381",
+              "nodes": [
+                "N8105",
+                "0"
+              ]
+            },
+            {
+              "component": "C452",
+              "nodes": [
+                "N8105",
+                "0"
+              ]
+            },
+            {
+              "component": "L430",
+              "nodes": [
+                "N8105",
+                "N1393"
+              ]
+            },
+            {
+              "component": "C194",
+              "nodes": [
+                "N1393",
+                "N3623"
+              ]
+            }
+          ],
+          "ports": [
+            "N6697",
+            "N3623"
+          ],
+          "line_order": [
+            1,
+            0,
+            5,
+            4,
+            3,
+            2
+          ],
+          "frequency_hz": 115000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L402": 4.2293627419004527e-07,
+          "C610": 4.426612232679695e-12,
+          "L381": 5.534224819925261e-09,
+          "C452": 3.3392486388050506e-10,
+          "L430": 4.2293627419004527e-07,
+          "C194": 4.426612232679695e-12
+        },
+        "healthy_values": {
+          "L402": "4.20055456272e-07",
+          "C610": "4.49048918557e-12",
+          "L381": "5.62329271142e-09",
+          "C452": "3.31820056844e-10",
+          "L430": "4.22317483712e-07",
+          "C194": "4.41579700186e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L402": -0.006811470412160117,
+          "C610": 0.014430211985079853,
+          "L381": 0.016094013957544093,
+          "C452": -0.006303235440717194,
+          "L430": -0.0014630820660346093,
+          "C194": -0.0024432297783649574
+        },
+        "spec": {
+          "target_center_frequency_hz": 115000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 115000000.0,
+            "lower_passband_edge": 105800000.0,
+            "upper_passband_edge": 124200000.00000001,
+            "lower_stopband": 80500000.0,
+            "upper_stopband": 161000000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -12.6205088,
+        "peak_frequency_hz": 84237500.0,
+        "peak_frequency_relative_error": 0.2675,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 115000000.0,
+            "measured_frequency_hz": 115000000.0,
+            "s11_db": -0.226527961,
+            "s21_db": -14.8028494,
+            "s22_db": -0.226320317
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 105800000.0,
+            "measured_frequency_hz": 105800000.0,
+            "s11_db": -0.104877195,
+            "s21_db": -19.2017994,
+            "s22_db": -0.100759086
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 124200000.00000001,
+            "measured_frequency_hz": 124200000.0,
+            "s11_db": -0.0600142141,
+            "s21_db": -22.119562,
+            "s22_db": -0.062049455
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 80500000.0,
+            "measured_frequency_hz": 80500000.0,
+            "s11_db": -0.138426213,
+            "s21_db": -25.1357258,
+            "s22_db": -0.131943274
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 161000000.0,
+            "measured_frequency_hz": 161000000.0,
+            "s11_db": -0.00202670736,
+            "s21_db": -48.4451917,
+            "s22_db": -0.00204787262
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 80500000.0,
+            "s11_db": -0.14,
+            "s21_db": -25.14,
+            "s22_db": -0.13
+          },
+          {
+            "frequency_hz": 97750000.0,
+            "s11_db": -0.07,
+            "s21_db": -23.25,
+            "s22_db": -0.06
+          },
+          {
+            "frequency_hz": 105800000.0,
+            "s11_db": -0.1,
+            "s21_db": -19.2,
+            "s22_db": -0.1
+          },
+          {
+            "frequency_hz": 110400000.0,
+            "s11_db": -0.18,
+            "s21_db": -16.14,
+            "s22_db": -0.17
+          },
+          {
+            "frequency_hz": 115000000.0,
+            "s11_db": -0.23,
+            "s21_db": -14.8,
+            "s22_db": -0.23
+          },
+          {
+            "frequency_hz": 119600000.0,
+            "s11_db": -0.14,
+            "s21_db": -17.3,
+            "s22_db": -0.14
+          },
+          {
+            "frequency_hz": 124200000.0,
+            "s11_db": -0.06,
+            "s21_db": -22.12,
+            "s22_db": -0.06
+          },
+          {
+            "frequency_hz": 132250000.0,
+            "s11_db": -0.02,
+            "s21_db": -30.41,
+            "s22_db": -0.02
+          },
+          {
+            "frequency_hz": 161000000.0,
+            "s11_db": -0.0,
+            "s21_db": -48.45,
+            "s22_db": -0.0
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 80500000.0,
+            "s11_db": -0.01,
+            "s21_db": -39.5,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 97750000.0,
+            "s11_db": -0.15,
+            "s21_db": -18.69,
+            "s22_db": -0.14
+          },
+          {
+            "frequency_hz": 105800000.0,
+            "s11_db": -3.62,
+            "s21_db": -4.28,
+            "s22_db": -3.48
+          },
+          {
+            "frequency_hz": 110400000.0,
+            "s11_db": -18.82,
+            "s21_db": -1.17,
+            "s22_db": -15.84
+          },
+          {
+            "frequency_hz": 115000000.0,
+            "s11_db": -19.57,
+            "s21_db": -0.9,
+            "s22_db": -19.66
+          },
+          {
+            "frequency_hz": 119600000.0,
+            "s11_db": -13.13,
+            "s21_db": -1.22,
+            "s22_db": -14.16
+          },
+          {
+            "frequency_hz": 124200000.0,
+            "s11_db": -3.25,
+            "s21_db": -4.25,
+            "s22_db": -3.34
+          },
+          {
+            "frequency_hz": 132250000.0,
+            "s11_db": -0.21,
+            "s21_db": -16.08,
+            "s22_db": -0.21
+          },
+          {
+            "frequency_hz": 161000000.0,
+            "s11_db": -0.0,
+            "s21_db": -39.3,
+            "s22_db": -0.0
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "C452",
+            "inferred_prefault_value": "3.31821148376e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 0.00305952992440665
+          },
+          {
+            "component": "L381",
+            "inferred_prefault_value": "3.04033676124e-09",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 5.530421515040516
+          },
+          {
+            "component": "L402",
+            "inferred_prefault_value": "3.98180296915e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 11.305042265832023
+          },
+          {
+            "component": "L430",
+            "inferred_prefault_value": "4.03653475127e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 11.322125895053864
+          },
+          {
+            "component": "C610",
+            "inferred_prefault_value": "4.34601939394e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 11.344421464125565
+          },
+          {
+            "component": "C194",
+            "inferred_prefault_value": "4.30901413268e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 11.354217549440236
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "C452",
+          "fault_type": "value_too_high"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.902447671,
+          "peak_frequency_hz": 115172500.0,
+          "peak_frequency_relative_error": 0.0015,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 115000000.0,
+              "measured_frequency_hz": 115000000.0,
+              "s11_db": -19.568667,
+              "s21_db": -0.902699168,
+              "s22_db": -19.6610654
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 105800000.0,
+              "measured_frequency_hz": 105800000.0,
+              "s11_db": -3.62385829,
+              "s21_db": -4.27597637,
+              "s22_db": -3.47614263
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 124200000.00000001,
+              "measured_frequency_hz": 124200000.0,
+              "s11_db": -3.251568,
+              "s21_db": -4.24876625,
+              "s22_db": -3.3363289
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 80500000.0,
+              "measured_frequency_hz": 80500000.0,
+              "s11_db": -0.0054052414,
+              "s21_db": -39.503783,
+              "s22_db": -0.00515270415
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 161000000.0,
+              "measured_frequency_hz": 161000000.0,
+              "s11_db": -0.00400228583,
+              "s21_db": -39.3041894,
+              "s22_db": -0.00403969497
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.0015,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.902699168,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -19.568667,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -4.27597637,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -4.24876625,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -39.503783,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -39.3041894,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    },
+    {
+      "case_id": "reference_d2_f1",
+      "design_id": "reference_d2",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L462",
+            "nodes": [
+              "N4454",
+              "N5269"
+            ]
+          },
+          {
+            "component": "C857",
+            "nodes": [
+              "N5269",
+              "N4860"
+            ]
+          },
+          {
+            "component": "L688",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "C427",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "L916",
+            "nodes": [
+              "N4860",
+              "N4169"
+            ]
+          },
+          {
+            "component": "C702",
+            "nodes": [
+              "N4169",
+              "N2285"
+            ]
+          }
+        ],
+        "ports": [
+          "N4454",
+          "N2285"
+        ],
+        "line_order": [
+          5,
+          4,
+          0,
+          1,
+          3,
+          2
+        ],
+        "frequency_hz": 153000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 153000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 153000000.0,
+          "lower_passband_edge": 139230000.0,
+          "upper_passband_edge": 166770000.0,
+          "lower_stopband": 107100000.0,
+          "upper_stopband": 214200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 2.09444096196e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "component": "C857",
+      "healthy_value": "3.80807447629e-12",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "design_evaluator_only": {
+        "design_id": "reference_d2",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L462",
+              "nodes": [
+                "N4454",
+                "N5269"
+              ]
+            },
+            {
+              "component": "C857",
+              "nodes": [
+                "N5269",
+                "N4860"
+              ]
+            },
+            {
+              "component": "L688",
+              "nodes": [
+                "N4860",
+                "0"
+              ]
+            },
+            {
+              "component": "C427",
+              "nodes": [
+                "N4860",
+                "0"
+              ]
+            },
+            {
+              "component": "L916",
+              "nodes": [
+                "N4860",
+                "N4169"
+              ]
+            },
+            {
+              "component": "C702",
+              "nodes": [
+                "N4169",
+                "N2285"
+              ]
+            }
+          ],
+          "ports": [
+            "N4454",
+            "N2285"
+          ],
+          "line_order": [
+            5,
+            4,
+            0,
+            1,
+            3,
+            2
+          ],
+          "frequency_hz": 153000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L462": 2.8143696714777254e-07,
+          "C857": 3.742231983224179e-12,
+          "L688": 4.679003863735824e-09,
+          "C427": 2.2169001152718872e-10,
+          "L916": 2.8143696714777254e-07,
+          "C702": 3.742231983224179e-12
+        },
+        "healthy_values": {
+          "L462": "2.81153539267e-07",
+          "C857": "3.80807447629e-12",
+          "L688": "4.61965523669e-09",
+          "C427": "2.2234624235e-10",
+          "L916": "2.83761829143e-07",
+          "C702": "3.72788809492e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L462": -0.0010070741024901901,
+          "C857": 0.017594444535398542,
+          "L688": -0.012684030355507239,
+          "C427": 0.002960128053843835,
+          "L916": 0.008260684510867273,
+          "C702": -0.003832976781738301
+        },
+        "spec": {
+          "target_center_frequency_hz": 153000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 153000000.0,
+            "lower_passband_edge": 139230000.0,
+            "upper_passband_edge": 166770000.0,
+            "lower_stopband": 107100000.0,
+            "upper_stopband": 214200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -8.39935856,
+        "peak_frequency_hz": 157054500.0,
+        "peak_frequency_relative_error": 0.0265,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 153000000.0,
+            "measured_frequency_hz": 153000000.0,
+            "s11_db": -0.730894323,
+            "s21_db": -8.82047565,
+            "s22_db": -3.96705316
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 139230000.0,
+            "measured_frequency_hz": 139230000.0,
+            "s11_db": -0.10521228,
+            "s21_db": -17.7387777,
+            "s22_db": -0.639666784
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 166770000.0,
+            "measured_frequency_hz": 166770000.0,
+            "s11_db": -0.330494673,
+            "s21_db": -12.6542953,
+            "s22_db": -0.708222241
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 107100000.0,
+            "measured_frequency_hz": 107100000.0,
+            "s11_db": -0.00105692218,
+            "s21_db": -45.0268503,
+            "s22_db": -0.00577453662
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 214200000.0,
+            "measured_frequency_hz": 214200000.0,
+            "s11_db": -0.05572761,
+            "s21_db": -26.5057055,
+            "s22_db": -0.0142882813
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 107100000.0,
+            "s11_db": -0.0,
+            "s21_db": -45.03,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 130050000.0,
+            "s11_db": -0.01,
+            "s21_db": -27.87,
+            "s22_db": -0.09
+          },
+          {
+            "frequency_hz": 140760000.0,
+            "s11_db": -0.16,
+            "s21_db": -15.88,
+            "s22_db": -0.95
+          },
+          {
+            "frequency_hz": 146880000.0,
+            "s11_db": -0.53,
+            "s21_db": -10.31,
+            "s22_db": -3.41
+          },
+          {
+            "frequency_hz": 153000000.0,
+            "s11_db": -0.73,
+            "s21_db": -8.82,
+            "s22_db": -3.97
+          },
+          {
+            "frequency_hz": 159120000.0,
+            "s11_db": -0.79,
+            "s21_db": -8.61,
+            "s22_db": -3.0
+          },
+          {
+            "frequency_hz": 165240000.0,
+            "s11_db": -0.41,
+            "s21_db": -11.66,
+            "s22_db": -0.97
+          },
+          {
+            "frequency_hz": 175950000.0,
+            "s11_db": -0.13,
+            "s21_db": -17.46,
+            "s22_db": -0.16
+          },
+          {
+            "frequency_hz": 214200000.0,
+            "s11_db": -0.06,
+            "s21_db": -26.51,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 107100000.0,
+            "s11_db": -0.01,
+            "s21_db": -36.78,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 130050000.0,
+            "s11_db": -0.21,
+            "s21_db": -16.28,
+            "s22_db": -0.2
+          },
+          {
+            "frequency_hz": 140760000.0,
+            "s11_db": -3.99,
+            "s21_db": -3.57,
+            "s22_db": -3.86
+          },
+          {
+            "frequency_hz": 146880000.0,
+            "s11_db": -13.97,
+            "s21_db": -1.05,
+            "s22_db": -13.15
+          },
+          {
+            "frequency_hz": 153000000.0,
+            "s11_db": -17.62,
+            "s21_db": -0.8,
+            "s22_db": -17.91
+          },
+          {
+            "frequency_hz": 159120000.0,
+            "s11_db": -18.61,
+            "s21_db": -0.9,
+            "s22_db": -22.46
+          },
+          {
+            "frequency_hz": 165240000.0,
+            "s11_db": -5.74,
+            "s21_db": -2.53,
+            "s22_db": -5.89
+          },
+          {
+            "frequency_hz": 175950000.0,
+            "s11_db": -0.35,
+            "s21_db": -13.29,
+            "s22_db": -0.36
+          },
+          {
+            "frequency_hz": 214200000.0,
+            "s11_db": -0.01,
+            "s21_db": -36.71,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "C857",
+            "inferred_prefault_value": "3.8081209179e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 0.0031883026141825517
+          },
+          {
+            "component": "L462",
+            "inferred_prefault_value": "4.79292421232e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 2.5910051036635466
+          },
+          {
+            "component": "C702",
+            "inferred_prefault_value": "3.9853091856e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 9.134934832910396
+          },
+          {
+            "component": "L916",
+            "inferred_prefault_value": "2.98281297222e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 9.161882474323967
+          },
+          {
+            "component": "C427",
+            "inferred_prefault_value": "2.20081194319e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.21500908335312
+          },
+          {
+            "component": "L688",
+            "inferred_prefault_value": "4.64125898165e-09",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 9.219708625625813
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "C857",
+          "fault_type": "value_too_low"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.796666312,
+          "peak_frequency_hz": 152923500.0,
+          "peak_frequency_relative_error": 0.0005,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 153000000.0,
+              "measured_frequency_hz": 153000000.0,
+              "s11_db": -17.6166685,
+              "s21_db": -0.796696278,
+              "s22_db": -17.9074992
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 139230000.0,
+              "measured_frequency_hz": 139230000.0,
+              "s11_db": -2.57517772,
+              "s21_db": -5.02302061,
+              "s22_db": -2.49504027
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 166770000.0,
+              "measured_frequency_hz": 166770000.0,
+              "s11_db": -3.7591672,
+              "s21_db": -3.6756667,
+              "s22_db": -3.83789435
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 107100000.0,
+              "measured_frequency_hz": 107100000.0,
+              "s11_db": -0.00707029768,
+              "s21_db": -36.7759096,
+              "s22_db": -0.0067000775
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 214200000.0,
+              "measured_frequency_hz": 214200000.0,
+              "s11_db": -0.00528644874,
+              "s21_db": -36.7095784,
+              "s22_db": -0.0052998606
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.0005,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.796696278,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -17.6166685,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.02302061,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.6756667,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -36.7759096,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -36.7095784,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    },
+    {
+      "case_id": "reference_d2_f2",
+      "design_id": "reference_d2",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L462",
+            "nodes": [
+              "N4454",
+              "N5269"
+            ]
+          },
+          {
+            "component": "C857",
+            "nodes": [
+              "N5269",
+              "N4860"
+            ]
+          },
+          {
+            "component": "L688",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "C427",
+            "nodes": [
+              "N4860",
+              "0"
+            ]
+          },
+          {
+            "component": "L916",
+            "nodes": [
+              "N4860",
+              "N4169"
+            ]
+          },
+          {
+            "component": "C702",
+            "nodes": [
+              "N4169",
+              "N2285"
+            ]
+          }
+        ],
+        "ports": [
+          "N4454",
+          "N2285"
+        ],
+        "line_order": [
+          5,
+          4,
+          0,
+          1,
+          3,
+          2
+        ],
+        "frequency_hz": 153000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 153000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 153000000.0,
+          "lower_passband_edge": 139230000.0,
+          "upper_passband_edge": 166770000.0,
+          "lower_stopband": 107100000.0,
+          "upper_stopband": 214200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 4.61965523669e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4454 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2285 0 DC 0 AC 1 portnum 2 z0 50\nRS_C702 N4169 XRS_C702 0.02\nLS_C702 XRS_C702 XLS_C702 2e-10\nC702 XLS_C702 N2285 3.72788809492e-12\nCP_L916 N4860 N4169 1e-13\nRS_L916 N4860 XRS_L916 0.05\nL916 XRS_L916 N4169 2.83761829143e-07\nCP_L462 N4454 N5269 1e-13\nRS_L462 N4454 XRS_L462 0.05\nL462 XRS_L462 N5269 2.81153539267e-07\nRS_C857 N5269 XRS_C857 0.02\nLS_C857 XRS_C857 XLS_C857 2e-10\nC857 XLS_C857 N4860 3.80807447629e-12\nRS_C427 N4860 XRS_C427 0.02\nLS_C427 XRS_C427 XLS_C427 2e-10\nC427 XLS_C427 0 2.2234624235e-10\nCP_L688 N4860 0 1e-13\nRS_L688 N4860 XRS_L688 0.05\nL688 XRS_L688 0 8.31537942604e-09\n.sp lin 2001 76500000 229500000\n.end\n",
+      "component": "L688",
+      "healthy_value": "4.61965523669e-09",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "design_evaluator_only": {
+        "design_id": "reference_d2",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L462",
+              "nodes": [
+                "N4454",
+                "N5269"
+              ]
+            },
+            {
+              "component": "C857",
+              "nodes": [
+                "N5269",
+                "N4860"
+              ]
+            },
+            {
+              "component": "L688",
+              "nodes": [
+                "N4860",
+                "0"
+              ]
+            },
+            {
+              "component": "C427",
+              "nodes": [
+                "N4860",
+                "0"
+              ]
+            },
+            {
+              "component": "L916",
+              "nodes": [
+                "N4860",
+                "N4169"
+              ]
+            },
+            {
+              "component": "C702",
+              "nodes": [
+                "N4169",
+                "N2285"
+              ]
+            }
+          ],
+          "ports": [
+            "N4454",
+            "N2285"
+          ],
+          "line_order": [
+            5,
+            4,
+            0,
+            1,
+            3,
+            2
+          ],
+          "frequency_hz": 153000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L462": 2.8143696714777254e-07,
+          "C857": 3.742231983224179e-12,
+          "L688": 4.679003863735824e-09,
+          "C427": 2.2169001152718872e-10,
+          "L916": 2.8143696714777254e-07,
+          "C702": 3.742231983224179e-12
+        },
+        "healthy_values": {
+          "L462": "2.81153539267e-07",
+          "C857": "3.80807447629e-12",
+          "L688": "4.61965523669e-09",
+          "C427": "2.2234624235e-10",
+          "L916": "2.83761829143e-07",
+          "C702": "3.72788809492e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L462": -0.0010070741024901901,
+          "C857": 0.017594444535398542,
+          "L688": -0.012684030355507239,
+          "C427": 0.002960128053843835,
+          "L916": 0.008260684510867273,
+          "C702": -0.003832976781738301
+        },
+        "spec": {
+          "target_center_frequency_hz": 153000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 153000000.0,
+            "lower_passband_edge": 139230000.0,
+            "upper_passband_edge": 166770000.0,
+            "lower_stopband": 107100000.0,
+            "upper_stopband": 214200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.36851706,
+        "peak_frequency_hz": 112149000.0,
+        "peak_frequency_relative_error": 0.267,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 153000000.0,
+            "measured_frequency_hz": 153000000.0,
+            "s11_db": -0.775464099,
+            "s21_db": -8.38308048,
+            "s22_db": -0.77547926
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 139230000.0,
+            "measured_frequency_hz": 139230000.0,
+            "s11_db": -0.285319716,
+            "s21_db": -12.8647234,
+            "s22_db": -0.281081712
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 166770000.0,
+            "measured_frequency_hz": 166770000.0,
+            "s11_db": -0.165830712,
+            "s21_db": -15.4076021,
+            "s22_db": -0.167806738
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 107100000.0,
+            "measured_frequency_hz": 107100000.0,
+            "s11_db": -0.232818481,
+            "s21_db": -17.4014373,
+            "s22_db": -0.223505801
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 214200000.0,
+            "measured_frequency_hz": 214200000.0,
+            "s11_db": -0.00294935969,
+            "s21_db": -39.9906538,
+            "s22_db": -0.00295751894
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 107100000.0,
+            "s11_db": -0.23,
+            "s21_db": -17.4,
+            "s22_db": -0.22
+          },
+          {
+            "frequency_hz": 130050000.0,
+            "s11_db": -0.17,
+            "s21_db": -15.74,
+            "s22_db": -0.16
+          },
+          {
+            "frequency_hz": 140760000.0,
+            "s11_db": -0.33,
+            "s21_db": -12.21,
+            "s22_db": -0.32
+          },
+          {
+            "frequency_hz": 146880000.0,
+            "s11_db": -0.58,
+            "s21_db": -9.61,
+            "s22_db": -0.58
+          },
+          {
+            "frequency_hz": 153000000.0,
+            "s11_db": -0.78,
+            "s21_db": -8.38,
+            "s22_db": -0.78
+          },
+          {
+            "frequency_hz": 159120000.0,
+            "s11_db": -0.52,
+            "s21_db": -10.14,
+            "s22_db": -0.52
+          },
+          {
+            "frequency_hz": 165240000.0,
+            "s11_db": -0.21,
+            "s21_db": -14.25,
+            "s22_db": -0.21
+          },
+          {
+            "frequency_hz": 175950000.0,
+            "s11_db": -0.04,
+            "s21_db": -22.1,
+            "s22_db": -0.04
+          },
+          {
+            "frequency_hz": 214200000.0,
+            "s11_db": -0.0,
+            "s21_db": -39.99,
+            "s22_db": -0.0
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 107100000.0,
+            "s11_db": -0.01,
+            "s21_db": -36.78,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 130050000.0,
+            "s11_db": -0.21,
+            "s21_db": -16.28,
+            "s22_db": -0.2
+          },
+          {
+            "frequency_hz": 140760000.0,
+            "s11_db": -3.99,
+            "s21_db": -3.57,
+            "s22_db": -3.86
+          },
+          {
+            "frequency_hz": 146880000.0,
+            "s11_db": -13.97,
+            "s21_db": -1.05,
+            "s22_db": -13.15
+          },
+          {
+            "frequency_hz": 153000000.0,
+            "s11_db": -17.62,
+            "s21_db": -0.8,
+            "s22_db": -17.91
+          },
+          {
+            "frequency_hz": 159120000.0,
+            "s11_db": -18.61,
+            "s21_db": -0.9,
+            "s22_db": -22.46
+          },
+          {
+            "frequency_hz": 165240000.0,
+            "s11_db": -5.74,
+            "s21_db": -2.53,
+            "s22_db": -5.89
+          },
+          {
+            "frequency_hz": 175950000.0,
+            "s11_db": -0.35,
+            "s21_db": -13.29,
+            "s22_db": -0.36
+          },
+          {
+            "frequency_hz": 214200000.0,
+            "s11_db": -0.01,
+            "s21_db": -36.71,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "L688",
+            "inferred_prefault_value": "4.61967763468e-09",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 0.0032501535197479343
+          },
+          {
+            "component": "C427",
+            "inferred_prefault_value": "1.35907748238e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 3.5294499213435815
+          },
+          {
+            "component": "L462",
+            "inferred_prefault_value": "2.67260898793e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.961700802971292
+          },
+          {
+            "component": "C857",
+            "inferred_prefault_value": "3.61779747007e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.961924998235641
+          },
+          {
+            "component": "L916",
+            "inferred_prefault_value": "2.72118628365e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.976101063642675
+          },
+          {
+            "component": "C702",
+            "inferred_prefault_value": "3.57394597576e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.976604647956446
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "L688",
+          "fault_type": "value_too_high"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.796608026,
+          "peak_frequency_hz": 152923500.0,
+          "peak_frequency_relative_error": 0.0005,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 153000000.0,
+              "measured_frequency_hz": 153000000.0,
+              "s11_db": -17.6197251,
+              "s21_db": -0.79663782,
+              "s22_db": -17.9102875
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 139230000.0,
+              "measured_frequency_hz": 139230000.0,
+              "s11_db": -2.57519733,
+              "s21_db": -5.02298476,
+              "s22_db": -2.49512798
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 166770000.0,
+              "measured_frequency_hz": 166770000.0,
+              "s11_db": -3.75909866,
+              "s21_db": -3.67571105,
+              "s22_db": -3.83772324
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 107100000.0,
+              "measured_frequency_hz": 107100000.0,
+              "s11_db": -0.00707003758,
+              "s21_db": -36.7760259,
+              "s22_db": -0.00670009439
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 214200000.0,
+              "measured_frequency_hz": 214200000.0,
+              "s11_db": -0.00528652059,
+              "s21_db": -36.7095236,
+              "s22_db": -0.00529983541
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.0005,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.79663782,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -17.6197251,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.02298476,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.67571105,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -36.7760259,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -36.7095236,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    },
+    {
+      "case_id": "reference_d3_f1",
+      "design_id": "reference_d3",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L260",
+            "nodes": [
+              "N9218",
+              "N7269"
+            ]
+          },
+          {
+            "component": "C837",
+            "nodes": [
+              "N7269",
+              "N5649"
+            ]
+          },
+          {
+            "component": "L148",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "C109",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N5649",
+              "N3883"
+            ]
+          },
+          {
+            "component": "C259",
+            "nodes": [
+              "N3883",
+              "N2903"
+            ]
+          }
+        ],
+        "ports": [
+          "N9218",
+          "N2903"
+        ],
+        "line_order": [
+          4,
+          2,
+          3,
+          0,
+          5,
+          1
+        ],
+        "frequency_hz": 203000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 203000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 203000000.0,
+          "lower_passband_edge": 182700000.0,
+          "upper_passband_edge": 223300000.00000003,
+          "lower_stopband": 142100000.0,
+          "upper_stopband": 284200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.03639542071e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "component": "L444",
+      "healthy_value": "1.88435531039e-07",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "design_evaluator_only": {
+        "design_id": "reference_d3",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L260",
+              "nodes": [
+                "N9218",
+                "N7269"
+              ]
+            },
+            {
+              "component": "C837",
+              "nodes": [
+                "N7269",
+                "N5649"
+              ]
+            },
+            {
+              "component": "L148",
+              "nodes": [
+                "N5649",
+                "0"
+              ]
+            },
+            {
+              "component": "C109",
+              "nodes": [
+                "N5649",
+                "0"
+              ]
+            },
+            {
+              "component": "L444",
+              "nodes": [
+                "N5649",
+                "N3883"
+              ]
+            },
+            {
+              "component": "C259",
+              "nodes": [
+                "N3883",
+                "N2903"
+              ]
+            }
+          ],
+          "ports": [
+            "N9218",
+            "N2903"
+          ],
+          "line_order": [
+            4,
+            2,
+            3,
+            0,
+            5,
+            1
+          ],
+          "frequency_hz": 203000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L260": 1.89946760972825e-07,
+          "C837": 3.132861253875844e-12,
+          "L148": 3.9175743334497255e-09,
+          "C109": 1.4919124227973693e-10,
+          "L444": 1.89946760972825e-07,
+          "C259": 3.132861253875844e-12
+        },
+        "healthy_values": {
+          "L260": "1.92650038478e-07",
+          "C837": "3.09092139852e-12",
+          "L148": "3.96331476206e-09",
+          "C109": "1.46338465191e-10",
+          "L444": "1.88435531039e-07",
+          "C259": "3.12675308723e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L260": 0.01423176415915799,
+          "C837": -0.013387077166339134,
+          "L148": 0.011675701521818797,
+          "C109": -0.01912161226542989,
+          "L444": -0.007956071091181315,
+          "C259": -0.001949708636621382
+        },
+        "spec": {
+          "target_center_frequency_hz": 203000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 203000000.0,
+            "lower_passband_edge": 182700000.0,
+            "upper_passband_edge": 223300000.00000003,
+            "lower_stopband": 142100000.0,
+            "upper_stopband": 284200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.41166594,
+        "peak_frequency_hz": 206045000.0,
+        "peak_frequency_relative_error": 0.015,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 203000000.0,
+            "measured_frequency_hz": 203000000.0,
+            "s11_db": -4.82920976,
+            "s21_db": -4.4580903,
+            "s22_db": -2.27969197
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 182700000.0,
+            "measured_frequency_hz": 182700000.0,
+            "s11_db": -0.820768085,
+            "s21_db": -11.9872186,
+            "s22_db": -0.386323764
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 223300000.00000003,
+            "measured_frequency_hz": 223300000.0,
+            "s11_db": -0.936885432,
+            "s21_db": -8.83000248,
+            "s22_db": -0.788858105
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 142100000.0,
+            "measured_frequency_hz": 142100000.0,
+            "s11_db": -0.00768984545,
+            "s21_db": -37.3018357,
+            "s22_db": -0.00435224552
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 284200000.0,
+            "measured_frequency_hz": 284200000.0,
+            "s11_db": -0.0279858011,
+            "s21_db": -22.815118,
+            "s22_db": -0.0933781013
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 142100000.0,
+            "s11_db": -0.01,
+            "s21_db": -37.3,
+            "s22_db": -0.0
+          },
+          {
+            "frequency_hz": 172550000.0,
+            "s11_db": -0.15,
+            "s21_db": -20.17,
+            "s22_db": -0.07
+          },
+          {
+            "frequency_hz": 186760000.0,
+            "s11_db": -1.83,
+            "s21_db": -8.6,
+            "s22_db": -0.83
+          },
+          {
+            "frequency_hz": 194880000.0,
+            "s11_db": -5.19,
+            "s21_db": -4.86,
+            "s22_db": -2.09
+          },
+          {
+            "frequency_hz": 203000000.0,
+            "s11_db": -4.83,
+            "s21_db": -4.46,
+            "s22_db": -2.28
+          },
+          {
+            "frequency_hz": 211120000.0,
+            "s11_db": -3.63,
+            "s21_db": -4.73,
+            "s22_db": -2.15
+          },
+          {
+            "frequency_hz": 219240000.0,
+            "s11_db": -1.54,
+            "s21_db": -7.13,
+            "s22_db": -1.17
+          },
+          {
+            "frequency_hz": 233450000.0,
+            "s11_db": -0.33,
+            "s21_db": -12.69,
+            "s22_db": -0.35
+          },
+          {
+            "frequency_hz": 284200000.0,
+            "s11_db": -0.03,
+            "s21_db": -22.82,
+            "s22_db": -0.09
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 142100000.0,
+            "s11_db": -0.01,
+            "s21_db": -34.36,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 172550000.0,
+            "s11_db": -0.29,
+            "s21_db": -14.21,
+            "s22_db": -0.29
+          },
+          {
+            "frequency_hz": 186760000.0,
+            "s11_db": -5.34,
+            "s21_db": -2.56,
+            "s22_db": -5.25
+          },
+          {
+            "frequency_hz": 194880000.0,
+            "s11_db": -18.65,
+            "s21_db": -0.77,
+            "s22_db": -17.27
+          },
+          {
+            "frequency_hz": 203000000.0,
+            "s11_db": -23.89,
+            "s21_db": -0.59,
+            "s22_db": -23.59
+          },
+          {
+            "frequency_hz": 211120000.0,
+            "s11_db": -20.46,
+            "s21_db": -0.66,
+            "s22_db": -24.59
+          },
+          {
+            "frequency_hz": 219240000.0,
+            "s11_db": -8.17,
+            "s21_db": -1.54,
+            "s22_db": -8.47
+          },
+          {
+            "frequency_hz": 233450000.0,
+            "s11_db": -0.63,
+            "s21_db": -10.15,
+            "s22_db": -0.65
+          },
+          {
+            "frequency_hz": 284200000.0,
+            "s11_db": -0.01,
+            "s21_db": -33.81,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "L444",
+            "inferred_prefault_value": "1.88433429986e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 0.0024112848564246236
+          },
+          {
+            "component": "C259",
+            "inferred_prefault_value": "5.81333662599e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 2.2156028522147353
+          },
+          {
+            "component": "L260",
+            "inferred_prefault_value": "2.08569736347e-07",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 9.393101757100863
+          },
+          {
+            "component": "C837",
+            "inferred_prefault_value": "3.39187522083e-12",
+            "current_fault_direction": "value_too_low",
+            "rmse_db": 9.400706266940563
+          },
+          {
+            "component": "C109",
+            "inferred_prefault_value": "1.41360457393e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.402621016654287
+          },
+          {
+            "component": "L148",
+            "inferred_prefault_value": "3.84515480279e-09",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 9.427919406370577
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "L444",
+          "fault_type": "value_too_low"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.58603445,
+          "peak_frequency_hz": 204218000.0,
+          "peak_frequency_relative_error": 0.006,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 203000000.0,
+              "measured_frequency_hz": 203000000.0,
+              "s11_db": -23.8896288,
+              "s21_db": -0.588101429,
+              "s22_db": -23.5895097
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 182700000.0,
+              "measured_frequency_hz": 182700000.0,
+              "s11_db": -2.26304084,
+              "s21_db": -5.242663,
+              "s22_db": -2.23488006
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 223300000.00000003,
+              "measured_frequency_hz": 223300000.0,
+              "s11_db": -4.03537901,
+              "s21_db": -3.14997922,
+              "s22_db": -4.13830748
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 142100000.0,
+              "measured_frequency_hz": 142100000.0,
+              "s11_db": -0.00857333338,
+              "s21_db": -34.3592025,
+              "s22_db": -0.00859147734
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 284200000.0,
+              "measured_frequency_hz": 284200000.0,
+              "s11_db": -0.00707639781,
+              "s21_db": -33.8112861,
+              "s22_db": -0.00743517735
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.006,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.588101429,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -23.8896288,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.242663,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.14997922,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -34.3592025,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -33.8112861,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    },
+    {
+      "case_id": "reference_d3_f2",
+      "design_id": "reference_d3",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L260",
+            "nodes": [
+              "N9218",
+              "N7269"
+            ]
+          },
+          {
+            "component": "C837",
+            "nodes": [
+              "N7269",
+              "N5649"
+            ]
+          },
+          {
+            "component": "L148",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "C109",
+            "nodes": [
+              "N5649",
+              "0"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N5649",
+              "N3883"
+            ]
+          },
+          {
+            "component": "C259",
+            "nodes": [
+              "N3883",
+              "N2903"
+            ]
+          }
+        ],
+        "ports": [
+          "N9218",
+          "N2903"
+        ],
+        "line_order": [
+          4,
+          2,
+          3,
+          0,
+          5,
+          1
+        ],
+        "frequency_hz": 203000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 203000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 203000000.0,
+          "lower_passband_edge": 182700000.0,
+          "upper_passband_edge": 223300000.00000003,
+          "lower_stopband": 142100000.0,
+          "upper_stopband": 284200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 1.46338465191e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N9218 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N2903 0 DC 0 AC 1 portnum 2 z0 50\nCP_L444 N5649 N3883 1e-13\nRS_L444 N5649 XRS_L444 0.05\nL444 XRS_L444 N3883 1.88435531039e-07\nCP_L148 N5649 0 1e-13\nRS_L148 N5649 XRS_L148 0.05\nL148 XRS_L148 0 3.96331476206e-09\nRS_C109 N5649 XRS_C109 0.02\nLS_C109 XRS_C109 XLS_C109 2e-10\nC109 XLS_C109 0 2.63409237344e-10\nCP_L260 N9218 N7269 1e-13\nRS_L260 N9218 XRS_L260 0.05\nL260 XRS_L260 N7269 1.92650038478e-07\nRS_C259 N3883 XRS_C259 0.02\nLS_C259 XRS_C259 XLS_C259 2e-10\nC259 XLS_C259 N2903 3.12675308723e-12\nRS_C837 N7269 XRS_C837 0.02\nLS_C837 XRS_C837 XLS_C837 2e-10\nC837 XLS_C837 N5649 3.09092139852e-12\n.sp lin 2001 101500000 304500000\n.end\n",
+      "component": "C109",
+      "healthy_value": "1.46338465191e-10",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "design_evaluator_only": {
+        "design_id": "reference_d3",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L260",
+              "nodes": [
+                "N9218",
+                "N7269"
+              ]
+            },
+            {
+              "component": "C837",
+              "nodes": [
+                "N7269",
+                "N5649"
+              ]
+            },
+            {
+              "component": "L148",
+              "nodes": [
+                "N5649",
+                "0"
+              ]
+            },
+            {
+              "component": "C109",
+              "nodes": [
+                "N5649",
+                "0"
+              ]
+            },
+            {
+              "component": "L444",
+              "nodes": [
+                "N5649",
+                "N3883"
+              ]
+            },
+            {
+              "component": "C259",
+              "nodes": [
+                "N3883",
+                "N2903"
+              ]
+            }
+          ],
+          "ports": [
+            "N9218",
+            "N2903"
+          ],
+          "line_order": [
+            4,
+            2,
+            3,
+            0,
+            5,
+            1
+          ],
+          "frequency_hz": 203000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L260": 1.89946760972825e-07,
+          "C837": 3.132861253875844e-12,
+          "L148": 3.9175743334497255e-09,
+          "C109": 1.4919124227973693e-10,
+          "L444": 1.89946760972825e-07,
+          "C259": 3.132861253875844e-12
+        },
+        "healthy_values": {
+          "L260": "1.92650038478e-07",
+          "C837": "3.09092139852e-12",
+          "L148": "3.96331476206e-09",
+          "C109": "1.46338465191e-10",
+          "L444": "1.88435531039e-07",
+          "C259": "3.12675308723e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L260": 0.01423176415915799,
+          "C837": -0.013387077166339134,
+          "L148": 0.011675701521818797,
+          "C109": -0.01912161226542989,
+          "L444": -0.007956071091181315,
+          "C259": -0.001949708636621382
+        },
+        "spec": {
+          "target_center_frequency_hz": 203000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 203000000.0,
+            "lower_passband_edge": 182700000.0,
+            "upper_passband_edge": 223300000.00000003,
+            "lower_stopband": 142100000.0,
+            "upper_stopband": 284200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -7.72249085,
+        "peak_frequency_hz": 149002000.0,
+        "peak_frequency_relative_error": 0.266,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 203000000.0,
+            "measured_frequency_hz": 203000000.0,
+            "s11_db": -0.30860987,
+            "s21_db": -12.925315,
+            "s22_db": -0.308045257
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 182700000.0,
+            "measured_frequency_hz": 182700000.0,
+            "s11_db": -0.141887646,
+            "s21_db": -17.0495592,
+            "s22_db": -0.139875711
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 223300000.00000003,
+            "measured_frequency_hz": 223300000.0,
+            "s11_db": -0.0728083626,
+            "s21_db": -20.3953135,
+            "s22_db": -0.0753414715
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 142100000.0,
+            "measured_frequency_hz": 142100000.0,
+            "s11_db": -0.197081157,
+            "s21_db": -20.4869081,
+            "s22_db": -0.19751866
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 284200000.0,
+            "measured_frequency_hz": 284200000.0,
+            "s11_db": -0.00305683827,
+            "s21_db": -43.4185337,
+            "s22_db": -0.00324860203
+          }
+        }
+      },
+      "current_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 142100000.0,
+            "s11_db": -0.2,
+            "s21_db": -20.49,
+            "s22_db": -0.2
+          },
+          {
+            "frequency_hz": 172550000.0,
+            "s11_db": -0.11,
+            "s21_db": -18.92,
+            "s22_db": -0.11
+          },
+          {
+            "frequency_hz": 186760000.0,
+            "s11_db": -0.17,
+            "s21_db": -15.97,
+            "s22_db": -0.17
+          },
+          {
+            "frequency_hz": 194880000.0,
+            "s11_db": -0.26,
+            "s21_db": -13.83,
+            "s22_db": -0.25
+          },
+          {
+            "frequency_hz": 203000000.0,
+            "s11_db": -0.31,
+            "s21_db": -12.93,
+            "s22_db": -0.31
+          },
+          {
+            "frequency_hz": 211120000.0,
+            "s11_db": -0.22,
+            "s21_db": -14.58,
+            "s22_db": -0.22
+          },
+          {
+            "frequency_hz": 219240000.0,
+            "s11_db": -0.11,
+            "s21_db": -18.27,
+            "s22_db": -0.11
+          },
+          {
+            "frequency_hz": 233450000.0,
+            "s11_db": -0.03,
+            "s21_db": -25.6,
+            "s22_db": -0.03
+          },
+          {
+            "frequency_hz": 284200000.0,
+            "s11_db": -0.0,
+            "s21_db": -43.42,
+            "s22_db": -0.0
+          }
+        ]
+      },
+      "reference_spectrum": {
+        "origin": "Synthetic ngspice emulation, not hardware measurement",
+        "quantization_db": 0.01,
+        "representation": "20 log10 magnitude; no phase; no added noise or calibration drift",
+        "samples": [
+          {
+            "frequency_hz": 142100000.0,
+            "s11_db": -0.01,
+            "s21_db": -34.36,
+            "s22_db": -0.01
+          },
+          {
+            "frequency_hz": 172550000.0,
+            "s11_db": -0.29,
+            "s21_db": -14.21,
+            "s22_db": -0.29
+          },
+          {
+            "frequency_hz": 186760000.0,
+            "s11_db": -5.34,
+            "s21_db": -2.56,
+            "s22_db": -5.25
+          },
+          {
+            "frequency_hz": 194880000.0,
+            "s11_db": -18.65,
+            "s21_db": -0.77,
+            "s22_db": -17.27
+          },
+          {
+            "frequency_hz": 203000000.0,
+            "s11_db": -23.89,
+            "s21_db": -0.59,
+            "s22_db": -23.59
+          },
+          {
+            "frequency_hz": 211120000.0,
+            "s11_db": -20.46,
+            "s21_db": -0.66,
+            "s22_db": -24.59
+          },
+          {
+            "frequency_hz": 219240000.0,
+            "s11_db": -8.17,
+            "s21_db": -1.54,
+            "s22_db": -8.47
+          },
+          {
+            "frequency_hz": 233450000.0,
+            "s11_db": -0.63,
+            "s21_db": -10.15,
+            "s22_db": -0.65
+          },
+          {
+            "frequency_hz": 284200000.0,
+            "s11_db": -0.01,
+            "s21_db": -33.81,
+            "s22_db": -0.01
+          }
+        ]
+      },
+      "reference_fit": {
+        "method": "Single-main-component inverse fit to 9 pre-fault S11/S21/S22 magnitude samples; 41 log grid + 26 golden-section evaluations per component",
+        "forward_model_evaluations": 402,
+        "frequency_points_per_evaluation": 9,
+        "search_factor_range": [
+          0.4,
+          2.5
+        ],
+        "acceptance": {
+          "best_rmse_db_max": 0.02,
+          "runner_up_rmse_db_min": 0.1
+        },
+        "resolved_within_search": true,
+        "assumptions": "Exactly one main value changed; current values and fixed equivalent model known; no drift or noise beyond 0.01 dB rounding. This bounded fit is not a global identifiability proof.",
+        "hypotheses": [
+          {
+            "component": "C109",
+            "inferred_prefault_value": "1.46339125302e-10",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 0.0023953581290114033
+          },
+          {
+            "component": "L148",
+            "inferred_prefault_value": "2.11825461108e-09",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 6.735783256997749
+          },
+          {
+            "component": "L260",
+            "inferred_prefault_value": "1.82110901272e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 12.776033490521478
+          },
+          {
+            "component": "L444",
+            "inferred_prefault_value": "1.7961734758e-07",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 12.789551039022953
+          },
+          {
+            "component": "C837",
+            "inferred_prefault_value": "2.98659714118e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 12.806027640673133
+          },
+          {
+            "component": "C259",
+            "inferred_prefault_value": "3.04634444699e-12",
+            "current_fault_direction": "value_too_high",
+            "rmse_db": 12.81337353946643
+          }
+        ]
+      },
+      "fit_evaluator_only": {
+        "diagnosis": {
+          "component": "C109",
+          "fault_type": "value_too_high"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.586037078,
+          "peak_frequency_hz": 204218000.0,
+          "peak_frequency_relative_error": 0.006,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 203000000.0,
+              "measured_frequency_hz": 203000000.0,
+              "s11_db": -23.8890984,
+              "s21_db": -0.588102032,
+              "s22_db": -23.5896802
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 182700000.0,
+              "measured_frequency_hz": 182700000.0,
+              "s11_db": -2.26322147,
+              "s21_db": -5.24234229,
+              "s22_db": -2.23509629
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 223300000.00000003,
+              "measured_frequency_hz": 223300000.0,
+              "s11_db": -4.03500306,
+              "s21_db": -3.15028315,
+              "s22_db": -4.13783076
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 142100000.0,
+              "measured_frequency_hz": 142100000.0,
+              "s11_db": -0.00857343341,
+              "s21_db": -34.3590775,
+              "s22_db": -0.00859171403
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 284200000.0,
+              "measured_frequency_hz": 284200000.0,
+              "s11_db": -0.00707622212,
+              "s21_db": -33.8115743,
+              "s22_db": -0.00743474955
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.006,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.588102032,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -23.8890984,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.24234229,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.15028315,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -34.3590775,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -33.8115743,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        },
+        "diagnosed": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "ACTIVE_SYNTHETIC_VALIDATED",
+  "policy_id": "diagnosis_abstention_v1",
+  "policy_path": "experiments/diagnosis_abstention_v1.json",
+  "policy_sha256": "5911f4eed274e36bf06f46dc072e18f19dc93f4e168b02c574d8f726690cb99c",
+  "audit_path": "build/abstention_calibration_v1_audit/summary.json",
+  "audit_sha256": "5c3e80c5e064f122c4d9dd5432817702bf3a0951c336c45aa21f195ccc94fb12",
+  "qualification": {
+    "new_correct": 615,
+    "legacy_correct": 487,
+    "new_wrong": 0,
+    "new_false_alarm": 0
+  },
+  "scope": "Synthetic single-value BPF diagnosis; design-disjoint four-design evaluation, not hardware or population-risk guarantee"
+}

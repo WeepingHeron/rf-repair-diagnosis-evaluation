@@ -1,0 +1,4109 @@
+{
+  "selection": "All eight predefined cases retained",
+  "cases": [
+    {
+      "case_id": "diagnosis_d1_f1",
+      "design_id": "diagnosis_d1",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L155",
+            "nodes": [
+              "N5353",
+              "N6554"
+            ]
+          },
+          {
+            "component": "C340",
+            "nodes": [
+              "N6554",
+              "N1580"
+            ]
+          },
+          {
+            "component": "L526",
+            "nodes": [
+              "N1580",
+              "0"
+            ]
+          },
+          {
+            "component": "C774",
+            "nodes": [
+              "N1580",
+              "0"
+            ]
+          },
+          {
+            "component": "L151",
+            "nodes": [
+              "N1580",
+              "N5355"
+            ]
+          },
+          {
+            "component": "C372",
+            "nodes": [
+              "N5355",
+              "N9425"
+            ]
+          }
+        ],
+        "ports": [
+          "N5353",
+          "N9425"
+        ],
+        "line_order": [
+          4,
+          0,
+          3,
+          1,
+          5,
+          2
+        ],
+        "frequency_hz": 101000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 101000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 101000000.0,
+          "lower_passband_edge": 92920000.0,
+          "upper_passband_edge": 109080000.0,
+          "lower_stopband": 70700000.0,
+          "upper_stopband": 141400000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N5353 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9425 0 DC 0 AC 1 portnum 2 z0 50\nCP_L151 N1580 N5355 1e-13\nRS_L151 N1580 XRS_L151 0.05\nL151 XRS_L151 N5355 4.92406177402e-07\nCP_L155 N5353 N6554 1e-13\nRS_L155 N5353 XRS_L155 0.05\nL155 XRS_L155 N6554 4.90258920637e-07\nRS_C774 N1580 XRS_C774 0.02\nLS_C774 XRS_C774 XLS_C774 2e-10\nC774 XLS_C774 0 3.77586449623e-10\nRS_C340 N6554 XRS_C340 0.02\nLS_C340 XRS_C340 XLS_C340 2e-10\nC340 XLS_C340 N1580 5.01600008042e-12\nRS_C372 N5355 XRS_C372 0.02\nLS_C372 XRS_C372 XLS_C372 2e-10\nC372 XLS_C372 N9425 5.02128690917e-12\nCP_L526 N1580 0 1e-13\nRS_L526 N1580 XRS_L526 0.05\nL526 XRS_L526 0 6.37257043375e-09\n.sp lin 2001 50500000 151500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N5353 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9425 0 DC 0 AC 1 portnum 2 z0 50\nCP_L151 N1580 N5355 1e-13\nRS_L151 N1580 XRS_L151 0.05\nL151 XRS_L151 N5355 4.92406177402e-07\nCP_L155 N5353 N6554 1e-13\nRS_L155 N5353 XRS_L155 0.05\nL155 XRS_L155 N6554 2.6964240635e-07\nRS_C774 N1580 XRS_C774 0.02\nLS_C774 XRS_C774 XLS_C774 2e-10\nC774 XLS_C774 0 3.77586449623e-10\nRS_C340 N6554 XRS_C340 0.02\nLS_C340 XRS_C340 XLS_C340 2e-10\nC340 XLS_C340 N1580 5.01600008042e-12\nRS_C372 N5355 XRS_C372 0.02\nLS_C372 XRS_C372 XLS_C372 2e-10\nC372 XLS_C372 N9425 5.02128690917e-12\nCP_L526 N1580 0 1e-13\nRS_L526 N1580 XRS_L526 0.05\nL526 XRS_L526 0 6.37257043375e-09\n.sp lin 2001 50500000 151500000\n.end\n",
+      "component": "L155",
+      "fault_type": "value_too_low",
+      "healthy_value": "4.90258920637e-07",
+      "multiplier": 0.55,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d1",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L155",
+              "nodes": [
+                "N5353",
+                "N6554"
+              ]
+            },
+            {
+              "component": "C340",
+              "nodes": [
+                "N6554",
+                "N1580"
+              ]
+            },
+            {
+              "component": "L526",
+              "nodes": [
+                "N1580",
+                "0"
+              ]
+            },
+            {
+              "component": "C774",
+              "nodes": [
+                "N1580",
+                "0"
+              ]
+            },
+            {
+              "component": "L151",
+              "nodes": [
+                "N1580",
+                "N5355"
+              ]
+            },
+            {
+              "component": "C372",
+              "nodes": [
+                "N5355",
+                "N9425"
+              ]
+            }
+          ],
+          "ports": [
+            "N5353",
+            "N9425"
+          ],
+          "line_order": [
+            4,
+            0,
+            3,
+            1,
+            5,
+            2
+          ],
+          "frequency_hz": 101000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L155": 4.828591230575969e-07,
+          "C340": 5.040485681883761e-12,
+          "L526": 6.3015667191508475e-09,
+          "C774": 3.818323070751486e-10,
+          "L151": 4.828591230575969e-07,
+          "C372": 5.040485681883761e-12
+        },
+        "healthy_values": {
+          "L155": "4.90258920637e-07",
+          "C340": "5.01600008042e-12",
+          "L526": "6.37257043375e-09",
+          "C774": "3.77586449623e-10",
+          "L151": "4.92406177402e-07",
+          "C372": "5.02128690917e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L155": 0.015324961725090385,
+          "C340": -0.004857786135280909,
+          "L526": 0.011267628791177379,
+          "C774": -0.01111969147987706,
+          "L151": 0.019771924954929913,
+          "C372": -0.0038089132518819117
+        },
+        "spec": {
+          "target_center_frequency_hz": 101000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 101000000.0,
+            "lower_passband_edge": 92920000.0,
+            "upper_passband_edge": 109080000.0,
+            "lower_stopband": 70700000.0,
+            "upper_stopband": 141400000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -5.92108954,
+        "peak_frequency_hz": 102414000.0,
+        "peak_frequency_relative_error": 0.014,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 101000000.0,
+            "measured_frequency_hz": 101000000.0,
+            "s11_db": -1.57115,
+            "s21_db": -6.04226305,
+            "s22_db": -5.63023751
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 92920000.0,
+            "measured_frequency_hz": 92920000.0,
+            "s11_db": -0.375198279,
+            "s21_db": -12.4699986,
+            "s22_db": -1.24243394
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 109080000.0,
+            "measured_frequency_hz": 109080000.0,
+            "s11_db": -0.548793456,
+            "s21_db": -10.8964942,
+            "s22_db": -0.82215823
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 70700000.0,
+            "measured_frequency_hz": 70700000.0,
+            "s11_db": -0.00254694799,
+            "s21_db": -42.6670391,
+            "s22_db": -0.00496369195
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 141400000.0,
+            "measured_frequency_hz": 141400000.0,
+            "s11_db": -0.0744865464,
+            "s21_db": -26.7797437,
+            "s22_db": -0.0125450254
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C340",
+            "proposed_value": "8.90749805605e-12",
+            "model_score": 1.46994538098396e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.9035728346683372,
+              "peak_frequency_hz": 101101000.0,
+              "peak_frequency_relative_error": 0.001,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -20.478447957692406,
+                  "s21_db": -0.9037531660599679,
+                  "s22_db": -20.098744777268035
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -4.062402366299795,
+                  "s21_db": -3.8125362405404433,
+                  "s22_db": -3.5524558442491583
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -4.448104321059962,
+                  "s21_db": -3.5731852770240993,
+                  "s22_db": -3.484912846347127
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.014653151493326386,
+                  "s21_db": -35.073980564541436,
+                  "s22_db": -0.006228977940156924
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.013292837897844691,
+                  "s21_db": -34.23379966395337,
+                  "s22_db": -0.0050793233547948005
+                }
+              }
+            }
+          },
+          {
+            "component": "L155",
+            "proposed_value": "4.79596984937e-07",
+            "model_score": 1.470866309144439e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.9036093500496272,
+              "peak_frequency_hz": 101101000.0,
+              "peak_frequency_relative_error": 0.001,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -20.481687966847733,
+                  "s21_db": -0.9038168294175969,
+                  "s22_db": -20.07697865919969
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -2.9383038929635235,
+                  "s21_db": -4.732299061144269,
+                  "s22_db": -3.175203714510759
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -3.9735215600504477,
+                  "s21_db": -3.864000704417276,
+                  "s22_db": -3.6365532734493424
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.004990064984472325,
+                  "s21_db": -39.753279518523264,
+                  "s22_db": -0.005233685731804797
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.004268752668951249,
+                  "s21_db": -39.19607703504595,
+                  "s22_db": -0.0038899080057235164
+                }
+              }
+            }
+          },
+          {
+            "component": "C372",
+            "proposed_value": "5.27661633543e-12",
+            "model_score": 257.043576575955,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -5.28681453788475,
+              "peak_frequency_hz": 102414000.0,
+              "peak_frequency_relative_error": 0.014,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -1.8173021413439658,
+                  "s21_db": -5.6412120019285155,
+                  "s22_db": -6.920146435782874
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -0.39818443547437954,
+                  "s21_db": -11.835014959925438,
+                  "s22_db": -1.4750105691220665
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -0.46361601393218776,
+                  "s21_db": -11.996129647973452,
+                  "s22_db": -0.6242691888817927
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.002605261238957858,
+                  "s21_db": -41.821286215794615,
+                  "s22_db": -0.006031613346562726
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.07361233795342137,
+                  "s21_db": -27.16898313012818,
+                  "s22_db": -0.011468161053421971
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C340",
+          "proposed_value": "8.90749805605e-12"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.903572835,
+          "peak_frequency_hz": 101101000.0,
+          "peak_frequency_relative_error": 0.001,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 101000000.0,
+              "measured_frequency_hz": 101000000.0,
+              "s11_db": -20.478448,
+              "s21_db": -0.903753166,
+              "s22_db": -20.0987448
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 92920000.0,
+              "measured_frequency_hz": 92920000.0,
+              "s11_db": -4.06240237,
+              "s21_db": -3.81253624,
+              "s22_db": -3.55245584
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 109080000.0,
+              "measured_frequency_hz": 109080000.0,
+              "s11_db": -4.44810432,
+              "s21_db": -3.57318528,
+              "s22_db": -3.48491285
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 70700000.0,
+              "measured_frequency_hz": 70700000.0,
+              "s11_db": -0.0146531515,
+              "s21_db": -35.0739806,
+              "s22_db": -0.00622897794
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 141400000.0,
+              "measured_frequency_hz": 141400000.0,
+              "s11_db": -0.0132928379,
+              "s21_db": -34.2337997,
+              "s22_db": -0.00507932336
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.001,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.903753166,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -20.478448,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -3.81253624,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.57318528,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -35.0739806,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -34.2337997,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d1_f2",
+      "design_id": "diagnosis_d1",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L155",
+            "nodes": [
+              "N5353",
+              "N6554"
+            ]
+          },
+          {
+            "component": "C340",
+            "nodes": [
+              "N6554",
+              "N1580"
+            ]
+          },
+          {
+            "component": "L526",
+            "nodes": [
+              "N1580",
+              "0"
+            ]
+          },
+          {
+            "component": "C774",
+            "nodes": [
+              "N1580",
+              "0"
+            ]
+          },
+          {
+            "component": "L151",
+            "nodes": [
+              "N1580",
+              "N5355"
+            ]
+          },
+          {
+            "component": "C372",
+            "nodes": [
+              "N5355",
+              "N9425"
+            ]
+          }
+        ],
+        "ports": [
+          "N5353",
+          "N9425"
+        ],
+        "line_order": [
+          4,
+          0,
+          3,
+          1,
+          5,
+          2
+        ],
+        "frequency_hz": 101000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 101000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 101000000.0,
+          "lower_passband_edge": 92920000.0,
+          "upper_passband_edge": 109080000.0,
+          "lower_stopband": 70700000.0,
+          "upper_stopband": 141400000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N5353 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9425 0 DC 0 AC 1 portnum 2 z0 50\nCP_L151 N1580 N5355 1e-13\nRS_L151 N1580 XRS_L151 0.05\nL151 XRS_L151 N5355 4.92406177402e-07\nCP_L155 N5353 N6554 1e-13\nRS_L155 N5353 XRS_L155 0.05\nL155 XRS_L155 N6554 4.90258920637e-07\nRS_C774 N1580 XRS_C774 0.02\nLS_C774 XRS_C774 XLS_C774 2e-10\nC774 XLS_C774 0 3.77586449623e-10\nRS_C340 N6554 XRS_C340 0.02\nLS_C340 XRS_C340 XLS_C340 2e-10\nC340 XLS_C340 N1580 5.01600008042e-12\nRS_C372 N5355 XRS_C372 0.02\nLS_C372 XRS_C372 XLS_C372 2e-10\nC372 XLS_C372 N9425 5.02128690917e-12\nCP_L526 N1580 0 1e-13\nRS_L526 N1580 XRS_L526 0.05\nL526 XRS_L526 0 6.37257043375e-09\n.sp lin 2001 50500000 151500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N5353 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9425 0 DC 0 AC 1 portnum 2 z0 50\nCP_L151 N1580 N5355 1e-13\nRS_L151 N1580 XRS_L151 0.05\nL151 XRS_L151 N5355 4.92406177402e-07\nCP_L155 N5353 N6554 1e-13\nRS_L155 N5353 XRS_L155 0.05\nL155 XRS_L155 N6554 4.90258920637e-07\nRS_C774 N1580 XRS_C774 0.02\nLS_C774 XRS_C774 XLS_C774 2e-10\nC774 XLS_C774 0 6.79655609321e-10\nRS_C340 N6554 XRS_C340 0.02\nLS_C340 XRS_C340 XLS_C340 2e-10\nC340 XLS_C340 N1580 5.01600008042e-12\nRS_C372 N5355 XRS_C372 0.02\nLS_C372 XRS_C372 XLS_C372 2e-10\nC372 XLS_C372 N9425 5.02128690917e-12\nCP_L526 N1580 0 1e-13\nRS_L526 N1580 XRS_L526 0.05\nL526 XRS_L526 0 6.37257043375e-09\n.sp lin 2001 50500000 151500000\n.end\n",
+      "component": "C774",
+      "fault_type": "value_too_high",
+      "healthy_value": "3.77586449623e-10",
+      "multiplier": 1.8,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d1",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L155",
+              "nodes": [
+                "N5353",
+                "N6554"
+              ]
+            },
+            {
+              "component": "C340",
+              "nodes": [
+                "N6554",
+                "N1580"
+              ]
+            },
+            {
+              "component": "L526",
+              "nodes": [
+                "N1580",
+                "0"
+              ]
+            },
+            {
+              "component": "C774",
+              "nodes": [
+                "N1580",
+                "0"
+              ]
+            },
+            {
+              "component": "L151",
+              "nodes": [
+                "N1580",
+                "N5355"
+              ]
+            },
+            {
+              "component": "C372",
+              "nodes": [
+                "N5355",
+                "N9425"
+              ]
+            }
+          ],
+          "ports": [
+            "N5353",
+            "N9425"
+          ],
+          "line_order": [
+            4,
+            0,
+            3,
+            1,
+            5,
+            2
+          ],
+          "frequency_hz": 101000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L155": 4.828591230575969e-07,
+          "C340": 5.040485681883761e-12,
+          "L526": 6.3015667191508475e-09,
+          "C774": 3.818323070751486e-10,
+          "L151": 4.828591230575969e-07,
+          "C372": 5.040485681883761e-12
+        },
+        "healthy_values": {
+          "L155": "4.90258920637e-07",
+          "C340": "5.01600008042e-12",
+          "L526": "6.37257043375e-09",
+          "C774": "3.77586449623e-10",
+          "L151": "4.92406177402e-07",
+          "C372": "5.02128690917e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L155": 0.015324961725090385,
+          "C340": -0.004857786135280909,
+          "L526": 0.011267628791177379,
+          "C774": -0.01111969147987706,
+          "L151": 0.019771924954929913,
+          "C372": -0.0038089132518819117
+        },
+        "spec": {
+          "target_center_frequency_hz": 101000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 101000000.0,
+            "lower_passband_edge": 92920000.0,
+            "upper_passband_edge": 109080000.0,
+            "lower_stopband": 70700000.0,
+            "upper_stopband": 141400000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -12.3809943,
+        "peak_frequency_hz": 74336000.0,
+        "peak_frequency_relative_error": 0.264,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 101000000.0,
+            "measured_frequency_hz": 101000000.0,
+            "s11_db": -0.239893658,
+            "s21_db": -14.5337523,
+            "s22_db": -0.23957067
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 92920000.0,
+            "measured_frequency_hz": 92920000.0,
+            "s11_db": -0.116514395,
+            "s21_db": -18.4798995,
+            "s22_db": -0.118350522
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 109080000.0,
+            "measured_frequency_hz": 109080000.0,
+            "s11_db": -0.0562627677,
+            "s21_db": -22.6667824,
+            "s22_db": -0.0550797707
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 70700000.0,
+            "measured_frequency_hz": 70700000.0,
+            "s11_db": -0.114352516,
+            "s21_db": -25.8392436,
+            "s22_db": -0.115622138
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 141400000.0,
+            "measured_frequency_hz": 141400000.0,
+            "s11_db": -0.0019525172,
+            "s21_db": -48.7062121,
+            "s22_db": -0.00191680191
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C774",
+            "proposed_value": "3.8263308492e-10",
+            "model_score": 1.4560090415178292e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.9069091506653998,
+              "peak_frequency_hz": 100596000.0,
+              "peak_frequency_relative_error": 0.004,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -20.547780007943913,
+                  "s21_db": -0.9093304855271942,
+                  "s22_db": -20.071034708861617
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -3.9890852073212724,
+                  "s21_db": -3.865071125638295,
+                  "s22_db": -4.058703036208638
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -2.7860807495101274,
+                  "s21_db": -4.907126997352741,
+                  "s22_db": -2.7417616465610233
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.0053157700235961615,
+                  "s21_db": -39.46072873005507,
+                  "s22_db": -0.005374864506697559
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.003789857574111175,
+                  "s21_db": -39.835979760364175,
+                  "s22_db": -0.003726491071626289
+                }
+              }
+            }
+          },
+          {
+            "component": "L526",
+            "proposed_value": "3.48104187721e-09",
+            "model_score": 57.789571567716735,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -2.6992926362614793,
+              "peak_frequency_hz": 100697000.0,
+              "peak_frequency_relative_error": 0.003,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -11.611077747164133,
+                  "s21_db": -2.70483897459673,
+                  "s22_db": -11.46985819766881
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -1.1788765840312108,
+                  "s21_db": -10.307401221275573,
+                  "s22_db": -1.2065670072888857
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -0.9342865713262448,
+                  "s21_db": -11.220555451025067,
+                  "s22_db": -0.9114355716574235
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.004642176781354578,
+                  "s21_db": -45.0566816617351,
+                  "s22_db": -0.004697255000328206
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.003229575577709573,
+                  "s21_db": -45.634937597764214,
+                  "s22_db": -0.003170754440112662
+                }
+              }
+            }
+          },
+          {
+            "component": "L151",
+            "proposed_value": "4.76929073683e-07",
+            "model_score": 863.1068621664954,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -12.603484940307226,
+              "peak_frequency_hz": 74336000.0,
+              "peak_frequency_relative_error": 0.264,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 101000000.0,
+                  "measured_frequency_hz": 101000000.0,
+                  "s11_db": -0.23191317546642432,
+                  "s21_db": -14.694200016177382,
+                  "s22_db": -0.23062368967784322
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 92920000.0,
+                  "measured_frequency_hz": 92920000.0,
+                  "s11_db": -0.10619989036854127,
+                  "s21_db": -19.268572997769443,
+                  "s22_db": -0.09846471049682255
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 109080000.0,
+                  "measured_frequency_hz": 109080000.0,
+                  "s11_db": -0.06205141980243317,
+                  "s21_db": -21.71533588382902,
+                  "s22_db": -0.06866098078736049
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 70700000.0,
+                  "measured_frequency_hz": 70700000.0,
+                  "s11_db": -0.11309429293430898,
+                  "s21_db": -26.11415728079034,
+                  "s22_db": -0.10844005191433162
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 141400000.0,
+                  "measured_frequency_hz": 141400000.0,
+                  "s11_db": -0.00196122583553441,
+                  "s21_db": -48.152014270311966,
+                  "s22_db": -0.002175296320959446
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C774",
+          "proposed_value": "3.8263308492e-10"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.906909151,
+          "peak_frequency_hz": 100596000.0,
+          "peak_frequency_relative_error": 0.004,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 101000000.0,
+              "measured_frequency_hz": 101000000.0,
+              "s11_db": -20.54778,
+              "s21_db": -0.909330486,
+              "s22_db": -20.0710347
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 92920000.0,
+              "measured_frequency_hz": 92920000.0,
+              "s11_db": -3.98908521,
+              "s21_db": -3.86507113,
+              "s22_db": -4.05870304
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 109080000.0,
+              "measured_frequency_hz": 109080000.0,
+              "s11_db": -2.78608075,
+              "s21_db": -4.907127,
+              "s22_db": -2.74176165
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 70700000.0,
+              "measured_frequency_hz": 70700000.0,
+              "s11_db": -0.00531577001,
+              "s21_db": -39.4607287,
+              "s22_db": -0.0053748645
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 141400000.0,
+              "measured_frequency_hz": 141400000.0,
+              "s11_db": -0.00378985758,
+              "s21_db": -39.8359798,
+              "s22_db": -0.00372649108
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.004,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.909330486,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -20.54778,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -3.86507113,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -4.907127,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -39.4607287,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -39.8359798,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d2_f1",
+      "design_id": "diagnosis_d2",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L965",
+            "nodes": [
+              "N4342",
+              "N4161"
+            ]
+          },
+          {
+            "component": "C958",
+            "nodes": [
+              "N4161",
+              "N6165"
+            ]
+          },
+          {
+            "component": "L382",
+            "nodes": [
+              "N6165",
+              "0"
+            ]
+          },
+          {
+            "component": "C659",
+            "nodes": [
+              "N6165",
+              "0"
+            ]
+          },
+          {
+            "component": "L299",
+            "nodes": [
+              "N6165",
+              "N7117"
+            ]
+          },
+          {
+            "component": "C808",
+            "nodes": [
+              "N7117",
+              "N9301"
+            ]
+          }
+        ],
+        "ports": [
+          "N4342",
+          "N9301"
+        ],
+        "line_order": [
+          5,
+          3,
+          0,
+          2,
+          1,
+          4
+        ],
+        "frequency_hz": 163000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 163000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 163000000.0,
+          "lower_passband_edge": 148330000.0,
+          "upper_passband_edge": 177670000.0,
+          "lower_stopband": 114100000.0,
+          "upper_stopband": 228200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4342 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9301 0 DC 0 AC 1 portnum 2 z0 50\nRS_C808 N7117 XRS_C808 0.02\nLS_C808 XRS_C808 XLS_C808 2e-10\nC808 XLS_C808 N9301 3.58143690478e-12\nRS_C659 N6165 XRS_C659 0.02\nLS_C659 XRS_C659 XLS_C659 2e-10\nC659 XLS_C659 0 2.08211995758e-10\nCP_L965 N4342 N4161 1e-13\nRS_L965 N4342 XRS_L965 0.05\nL965 XRS_L965 N4161 2.67622746608e-07\nCP_L382 N6165 0 1e-13\nRS_L382 N6165 XRS_L382 0.05\nL382 XRS_L382 0 4.45103701761e-09\nRS_C958 N4161 XRS_C958 0.02\nLS_C958 XRS_C958 XLS_C958 2e-10\nC958 XLS_C958 N6165 3.57300326589e-12\nCP_L299 N6165 N7117 1e-13\nRS_L299 N6165 XRS_L299 0.05\nL299 XRS_L299 N7117 2.65561733886e-07\n.sp lin 2001 81500000 244500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4342 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9301 0 DC 0 AC 1 portnum 2 z0 50\nRS_C808 N7117 XRS_C808 0.02\nLS_C808 XRS_C808 XLS_C808 2e-10\nC808 XLS_C808 N9301 3.58143690478e-12\nRS_C659 N6165 XRS_C659 0.02\nLS_C659 XRS_C659 XLS_C659 2e-10\nC659 XLS_C659 0 2.08211995758e-10\nCP_L965 N4342 N4161 1e-13\nRS_L965 N4342 XRS_L965 0.05\nL965 XRS_L965 N4161 2.67622746608e-07\nCP_L382 N6165 0 1e-13\nRS_L382 N6165 XRS_L382 0.05\nL382 XRS_L382 0 4.45103701761e-09\nRS_C958 N4161 XRS_C958 0.02\nLS_C958 XRS_C958 XLS_C958 2e-10\nC958 XLS_C958 N6165 1.96515179624e-12\nCP_L299 N6165 N7117 1e-13\nRS_L299 N6165 XRS_L299 0.05\nL299 XRS_L299 N7117 2.65561733886e-07\n.sp lin 2001 81500000 244500000\n.end\n",
+      "component": "C958",
+      "fault_type": "value_too_low",
+      "healthy_value": "3.57300326589e-12",
+      "multiplier": 0.55,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d2",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L965",
+              "nodes": [
+                "N4342",
+                "N4161"
+              ]
+            },
+            {
+              "component": "C958",
+              "nodes": [
+                "N4161",
+                "N6165"
+              ]
+            },
+            {
+              "component": "L382",
+              "nodes": [
+                "N6165",
+                "0"
+              ]
+            },
+            {
+              "component": "C659",
+              "nodes": [
+                "N6165",
+                "0"
+              ]
+            },
+            {
+              "component": "L299",
+              "nodes": [
+                "N6165",
+                "N7117"
+              ]
+            },
+            {
+              "component": "C808",
+              "nodes": [
+                "N7117",
+                "N9301"
+              ]
+            }
+          ],
+          "ports": [
+            "N4342",
+            "N9301"
+          ],
+          "line_order": [
+            5,
+            3,
+            0,
+            2,
+            1,
+            4
+          ],
+          "frequency_hz": 163000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L965": 2.637225843155759e-07,
+          "C958": 3.512488407653623e-12,
+          "L382": 4.3918243051192644e-09,
+          "C659": 2.075336009469062e-10,
+          "L299": 2.637225843155759e-07,
+          "C808": 3.512488407653623e-12
+        },
+        "healthy_values": {
+          "L965": "2.67622746608e-07",
+          "C958": "3.57300326589e-12",
+          "L382": "4.45103701761e-09",
+          "C659": "2.08211995758e-10",
+          "L299": "2.65561733886e-07",
+          "C808": "3.58143690478e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L965": 0.01478888242440796,
+          "C958": 0.01722848625059391,
+          "L382": 0.013482486632572888,
+          "C659": 0.0032688432534210485,
+          "L299": 0.006973803838092138,
+          "C808": 0.01962953015699234
+        },
+        "spec": {
+          "target_center_frequency_hz": 163000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 163000000.0,
+            "lower_passband_edge": 148330000.0,
+            "upper_passband_edge": 177670000.0,
+            "lower_stopband": 114100000.0,
+            "upper_stopband": 228200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -8.62114432,
+        "peak_frequency_hz": 165200500.0,
+        "peak_frequency_relative_error": 0.0135,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 163000000.0,
+            "measured_frequency_hz": 163000000.0,
+            "s11_db": -0.741328382,
+            "s21_db": -8.75311893,
+            "s22_db": -3.71126911
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 148330000.0,
+            "measured_frequency_hz": 148330000.0,
+            "s11_db": -0.161672706,
+            "s21_db": -15.6843502,
+            "s22_db": -1.00168447
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 177670000.0,
+            "measured_frequency_hz": 177670000.0,
+            "s11_db": -0.247651417,
+            "s21_db": -13.9671858,
+            "s22_db": -0.485932455
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 114100000.0,
+            "measured_frequency_hz": 114100000.0,
+            "s11_db": -0.00113746356,
+            "s21_db": -44.1701631,
+            "s22_db": -0.00656320492
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 228200000.0,
+            "measured_frequency_hz": 228200000.0,
+            "s11_db": -0.0454197219,
+            "s21_db": -27.6061196,
+            "s22_db": -0.0116936342
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C958",
+            "proposed_value": "3.47831427893e-12",
+            "model_score": 1.0415712622667088e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.7281381146730044,
+              "peak_frequency_hz": 162185000.0,
+              "peak_frequency_relative_error": 0.005,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -23.273545549144554,
+                  "s21_db": -0.7304750687251248,
+                  "s22_db": -21.17743625881922
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -3.688871975289287,
+                  "s21_db": -3.7358534675323414,
+                  "s22_db": -3.9150887515099386
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -2.5426476945701686,
+                  "s21_db": -4.938968388640827,
+                  "s22_db": -2.454562975200082
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.006997476758125889,
+                  "s21_db": -36.2830528881269,
+                  "s22_db": -0.007589479070181396
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.004884490708835839,
+                  "s21_db": -37.2701234041075,
+                  "s22_db": -0.0047920476115983195
+                }
+              }
+            }
+          },
+          {
+            "component": "L965",
+            "proposed_value": "4.53085110819e-07",
+            "model_score": 2.030512968288767,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.7685341425527805,
+              "peak_frequency_hz": 164548500.0,
+              "peak_frequency_relative_error": 0.0095,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -17.311489397048874,
+                  "s21_db": -0.7916209950595615,
+                  "s22_db": -17.854568047013675
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -1.313332161644547,
+                  "s21_db": -7.147090735260672,
+                  "s22_db": -2.1828542716237878
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -1.4617041350861328,
+                  "s21_db": -6.845382739755722,
+                  "s22_db": -1.742247151167288
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.0021305532344786356,
+                  "s21_db": -41.45788827669619,
+                  "s22_db": -0.006750491794501346
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.0016381554944995536,
+                  "s21_db": -42.09979157711095,
+                  "s22_db": -0.004187820179745027
+                }
+              }
+            }
+          },
+          {
+            "component": "C808",
+            "proposed_value": "3.71459309514e-12",
+            "model_score": 402.43657761149746,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -8.08308088228723,
+              "peak_frequency_hz": 165200500.0,
+              "peak_frequency_relative_error": 0.0135,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -0.8343431053932205,
+                  "s21_db": -8.34407043200702,
+                  "s22_db": -4.332903966237091
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -0.169311418736129,
+                  "s21_db": -15.271332278728185,
+                  "s22_db": -1.1155672924373947
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -0.21988679387226695,
+                  "s21_db": -14.692818007388595,
+                  "s22_db": -0.40753016913967516
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.001165805631985436,
+                  "s21_db": -43.553951329454925,
+                  "s22_db": -0.007564621392623744
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.04490846755596158,
+                  "s21_db": -27.884231056525955,
+                  "s22_db": -0.0109673591025448
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C958",
+          "proposed_value": "3.47831427893e-12"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.728138115,
+          "peak_frequency_hz": 162185000.0,
+          "peak_frequency_relative_error": 0.005,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 163000000.0,
+              "measured_frequency_hz": 163000000.0,
+              "s11_db": -23.2735455,
+              "s21_db": -0.730475069,
+              "s22_db": -21.1774363
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 148330000.0,
+              "measured_frequency_hz": 148330000.0,
+              "s11_db": -3.68887198,
+              "s21_db": -3.73585347,
+              "s22_db": -3.91508875
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 177670000.0,
+              "measured_frequency_hz": 177670000.0,
+              "s11_db": -2.54264769,
+              "s21_db": -4.93896839,
+              "s22_db": -2.45456298
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 114100000.0,
+              "measured_frequency_hz": 114100000.0,
+              "s11_db": -0.00699747676,
+              "s21_db": -36.2830529,
+              "s22_db": -0.00758947907
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 228200000.0,
+              "measured_frequency_hz": 228200000.0,
+              "s11_db": -0.00488449071,
+              "s21_db": -37.2701234,
+              "s22_db": -0.00479204761
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.005,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.730475069,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -23.2735455,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -3.73585347,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -4.93896839,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -36.2830529,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -37.2701234,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d2_f2",
+      "design_id": "diagnosis_d2",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L965",
+            "nodes": [
+              "N4342",
+              "N4161"
+            ]
+          },
+          {
+            "component": "C958",
+            "nodes": [
+              "N4161",
+              "N6165"
+            ]
+          },
+          {
+            "component": "L382",
+            "nodes": [
+              "N6165",
+              "0"
+            ]
+          },
+          {
+            "component": "C659",
+            "nodes": [
+              "N6165",
+              "0"
+            ]
+          },
+          {
+            "component": "L299",
+            "nodes": [
+              "N6165",
+              "N7117"
+            ]
+          },
+          {
+            "component": "C808",
+            "nodes": [
+              "N7117",
+              "N9301"
+            ]
+          }
+        ],
+        "ports": [
+          "N4342",
+          "N9301"
+        ],
+        "line_order": [
+          5,
+          3,
+          0,
+          2,
+          1,
+          4
+        ],
+        "frequency_hz": 163000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 163000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 163000000.0,
+          "lower_passband_edge": 148330000.0,
+          "upper_passband_edge": 177670000.0,
+          "lower_stopband": 114100000.0,
+          "upper_stopband": 228200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4342 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9301 0 DC 0 AC 1 portnum 2 z0 50\nRS_C808 N7117 XRS_C808 0.02\nLS_C808 XRS_C808 XLS_C808 2e-10\nC808 XLS_C808 N9301 3.58143690478e-12\nRS_C659 N6165 XRS_C659 0.02\nLS_C659 XRS_C659 XLS_C659 2e-10\nC659 XLS_C659 0 2.08211995758e-10\nCP_L965 N4342 N4161 1e-13\nRS_L965 N4342 XRS_L965 0.05\nL965 XRS_L965 N4161 2.67622746608e-07\nCP_L382 N6165 0 1e-13\nRS_L382 N6165 XRS_L382 0.05\nL382 XRS_L382 0 4.45103701761e-09\nRS_C958 N4161 XRS_C958 0.02\nLS_C958 XRS_C958 XLS_C958 2e-10\nC958 XLS_C958 N6165 3.57300326589e-12\nCP_L299 N6165 N7117 1e-13\nRS_L299 N6165 XRS_L299 0.05\nL299 XRS_L299 N7117 2.65561733886e-07\n.sp lin 2001 81500000 244500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N4342 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9301 0 DC 0 AC 1 portnum 2 z0 50\nRS_C808 N7117 XRS_C808 0.02\nLS_C808 XRS_C808 XLS_C808 2e-10\nC808 XLS_C808 N9301 3.58143690478e-12\nRS_C659 N6165 XRS_C659 0.02\nLS_C659 XRS_C659 XLS_C659 2e-10\nC659 XLS_C659 0 2.08211995758e-10\nCP_L965 N4342 N4161 1e-13\nRS_L965 N4342 XRS_L965 0.05\nL965 XRS_L965 N4161 2.67622746608e-07\nCP_L382 N6165 0 1e-13\nRS_L382 N6165 XRS_L382 0.05\nL382 XRS_L382 0 8.0118666317e-09\nRS_C958 N4161 XRS_C958 0.02\nLS_C958 XRS_C958 XLS_C958 2e-10\nC958 XLS_C958 N6165 3.57300326589e-12\nCP_L299 N6165 N7117 1e-13\nRS_L299 N6165 XRS_L299 0.05\nL299 XRS_L299 N7117 2.65561733886e-07\n.sp lin 2001 81500000 244500000\n.end\n",
+      "component": "L382",
+      "fault_type": "value_too_high",
+      "healthy_value": "4.45103701761e-09",
+      "multiplier": 1.8,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d2",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L965",
+              "nodes": [
+                "N4342",
+                "N4161"
+              ]
+            },
+            {
+              "component": "C958",
+              "nodes": [
+                "N4161",
+                "N6165"
+              ]
+            },
+            {
+              "component": "L382",
+              "nodes": [
+                "N6165",
+                "0"
+              ]
+            },
+            {
+              "component": "C659",
+              "nodes": [
+                "N6165",
+                "0"
+              ]
+            },
+            {
+              "component": "L299",
+              "nodes": [
+                "N6165",
+                "N7117"
+              ]
+            },
+            {
+              "component": "C808",
+              "nodes": [
+                "N7117",
+                "N9301"
+              ]
+            }
+          ],
+          "ports": [
+            "N4342",
+            "N9301"
+          ],
+          "line_order": [
+            5,
+            3,
+            0,
+            2,
+            1,
+            4
+          ],
+          "frequency_hz": 163000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L965": 2.637225843155759e-07,
+          "C958": 3.512488407653623e-12,
+          "L382": 4.3918243051192644e-09,
+          "C659": 2.075336009469062e-10,
+          "L299": 2.637225843155759e-07,
+          "C808": 3.512488407653623e-12
+        },
+        "healthy_values": {
+          "L965": "2.67622746608e-07",
+          "C958": "3.57300326589e-12",
+          "L382": "4.45103701761e-09",
+          "C659": "2.08211995758e-10",
+          "L299": "2.65561733886e-07",
+          "C808": "3.58143690478e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L965": 0.01478888242440796,
+          "C958": 0.01722848625059391,
+          "L382": 0.013482486632572888,
+          "C659": 0.0032688432534210485,
+          "L299": 0.006973803838092138,
+          "C808": 0.01962953015699234
+        },
+        "spec": {
+          "target_center_frequency_hz": 163000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 163000000.0,
+            "lower_passband_edge": 148330000.0,
+            "upper_passband_edge": 177670000.0,
+            "lower_stopband": 114100000.0,
+            "upper_stopband": 228200000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.33339035,
+        "peak_frequency_hz": 118012000.0,
+        "peak_frequency_relative_error": 0.276,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 163000000.0,
+            "measured_frequency_hz": 163000000.0,
+            "s11_db": -0.756087593,
+            "s21_db": -8.4887768,
+            "s22_db": -0.75667709
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 148330000.0,
+            "measured_frequency_hz": 148330000.0,
+            "s11_db": -0.316056357,
+            "s21_db": -12.3319701,
+            "s22_db": -0.314664544
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 177670000.0,
+            "measured_frequency_hz": 177670000.0,
+            "s11_db": -0.130834285,
+            "s21_db": -16.5467915,
+            "s22_db": -0.132098025
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 114100000.0,
+            "measured_frequency_hz": 114100000.0,
+            "s11_db": -0.447251537,
+            "s21_db": -14.317289,
+            "s22_db": -0.445571284
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 228200000.0,
+            "measured_frequency_hz": 228200000.0,
+            "s11_db": -0.00270644451,
+            "s21_db": -40.6048125,
+            "s22_db": -0.00276675791
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C659",
+            "proposed_value": "1.21936272671e-10",
+            "model_score": 6.269093837310368e-06,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.2477977423555369,
+              "peak_frequency_hz": 162511000.0,
+              "peak_frequency_relative_error": 0.003,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -30.36915327141747,
+                  "s21_db": -0.2486822509428901,
+                  "s22_db": -33.75455695461348
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -19.885300062912854,
+                  "s21_db": -0.5011775109242621,
+                  "s22_db": -18.95474513945843
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -7.064944517489749,
+                  "s21_db": -1.4500200866567838,
+                  "s22_db": -7.136735872264706
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.012383339557004634,
+                  "s21_db": -29.859089539618108,
+                  "s22_db": -0.01233732693060852
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.00664391349457776,
+                  "s21_db": -32.25635210478061,
+                  "s22_db": -0.006750341747300885
+                }
+              }
+            }
+          },
+          {
+            "component": "L382",
+            "proposed_value": "4.5068213612e-09",
+            "model_score": 1.2521838871852098e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.7172766413086856,
+              "peak_frequency_hz": 161207000.0,
+              "peak_frequency_relative_error": 0.011,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -21.695061406066344,
+                  "s21_db": -0.7284195134612077,
+                  "s22_db": -22.73336025511089
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -5.082521759937199,
+                  "s21_db": -2.900560860063763,
+                  "s22_db": -5.020240866883567
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -1.9298028953977742,
+                  "s21_db": -5.843143878790312,
+                  "s22_db": -1.954809406626872
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.007963832750534963,
+                  "s21_db": -35.61297201968399,
+                  "s22_db": -0.00792452124864271
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.004551863278416349,
+                  "s21_db": -37.588750684559194,
+                  "s22_db": -0.004650633513029872
+                }
+              }
+            }
+          },
+          {
+            "component": "L965",
+            "proposed_value": "2.56358242958e-07",
+            "model_score": 457.68347374586665,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -4.478395252387025,
+              "peak_frequency_hz": 118093500.0,
+              "peak_frequency_relative_error": 0.2755,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 163000000.0,
+                  "measured_frequency_hz": 163000000.0,
+                  "s11_db": -0.708373022118261,
+                  "s21_db": -8.748434117014778,
+                  "s22_db": -0.7090768555746413
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 148330000.0,
+                  "measured_frequency_hz": 148330000.0,
+                  "s11_db": -0.25513919216053943,
+                  "s21_db": -13.231502778158585,
+                  "s22_db": -0.2643697551985287
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 177670000.0,
+                  "measured_frequency_hz": 177670000.0,
+                  "s11_db": -0.17055185549106902,
+                  "s21_db": -15.414302004695656,
+                  "s22_db": -0.16158533649062182
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 114100000.0,
+                  "measured_frequency_hz": 114100000.0,
+                  "s11_db": -0.4032609895033135,
+                  "s21_db": -14.745285410269988,
+                  "s22_db": -0.4230683953423341
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 228200000.0,
+                  "measured_frequency_hz": 228200000.0,
+                  "s11_db": -0.003206551425065613,
+                  "s21_db": -39.860252281952015,
+                  "s22_db": -0.002840478780803751
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C659",
+          "proposed_value": "1.21936272671e-10"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.247797742,
+          "peak_frequency_hz": 162511000.0,
+          "peak_frequency_relative_error": 0.003,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 163000000.0,
+              "measured_frequency_hz": 163000000.0,
+              "s11_db": -30.3691533,
+              "s21_db": -0.248682251,
+              "s22_db": -33.754557
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 148330000.0,
+              "measured_frequency_hz": 148330000.0,
+              "s11_db": -19.8853001,
+              "s21_db": -0.501177511,
+              "s22_db": -18.9547451
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 177670000.0,
+              "measured_frequency_hz": 177670000.0,
+              "s11_db": -7.06494452,
+              "s21_db": -1.45002009,
+              "s22_db": -7.13673587
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 114100000.0,
+              "measured_frequency_hz": 114100000.0,
+              "s11_db": -0.0123833396,
+              "s21_db": -29.8590895,
+              "s22_db": -0.0123373269
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 228200000.0,
+              "measured_frequency_hz": 228200000.0,
+              "s11_db": -0.00664391349,
+              "s21_db": -32.2563521,
+              "s22_db": -0.00675034175
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.003,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.248682251,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -30.3691533,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -0.501177511,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -1.45002009,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -29.8590895,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -32.2563521,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d3_f1",
+      "design_id": "diagnosis_d3",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L585",
+            "nodes": [
+              "N8039",
+              "N4752"
+            ]
+          },
+          {
+            "component": "C692",
+            "nodes": [
+              "N4752",
+              "N2168"
+            ]
+          },
+          {
+            "component": "L413",
+            "nodes": [
+              "N2168",
+              "0"
+            ]
+          },
+          {
+            "component": "C803",
+            "nodes": [
+              "N2168",
+              "0"
+            ]
+          },
+          {
+            "component": "L554",
+            "nodes": [
+              "N2168",
+              "N6252"
+            ]
+          },
+          {
+            "component": "C264",
+            "nodes": [
+              "N6252",
+              "N8119"
+            ]
+          }
+        ],
+        "ports": [
+          "N8039",
+          "N8119"
+        ],
+        "line_order": [
+          3,
+          4,
+          5,
+          2,
+          0,
+          1
+        ],
+        "frequency_hz": 199000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 199000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 199000000.0,
+          "lower_passband_edge": 179100000.0,
+          "upper_passband_edge": 218900000.00000003,
+          "lower_stopband": 139300000.0,
+          "upper_stopband": 278600000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N8039 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8119 0 DC 0 AC 1 portnum 2 z0 50\nRS_C803 N2168 XRS_C803 0.02\nLS_C803 XRS_C803 XLS_C803 2e-10\nC803 XLS_C803 0 1.54104180718e-10\nCP_L554 N2168 N6252 1e-13\nRS_L554 N2168 XRS_L554 0.05\nL554 XRS_L554 N6252 1.94008802161e-07\nRS_C264 N6252 XRS_C264 0.02\nLS_C264 XRS_C264 XLS_C264 2e-10\nC264 XLS_C264 N8119 3.21372867087e-12\nCP_L413 N2168 0 1e-13\nRS_L413 N2168 XRS_L413 0.05\nL413 XRS_L413 0 3.92910963854e-09\nCP_L585 N8039 N4752 1e-13\nRS_L585 N8039 XRS_L585 0.05\nL585 XRS_L585 N4752 1.92578289367e-07\nRS_C692 N4752 XRS_C692 0.02\nLS_C692 XRS_C692 XLS_C692 2e-10\nC692 XLS_C692 N2168 3.17841413462e-12\n.sp lin 2001 99500000 298500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N8039 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8119 0 DC 0 AC 1 portnum 2 z0 50\nRS_C803 N2168 XRS_C803 0.02\nLS_C803 XRS_C803 XLS_C803 2e-10\nC803 XLS_C803 0 1.54104180718e-10\nCP_L554 N2168 N6252 1e-13\nRS_L554 N2168 XRS_L554 0.05\nL554 XRS_L554 N6252 1.06704841189e-07\nRS_C264 N6252 XRS_C264 0.02\nLS_C264 XRS_C264 XLS_C264 2e-10\nC264 XLS_C264 N8119 3.21372867087e-12\nCP_L413 N2168 0 1e-13\nRS_L413 N2168 XRS_L413 0.05\nL413 XRS_L413 0 3.92910963854e-09\nCP_L585 N8039 N4752 1e-13\nRS_L585 N8039 XRS_L585 0.05\nL585 XRS_L585 N4752 1.92578289367e-07\nRS_C692 N4752 XRS_C692 0.02\nLS_C692 XRS_C692 XLS_C692 2e-10\nC692 XLS_C692 N2168 3.17841413462e-12\n.sp lin 2001 99500000 298500000\n.end\n",
+      "component": "L554",
+      "fault_type": "value_too_low",
+      "healthy_value": "1.94008802161e-07",
+      "multiplier": 0.55,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d3",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L585",
+              "nodes": [
+                "N8039",
+                "N4752"
+              ]
+            },
+            {
+              "component": "C692",
+              "nodes": [
+                "N4752",
+                "N2168"
+              ]
+            },
+            {
+              "component": "L413",
+              "nodes": [
+                "N2168",
+                "0"
+              ]
+            },
+            {
+              "component": "C803",
+              "nodes": [
+                "N2168",
+                "0"
+              ]
+            },
+            {
+              "component": "L554",
+              "nodes": [
+                "N2168",
+                "N6252"
+              ]
+            },
+            {
+              "component": "C264",
+              "nodes": [
+                "N6252",
+                "N8119"
+              ]
+            }
+          ],
+          "ports": [
+            "N8039",
+            "N8119"
+          ],
+          "line_order": [
+            3,
+            4,
+            5,
+            2,
+            0,
+            1
+          ],
+          "frequency_hz": 199000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L585": 1.9388284203367186e-07,
+          "C692": 3.1958975312127443e-12,
+          "L413": 3.996369729003927e-09,
+          "C803": 1.5233577176718519e-10,
+          "L554": 1.9388284203367186e-07,
+          "C264": 3.1958975312127443e-12
+        },
+        "healthy_values": {
+          "L585": "1.92578289367e-07",
+          "C692": "3.17841413462e-12",
+          "L413": "3.92910963854e-09",
+          "C803": "1.54104180718e-10",
+          "L554": "1.94008802161e-07",
+          "C264": "3.21372867087e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L585": -0.006728561707041933,
+          "C692": -0.005470574828754722,
+          "L413": -0.016830297252023795,
+          "C803": 0.011608625669274859,
+          "L554": 0.0006496713470701514,
+          "C264": 0.005579384032794867
+        },
+        "spec": {
+          "target_center_frequency_hz": 199000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 199000000.0,
+            "lower_passband_edge": 179100000.0,
+            "upper_passband_edge": 218900000.00000003,
+            "lower_stopband": 139300000.0,
+            "upper_stopband": 278600000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.44731291,
+        "peak_frequency_hz": 194323500.0,
+        "peak_frequency_relative_error": 0.0235,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 199000000.0,
+            "measured_frequency_hz": 199000000.0,
+            "s11_db": -4.74917645,
+            "s21_db": -4.52639547,
+            "s22_db": -2.25603839
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 179100000.0,
+            "measured_frequency_hz": 179100000.0,
+            "s11_db": -0.795912742,
+            "s21_db": -12.1651286,
+            "s22_db": -0.381418053
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 218900000.00000003,
+            "measured_frequency_hz": 218900000.0,
+            "s11_db": -0.961043895,
+            "s21_db": -8.73994417,
+            "s22_db": -0.802930062
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 139300000.0,
+            "measured_frequency_hz": 139300000.0,
+            "s11_db": -0.00762904436,
+            "s21_db": -37.4525395,
+            "s22_db": -0.00442863258
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 278600000.0,
+            "measured_frequency_hz": 278600000.0,
+            "s11_db": -0.027822672,
+            "s21_db": -22.9176849,
+            "s22_db": -0.0909758063
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "L554",
+            "proposed_value": "1.9331740907e-07",
+            "model_score": 1.0538698540581053e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.6185753355439274,
+              "peak_frequency_hz": 200194000.0,
+              "peak_frequency_relative_error": 0.006,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -23.37617203093336,
+                  "s21_db": -0.6208824507884718,
+                  "s22_db": -23.829566960875127
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -2.1783828458229677,
+                  "s21_db": -5.361583882735424,
+                  "s22_db": -2.2388706944984023
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -3.686446649280437,
+                  "s21_db": -3.5056960192572735,
+                  "s22_db": -3.599626304410018
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.008501659546431598,
+                  "s21_db": -34.46460558094738,
+                  "s22_db": -0.008833905711436095
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.007320410140037457,
+                  "s21_db": -33.98618746670845,
+                  "s22_db": -0.0071248928664793985
+                }
+              }
+            }
+          },
+          {
+            "component": "C264",
+            "proposed_value": "5.89909266147e-12",
+            "model_score": 1.0687167419328483e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.6187139522084113,
+              "peak_frequency_hz": 200094500.0,
+              "peak_frequency_relative_error": 0.0055,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -23.359694451369922,
+                  "s21_db": -0.6207529477247508,
+                  "s22_db": -23.826159251380297
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -2.489844162895644,
+                  "s21_db": -4.47723806333372,
+                  "s22_db": -2.956033056369212
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -3.9376687603159386,
+                  "s21_db": -2.978902663309417,
+                  "s22_db": -4.389200942135945
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.01190019008677487,
+                  "s21_db": -29.62996311258999,
+                  "s22_db": -0.026893657416653047
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.011205744467477125,
+                  "s21_db": -29.008987756566803,
+                  "s22_db": -0.02220058067601645
+                }
+              }
+            }
+          },
+          {
+            "component": "C692",
+            "proposed_value": "3.93720124724e-12",
+            "model_score": 101.0395190415134,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -2.8489407872868204,
+              "peak_frequency_hz": 201388000.0,
+              "peak_frequency_relative_error": 0.012,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -9.367104812267765,
+                  "s21_db": -3.2883691499990144,
+                  "s22_db": -3.9198230610134353
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -0.9565077501547585,
+                  "s21_db": -11.444497488513068,
+                  "s22_db": -0.3812334557056771
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -0.4106185779742073,
+                  "s21_db": -12.16501784646593,
+                  "s22_db": -0.4442717514339676
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.01791360716424016,
+                  "s21_db": -33.75055022345465,
+                  "s22_db": -0.005563312442902098
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.019755669118402916,
+                  "s21_db": -24.400725998483534,
+                  "s22_db": -0.08402083832593875
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "L554",
+          "proposed_value": "1.9331740907e-07"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.618575336,
+          "peak_frequency_hz": 200194000.0,
+          "peak_frequency_relative_error": 0.006,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 199000000.0,
+              "measured_frequency_hz": 199000000.0,
+              "s11_db": -23.376172,
+              "s21_db": -0.620882451,
+              "s22_db": -23.829567
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 179100000.0,
+              "measured_frequency_hz": 179100000.0,
+              "s11_db": -2.17838285,
+              "s21_db": -5.36158388,
+              "s22_db": -2.23887069
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 218900000.00000003,
+              "measured_frequency_hz": 218900000.0,
+              "s11_db": -3.68644665,
+              "s21_db": -3.50569602,
+              "s22_db": -3.5996263
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 139300000.0,
+              "measured_frequency_hz": 139300000.0,
+              "s11_db": -0.00850165955,
+              "s21_db": -34.4646056,
+              "s22_db": -0.00883390571
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 278600000.0,
+              "measured_frequency_hz": 278600000.0,
+              "s11_db": -0.00732041014,
+              "s21_db": -33.9861875,
+              "s22_db": -0.00712489287
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.006,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.620882451,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -23.376172,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.36158388,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.50569602,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -34.4646056,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -33.9861875,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d3_f2",
+      "design_id": "diagnosis_d3",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L585",
+            "nodes": [
+              "N8039",
+              "N4752"
+            ]
+          },
+          {
+            "component": "C692",
+            "nodes": [
+              "N4752",
+              "N2168"
+            ]
+          },
+          {
+            "component": "L413",
+            "nodes": [
+              "N2168",
+              "0"
+            ]
+          },
+          {
+            "component": "C803",
+            "nodes": [
+              "N2168",
+              "0"
+            ]
+          },
+          {
+            "component": "L554",
+            "nodes": [
+              "N2168",
+              "N6252"
+            ]
+          },
+          {
+            "component": "C264",
+            "nodes": [
+              "N6252",
+              "N8119"
+            ]
+          }
+        ],
+        "ports": [
+          "N8039",
+          "N8119"
+        ],
+        "line_order": [
+          3,
+          4,
+          5,
+          2,
+          0,
+          1
+        ],
+        "frequency_hz": 199000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 199000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 199000000.0,
+          "lower_passband_edge": 179100000.0,
+          "upper_passband_edge": 218900000.00000003,
+          "lower_stopband": 139300000.0,
+          "upper_stopband": 278600000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N8039 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8119 0 DC 0 AC 1 portnum 2 z0 50\nRS_C803 N2168 XRS_C803 0.02\nLS_C803 XRS_C803 XLS_C803 2e-10\nC803 XLS_C803 0 1.54104180718e-10\nCP_L554 N2168 N6252 1e-13\nRS_L554 N2168 XRS_L554 0.05\nL554 XRS_L554 N6252 1.94008802161e-07\nRS_C264 N6252 XRS_C264 0.02\nLS_C264 XRS_C264 XLS_C264 2e-10\nC264 XLS_C264 N8119 3.21372867087e-12\nCP_L413 N2168 0 1e-13\nRS_L413 N2168 XRS_L413 0.05\nL413 XRS_L413 0 3.92910963854e-09\nCP_L585 N8039 N4752 1e-13\nRS_L585 N8039 XRS_L585 0.05\nL585 XRS_L585 N4752 1.92578289367e-07\nRS_C692 N4752 XRS_C692 0.02\nLS_C692 XRS_C692 XLS_C692 2e-10\nC692 XLS_C692 N2168 3.17841413462e-12\n.sp lin 2001 99500000 298500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N8039 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8119 0 DC 0 AC 1 portnum 2 z0 50\nRS_C803 N2168 XRS_C803 0.02\nLS_C803 XRS_C803 XLS_C803 2e-10\nC803 XLS_C803 0 2.77387525292e-10\nCP_L554 N2168 N6252 1e-13\nRS_L554 N2168 XRS_L554 0.05\nL554 XRS_L554 N6252 1.94008802161e-07\nRS_C264 N6252 XRS_C264 0.02\nLS_C264 XRS_C264 XLS_C264 2e-10\nC264 XLS_C264 N8119 3.21372867087e-12\nCP_L413 N2168 0 1e-13\nRS_L413 N2168 XRS_L413 0.05\nL413 XRS_L413 0 3.92910963854e-09\nCP_L585 N8039 N4752 1e-13\nRS_L585 N8039 XRS_L585 0.05\nL585 XRS_L585 N4752 1.92578289367e-07\nRS_C692 N4752 XRS_C692 0.02\nLS_C692 XRS_C692 XLS_C692 2e-10\nC692 XLS_C692 N2168 3.17841413462e-12\n.sp lin 2001 99500000 298500000\n.end\n",
+      "component": "C803",
+      "fault_type": "value_too_high",
+      "healthy_value": "1.54104180718e-10",
+      "multiplier": 1.8,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d3",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L585",
+              "nodes": [
+                "N8039",
+                "N4752"
+              ]
+            },
+            {
+              "component": "C692",
+              "nodes": [
+                "N4752",
+                "N2168"
+              ]
+            },
+            {
+              "component": "L413",
+              "nodes": [
+                "N2168",
+                "0"
+              ]
+            },
+            {
+              "component": "C803",
+              "nodes": [
+                "N2168",
+                "0"
+              ]
+            },
+            {
+              "component": "L554",
+              "nodes": [
+                "N2168",
+                "N6252"
+              ]
+            },
+            {
+              "component": "C264",
+              "nodes": [
+                "N6252",
+                "N8119"
+              ]
+            }
+          ],
+          "ports": [
+            "N8039",
+            "N8119"
+          ],
+          "line_order": [
+            3,
+            4,
+            5,
+            2,
+            0,
+            1
+          ],
+          "frequency_hz": 199000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L585": 1.9388284203367186e-07,
+          "C692": 3.1958975312127443e-12,
+          "L413": 3.996369729003927e-09,
+          "C803": 1.5233577176718519e-10,
+          "L554": 1.9388284203367186e-07,
+          "C264": 3.1958975312127443e-12
+        },
+        "healthy_values": {
+          "L585": "1.92578289367e-07",
+          "C692": "3.17841413462e-12",
+          "L413": "3.92910963854e-09",
+          "C803": "1.54104180718e-10",
+          "L554": "1.94008802161e-07",
+          "C264": "3.21372867087e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L585": -0.006728561707041933,
+          "C692": -0.005470574828754722,
+          "L413": -0.016830297252023795,
+          "C803": 0.011608625669274859,
+          "L554": 0.0006496713470701514,
+          "C264": 0.005579384032794867
+        },
+        "spec": {
+          "target_center_frequency_hz": 199000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 199000000.0,
+            "lower_passband_edge": 179100000.0,
+            "upper_passband_edge": 218900000.00000003,
+            "lower_stopband": 139300000.0,
+            "upper_stopband": 278600000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -7.98253629,
+        "peak_frequency_hz": 145867000.0,
+        "peak_frequency_relative_error": 0.267,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 199000000.0,
+            "measured_frequency_hz": 199000000.0,
+            "s11_db": -0.29136567,
+            "s21_db": -13.2324561,
+            "s22_db": -0.292137217
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 179100000.0,
+            "measured_frequency_hz": 179100000.0,
+            "s11_db": -0.135544835,
+            "s21_db": -17.2156578,
+            "s22_db": -0.140735148
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 218900000.00000003,
+            "measured_frequency_hz": 218900000.0,
+            "s11_db": -0.0722743223,
+            "s21_db": -20.7332062,
+            "s22_db": -0.0691544562
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 139300000.0,
+            "measured_frequency_hz": 139300000.0,
+            "s11_db": -0.204883087,
+            "s21_db": -20.3755828,
+            "s22_db": -0.213987566
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 278600000.0,
+            "measured_frequency_hz": 278600000.0,
+            "s11_db": -0.00323906138,
+            "s21_db": -43.6317587,
+            "s22_db": -0.00309270302
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C803",
+            "proposed_value": "1.54370172251e-10",
+            "model_score": 1.0418234062471639e-05,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.6200635699276857,
+              "peak_frequency_hz": 199995000.0,
+              "peak_frequency_relative_error": 0.005,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -23.412625514353106,
+                  "s21_db": -0.6217190186938736,
+                  "s22_db": -23.76683257564526
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -2.2402189542821653,
+                  "s21_db": -5.250252766896505,
+                  "s22_db": -2.3157852525873595
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -3.553799502443008,
+                  "s21_db": -3.6290516922426086,
+                  "s22_db": -3.447597259087317
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.008537850292973773,
+                  "s21_db": -34.42137329935948,
+                  "s22_db": -0.008917987892717371
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.007260368546712727,
+                  "s21_db": -34.08306061734027,
+                  "s22_db": -0.006991247694489813
+                }
+              }
+            }
+          },
+          {
+            "component": "L413",
+            "proposed_value": "2.11709553388e-09",
+            "model_score": 56.7568995166911,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -1.9721536412792784,
+              "peak_frequency_hz": 198502500.0,
+              "peak_frequency_relative_error": 0.0025,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -13.639337422851103,
+                  "s21_db": -1.9748775354559944,
+                  "s22_db": -13.73504094679907
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -0.6919814756280505,
+                  "s21_db": -11.761578648841699,
+                  "s22_db": -0.7328622949518565
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -0.8273326899828916,
+                  "s21_db": -10.659362499247038,
+                  "s22_db": -0.7870925671898799
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.006872090258013951,
+                  "s21_db": -40.17637532339027,
+                  "s22_db": -0.007223009751769916
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.0051970646287703886,
+                  "s21_db": -40.66666329023111,
+                  "s22_db": -0.004965020214009966
+                }
+              }
+            }
+          },
+          {
+            "component": "L554",
+            "proposed_value": "1.88455960235e-07",
+            "model_score": 744.4515341898447,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -8.129045810395525,
+              "peak_frequency_hz": 145966500.0,
+              "peak_frequency_relative_error": 0.2665,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 199000000.0,
+                  "measured_frequency_hz": 199000000.0,
+                  "s11_db": -0.2806035303687783,
+                  "s21_db": -13.41707298337964,
+                  "s22_db": -0.2795462998638471
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 179100000.0,
+                  "measured_frequency_hz": 179100000.0,
+                  "s11_db": -0.12573184131537632,
+                  "s21_db": -17.760209689387192,
+                  "s22_db": -0.12390168216032256
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 218900000.00000003,
+                  "measured_frequency_hz": 218900000.0,
+                  "s11_db": -0.07871752437100638,
+                  "s21_db": -20.035345815009965,
+                  "s22_db": -0.08129708244734336
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 139300000.0,
+                  "measured_frequency_hz": 139300000.0,
+                  "s11_db": -0.20149428468080993,
+                  "s21_db": -20.622449415283842,
+                  "s22_db": -0.20188238857969926
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 278600000.0,
+                  "measured_frequency_hz": 278600000.0,
+                  "s11_db": -0.003263504115814863,
+                  "s21_db": -43.1306966824118,
+                  "s22_db": -0.003465450312921091
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C803",
+          "proposed_value": "1.54370172251e-10"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.62006357,
+          "peak_frequency_hz": 199995000.0,
+          "peak_frequency_relative_error": 0.005,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 199000000.0,
+              "measured_frequency_hz": 199000000.0,
+              "s11_db": -23.4126255,
+              "s21_db": -0.621719019,
+              "s22_db": -23.7668326
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 179100000.0,
+              "measured_frequency_hz": 179100000.0,
+              "s11_db": -2.24021895,
+              "s21_db": -5.25025277,
+              "s22_db": -2.31578525
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 218900000.00000003,
+              "measured_frequency_hz": 218900000.0,
+              "s11_db": -3.5537995,
+              "s21_db": -3.62905169,
+              "s22_db": -3.44759726
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 139300000.0,
+              "measured_frequency_hz": 139300000.0,
+              "s11_db": -0.0085378503,
+              "s21_db": -34.4213733,
+              "s22_db": -0.00891798789
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 278600000.0,
+              "measured_frequency_hz": 278600000.0,
+              "s11_db": -0.00726036855,
+              "s21_db": -34.0830606,
+              "s22_db": -0.00699124769
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.005,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.621719019,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -23.4126255,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -5.25025277,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -3.62905169,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -34.4213733,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -34.0830606,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d4_f1",
+      "design_id": "diagnosis_d4",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L370",
+            "nodes": [
+              "N3585",
+              "N5560"
+            ]
+          },
+          {
+            "component": "C989",
+            "nodes": [
+              "N5560",
+              "N1854"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N1854",
+              "0"
+            ]
+          },
+          {
+            "component": "C243",
+            "nodes": [
+              "N1854",
+              "0"
+            ]
+          },
+          {
+            "component": "L118",
+            "nodes": [
+              "N1854",
+              "N6163"
+            ]
+          },
+          {
+            "component": "C558",
+            "nodes": [
+              "N6163",
+              "N4196"
+            ]
+          }
+        ],
+        "ports": [
+          "N3585",
+          "N4196"
+        ],
+        "line_order": [
+          0,
+          1,
+          4,
+          2,
+          3,
+          5
+        ],
+        "frequency_hz": 241000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 241000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 241000000.0,
+          "lower_passband_edge": 214490000.0,
+          "upper_passband_edge": 267510000.00000003,
+          "lower_stopband": 168700000.0,
+          "upper_stopband": 337400000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N3585 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4196 0 DC 0 AC 1 portnum 2 z0 50\nCP_L370 N3585 N5560 1e-13\nRS_L370 N3585 XRS_L370 0.05\nL370 XRS_L370 N5560 1.44906445557e-07\nRS_C989 N5560 XRS_C989 0.02\nLS_C989 XRS_C989 XLS_C989 2e-10\nC989 XLS_C989 N1854 2.89889135868e-12\nCP_L118 N1854 N6163 1e-13\nRS_L118 N1854 XRS_L118 0.05\nL118 XRS_L118 N6163 1.44432660149e-07\nCP_L444 N1854 0 1e-13\nRS_L444 N1854 XRS_L444 0.05\nL444 XRS_L444 0 3.62698930282e-09\nRS_C243 N1854 XRS_C243 0.02\nLS_C243 XRS_C243 XLS_C243 2e-10\nC243 XLS_C243 0 1.14657382021e-10\nRS_C558 N6163 XRS_C558 0.02\nLS_C558 XRS_C558 XLS_C558 2e-10\nC558 XLS_C558 N4196 2.86766966732e-12\n.sp lin 2001 120500000 361500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N3585 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4196 0 DC 0 AC 1 portnum 2 z0 50\nCP_L370 N3585 N5560 1e-13\nRS_L370 N3585 XRS_L370 0.05\nL370 XRS_L370 N5560 1.44906445557e-07\nRS_C989 N5560 XRS_C989 0.02\nLS_C989 XRS_C989 XLS_C989 2e-10\nC989 XLS_C989 N1854 2.89889135868e-12\nCP_L118 N1854 N6163 1e-13\nRS_L118 N1854 XRS_L118 0.05\nL118 XRS_L118 N6163 1.44432660149e-07\nCP_L444 N1854 0 1e-13\nRS_L444 N1854 XRS_L444 0.05\nL444 XRS_L444 0 3.62698930282e-09\nRS_C243 N1854 XRS_C243 0.02\nLS_C243 XRS_C243 XLS_C243 2e-10\nC243 XLS_C243 0 1.14657382021e-10\nRS_C558 N6163 XRS_C558 0.02\nLS_C558 XRS_C558 XLS_C558 2e-10\nC558 XLS_C558 N4196 1.57721831703e-12\n.sp lin 2001 120500000 361500000\n.end\n",
+      "component": "C558",
+      "fault_type": "value_too_low",
+      "healthy_value": "2.86766966732e-12",
+      "multiplier": 0.55,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d4",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L370",
+              "nodes": [
+                "N3585",
+                "N5560"
+              ]
+            },
+            {
+              "component": "C989",
+              "nodes": [
+                "N5560",
+                "N1854"
+              ]
+            },
+            {
+              "component": "L444",
+              "nodes": [
+                "N1854",
+                "0"
+              ]
+            },
+            {
+              "component": "C243",
+              "nodes": [
+                "N1854",
+                "0"
+              ]
+            },
+            {
+              "component": "L118",
+              "nodes": [
+                "N1854",
+                "N6163"
+              ]
+            },
+            {
+              "component": "C558",
+              "nodes": [
+                "N6163",
+                "N4196"
+              ]
+            }
+          ],
+          "ports": [
+            "N3585",
+            "N4196"
+          ],
+          "line_order": [
+            0,
+            1,
+            4,
+            2,
+            3,
+            5
+          ],
+          "frequency_hz": 241000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L370": 1.450960940544393e-07,
+          "C989": 2.901866553568589e-12,
+          "L444": 3.6291445185011603e-09,
+          "C243": 1.1380511438707191e-10,
+          "L118": 1.450960940544393e-07,
+          "C558": 2.901866553568589e-12
+        },
+        "healthy_values": {
+          "L370": "1.44906445557e-07",
+          "C989": "2.89889135868e-12",
+          "L444": "3.62698930282e-09",
+          "C243": "1.14657382021e-10",
+          "L118": "1.44432660149e-07",
+          "C558": "2.86766966732e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L370": -0.0013070544673342982,
+          "C989": -0.0010252693682471226,
+          "L444": -0.0005938632832792022,
+          "C243": 0.007488834209574739,
+          "L118": -0.004572376053205356,
+          "C558": -0.011784444811254971
+        },
+        "spec": {
+          "target_center_frequency_hz": 241000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 241000000.0,
+            "lower_passband_edge": 214490000.0,
+            "upper_passband_edge": 267510000.00000003,
+            "lower_stopband": 168700000.0,
+            "upper_stopband": 337400000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -7.6459925,
+        "peak_frequency_hz": 245458500.0,
+        "peak_frequency_relative_error": 0.0185,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 241000000.0,
+            "measured_frequency_hz": 241000000.0,
+            "s11_db": -2.85210246,
+            "s21_db": -7.71099346,
+            "s22_db": -0.91377382
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 214490000.0,
+            "measured_frequency_hz": 214490000.0,
+            "s11_db": -0.547565919,
+            "s21_db": -16.3599642,
+            "s22_db": -0.132669246
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 267510000.00000003,
+            "measured_frequency_hz": 267510000.0,
+            "s11_db": -0.552908583,
+            "s21_db": -11.893749,
+            "s22_db": -0.358649297
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 168700000.0,
+            "measured_frequency_hz": 168700000.0,
+            "s11_db": -0.00894550052,
+            "s21_db": -40.0189855,
+            "s22_db": -0.00175186923
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 337400000.0,
+            "measured_frequency_hz": 337400000.0,
+            "s11_db": -0.0327806079,
+            "s21_db": -22.2002767,
+            "s22_db": -0.0860206973
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C558",
+            "proposed_value": "2.9763718299e-12",
+            "model_score": 8.873933067178187e-06,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.507357591828687,
+              "peak_frequency_hz": 241000000.0,
+              "peak_frequency_relative_error": 0.0,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -25.979949849042306,
+                  "s21_db": -0.507357591828687,
+                  "s22_db": -24.71228744456395
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -2.6480559280708076,
+                  "s21_db": -4.435647881976889,
+                  "s22_db": -2.7457732070975904
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -2.910499139721294,
+                  "s21_db": -4.0701013782634945,
+                  "s22_db": -2.8418147554357676
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.01204745678372152,
+                  "s21_db": -31.36238428121787,
+                  "s22_db": -0.012874126188602609
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.009068099953844016,
+                  "s21_db": -32.03661841614189,
+                  "s22_db": -0.008853550236431723
+                }
+              }
+            }
+          },
+          {
+            "component": "L118",
+            "proposed_value": "2.63365356539e-07",
+            "model_score": 4.545814513931148,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.5080723853481796,
+              "peak_frequency_hz": 240036000.0,
+              "peak_frequency_relative_error": 0.004,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -25.858981605118867,
+                  "s21_db": -0.5106446363162112,
+                  "s22_db": -23.911818383799236
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -1.4346131200943453,
+                  "s21_db": -7.684811527284404,
+                  "s22_db": -1.0891854011200184
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -1.5170648098413142,
+                  "s21_db": -7.306604771682782,
+                  "s22_db": -1.123894544937059
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.009485657217699244,
+                  "s21_db": -36.934139878747764,
+                  "s22_db": -0.0035783782367856632
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.006910204488457952,
+                  "s21_db": -37.84504526771939,
+                  "s22_db": -0.002379091501835591
+                }
+              }
+            }
+          },
+          {
+            "component": "C989",
+            "proposed_value": "3.36180702468e-12",
+            "model_score": 287.21111862076776,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -5.904100837195886,
+              "peak_frequency_hz": 245338000.0,
+              "peak_frequency_relative_error": 0.018,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -4.241972052968281,
+                  "s21_db": -6.588378679492797,
+                  "s22_db": -1.2807482335251024
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -0.7379467186840636,
+                  "s21_db": -15.156921461268366,
+                  "s22_db": -0.15648889655209874
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -0.3196210876262546,
+                  "s21_db": -14.159236835826315,
+                  "s22_db": -0.2378325552869713
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.015861307424234302,
+                  "s21_db": -37.53509836647323,
+                  "s22_db": -0.0021088742013796367
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.025715725418847896,
+                  "s21_db": -23.250930471087116,
+                  "s22_db": -0.0799948154519383
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C558",
+          "proposed_value": "2.9763718299e-12"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.507357592,
+          "peak_frequency_hz": 241000000.0,
+          "peak_frequency_relative_error": 0.0,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 241000000.0,
+              "measured_frequency_hz": 241000000.0,
+              "s11_db": -25.9799498,
+              "s21_db": -0.507357592,
+              "s22_db": -24.7122874
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 214490000.0,
+              "measured_frequency_hz": 214490000.0,
+              "s11_db": -2.64805593,
+              "s21_db": -4.43564788,
+              "s22_db": -2.74577321
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 267510000.00000003,
+              "measured_frequency_hz": 267510000.0,
+              "s11_db": -2.91049914,
+              "s21_db": -4.07010138,
+              "s22_db": -2.84181476
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 168700000.0,
+              "measured_frequency_hz": 168700000.0,
+              "s11_db": -0.0120474568,
+              "s21_db": -31.3623843,
+              "s22_db": -0.0128741262
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 337400000.0,
+              "measured_frequency_hz": 337400000.0,
+              "s11_db": -0.00906809995,
+              "s21_db": -32.0366184,
+              "s22_db": -0.00885355022
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.0,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.507357592,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -25.9799498,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -4.43564788,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -4.07010138,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -31.3623843,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -32.0366184,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "diagnosis_d4_f2",
+      "design_id": "diagnosis_d4",
+      "public_model": {
+        "main_components": [
+          {
+            "component": "L370",
+            "nodes": [
+              "N3585",
+              "N5560"
+            ]
+          },
+          {
+            "component": "C989",
+            "nodes": [
+              "N5560",
+              "N1854"
+            ]
+          },
+          {
+            "component": "L444",
+            "nodes": [
+              "N1854",
+              "0"
+            ]
+          },
+          {
+            "component": "C243",
+            "nodes": [
+              "N1854",
+              "0"
+            ]
+          },
+          {
+            "component": "L118",
+            "nodes": [
+              "N1854",
+              "N6163"
+            ]
+          },
+          {
+            "component": "C558",
+            "nodes": [
+              "N6163",
+              "N4196"
+            ]
+          }
+        ],
+        "ports": [
+          "N3585",
+          "N4196"
+        ],
+        "line_order": [
+          0,
+          1,
+          4,
+          2,
+          3,
+          5
+        ],
+        "frequency_hz": 241000000.0,
+        "model": {
+          "inductor_rs_ohm": 0.05,
+          "capacitor_rs_ohm": 0.02,
+          "inductor_cp_f": 1e-13,
+          "capacitor_esl_h": 2e-10
+        }
+      },
+      "spec": {
+        "target_center_frequency_hz": 241000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 241000000.0,
+          "lower_passband_edge": 214490000.0,
+          "upper_passband_edge": 267510000.00000003,
+          "lower_stopband": 168700000.0,
+          "upper_stopband": 337400000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.03,
+          "s21_at_center_db_min": -2.0,
+          "s11_at_center_db_max": -15.0,
+          "s21_at_lower_passband_edge_db_min": -6.0,
+          "s21_at_upper_passband_edge_db_min": -6.0,
+          "s21_at_lower_stopband_db_max": -12.0,
+          "s21_at_upper_stopband_db_max": -12.0
+        }
+      },
+      "healthy_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N3585 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4196 0 DC 0 AC 1 portnum 2 z0 50\nCP_L370 N3585 N5560 1e-13\nRS_L370 N3585 XRS_L370 0.05\nL370 XRS_L370 N5560 1.44906445557e-07\nRS_C989 N5560 XRS_C989 0.02\nLS_C989 XRS_C989 XLS_C989 2e-10\nC989 XLS_C989 N1854 2.89889135868e-12\nCP_L118 N1854 N6163 1e-13\nRS_L118 N1854 XRS_L118 0.05\nL118 XRS_L118 N6163 1.44432660149e-07\nCP_L444 N1854 0 1e-13\nRS_L444 N1854 XRS_L444 0.05\nL444 XRS_L444 0 3.62698930282e-09\nRS_C243 N1854 XRS_C243 0.02\nLS_C243 XRS_C243 XLS_C243 2e-10\nC243 XLS_C243 0 1.14657382021e-10\nRS_C558 N6163 XRS_C558 0.02\nLS_C558 XRS_C558 XLS_C558 2e-10\nC558 XLS_C558 N4196 2.86766966732e-12\n.sp lin 2001 120500000 361500000\n.end\n",
+      "faulty_netlist": "* Synthetic loss-aware two-port network\nVPORT1 N3585 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4196 0 DC 0 AC 1 portnum 2 z0 50\nCP_L370 N3585 N5560 1e-13\nRS_L370 N3585 XRS_L370 0.05\nL370 XRS_L370 N5560 1.44906445557e-07\nRS_C989 N5560 XRS_C989 0.02\nLS_C989 XRS_C989 XLS_C989 2e-10\nC989 XLS_C989 N1854 2.89889135868e-12\nCP_L118 N1854 N6163 1e-13\nRS_L118 N1854 XRS_L118 0.05\nL118 XRS_L118 N6163 1.44432660149e-07\nCP_L444 N1854 0 1e-13\nRS_L444 N1854 XRS_L444 0.05\nL444 XRS_L444 0 6.52858074508e-09\nRS_C243 N1854 XRS_C243 0.02\nLS_C243 XRS_C243 XLS_C243 2e-10\nC243 XLS_C243 0 1.14657382021e-10\nRS_C558 N6163 XRS_C558 0.02\nLS_C558 XRS_C558 XLS_C558 2e-10\nC558 XLS_C558 N4196 2.86766966732e-12\n.sp lin 2001 120500000 361500000\n.end\n",
+      "component": "L444",
+      "fault_type": "value_too_high",
+      "healthy_value": "3.62698930282e-09",
+      "multiplier": 1.8,
+      "design_evaluator_only": {
+        "design_id": "diagnosis_d4",
+        "public_model": {
+          "main_components": [
+            {
+              "component": "L370",
+              "nodes": [
+                "N3585",
+                "N5560"
+              ]
+            },
+            {
+              "component": "C989",
+              "nodes": [
+                "N5560",
+                "N1854"
+              ]
+            },
+            {
+              "component": "L444",
+              "nodes": [
+                "N1854",
+                "0"
+              ]
+            },
+            {
+              "component": "C243",
+              "nodes": [
+                "N1854",
+                "0"
+              ]
+            },
+            {
+              "component": "L118",
+              "nodes": [
+                "N1854",
+                "N6163"
+              ]
+            },
+            {
+              "component": "C558",
+              "nodes": [
+                "N6163",
+                "N4196"
+              ]
+            }
+          ],
+          "ports": [
+            "N3585",
+            "N4196"
+          ],
+          "line_order": [
+            0,
+            1,
+            4,
+            2,
+            3,
+            5
+          ],
+          "frequency_hz": 241000000.0,
+          "model": {
+            "inductor_rs_ohm": 0.05,
+            "capacitor_rs_ohm": 0.02,
+            "inductor_cp_f": 1e-13,
+            "capacitor_esl_h": 2e-10
+          }
+        },
+        "nominal_values": {
+          "L370": 1.450960940544393e-07,
+          "C989": 2.901866553568589e-12,
+          "L444": 3.6291445185011603e-09,
+          "C243": 1.1380511438707191e-10,
+          "L118": 1.450960940544393e-07,
+          "C558": 2.901866553568589e-12
+        },
+        "healthy_values": {
+          "L370": "1.44906445557e-07",
+          "C989": "2.89889135868e-12",
+          "L444": "3.62698930282e-09",
+          "C243": "1.14657382021e-10",
+          "L118": "1.44432660149e-07",
+          "C558": "2.86766966732e-12"
+        },
+        "tolerance": 0.02,
+        "deviations": {
+          "L370": -0.0013070544673342982,
+          "C989": -0.0010252693682471226,
+          "L444": -0.0005938632832792022,
+          "C243": 0.007488834209574739,
+          "L118": -0.004572376053205356,
+          "C558": -0.011784444811254971
+        },
+        "spec": {
+          "target_center_frequency_hz": 241000000.0,
+          "reference_impedance_ohm": 50.0,
+          "measurement_frequency_tolerance_hz": 1.0,
+          "measurement_frequencies_hz": {
+            "center": 241000000.0,
+            "lower_passband_edge": 214490000.0,
+            "upper_passband_edge": 267510000.00000003,
+            "lower_stopband": 168700000.0,
+            "upper_stopband": 337400000.0
+          },
+          "constraints": {
+            "center_frequency_relative_tolerance_max": 0.03,
+            "s21_at_center_db_min": -2.0,
+            "s11_at_center_db_max": -15.0,
+            "s21_at_lower_passband_edge_db_min": -6.0,
+            "s21_at_upper_passband_edge_db_min": -6.0,
+            "s21_at_lower_stopband_db_max": -12.0,
+            "s21_at_upper_stopband_db_max": -12.0
+          }
+        }
+      },
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -2.65838189,
+        "peak_frequency_hz": 173761000.0,
+        "peak_frequency_relative_error": 0.279,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 241000000.0,
+            "measured_frequency_hz": 241000000.0,
+            "s11_db": -0.953737476,
+            "s21_db": -7.42113456,
+            "s22_db": -0.952501367
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 214490000.0,
+            "measured_frequency_hz": 214490000.0,
+            "s11_db": -0.326160712,
+            "s21_db": -12.085221,
+            "s22_db": -0.322986448
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 267510000.00000003,
+            "measured_frequency_hz": 267510000.0,
+            "s11_db": -0.246151446,
+            "s21_db": -13.3630764,
+            "s22_db": -0.248732294
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 168700000.0,
+            "measured_frequency_hz": 168700000.0,
+            "s11_db": -0.909153285,
+            "s21_db": -10.0073478,
+            "s22_db": -0.888767364
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 337400000.0,
+            "measured_frequency_hz": 337400000.0,
+            "s11_db": -0.00516734897,
+            "s21_db": -34.9272848,
+            "s22_db": -0.00529287997
+          }
+        }
+      },
+      "numerical_search": {
+        "method": "Public lossy ABCD full-grid one-coordinate search: 41 log-spaced values x6, then 18 golden-section evaluations per coordinate",
+        "forward_model_evaluations": 354,
+        "frequency_points_per_evaluation": 2001,
+        "candidates": [
+          {
+            "component": "C243",
+            "proposed_value": "6.37000252369e-11",
+            "model_score": 6.05712924502911e-06,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.1657758831728628,
+              "peak_frequency_hz": 241482000.0,
+              "peak_frequency_relative_error": 0.002,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -37.45947920789909,
+                  "s21_db": -0.1660889302726362,
+                  "s22_db": -34.480624627660845
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -10.375986897623214,
+                  "s21_db": -0.8293790811620844,
+                  "s22_db": -10.131907163011117
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -24.334926237309272,
+                  "s21_db": -0.28652958186003774,
+                  "s22_db": -43.72730841288704
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.019955182903139308,
+                  "s21_db": -26.33856998397626,
+                  "s22_db": -0.019526877035609902
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.02164038409656123,
+                  "s21_db": -25.044368215570742,
+                  "s22_db": -0.02191031053312236
+                }
+              }
+            }
+          },
+          {
+            "component": "L444",
+            "proposed_value": "3.56868124806e-09",
+            "model_score": 8.77837094392321e-06,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -0.514272216245283,
+              "peak_frequency_hz": 243048500.0,
+              "peak_frequency_relative_error": 0.0085,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -25.624973287762774,
+                  "s21_db": -0.5177331147282501,
+                  "s22_db": -24.788914818533385
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -1.9460517123017036,
+                  "s21_db": -5.670329349738187,
+                  "s22_db": -1.9059313433327962
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -3.7522656783122676,
+                  "s21_db": -3.2244577844521145,
+                  "s22_db": -3.8190379578522062
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.011175113043898335,
+                  "s21_db": -32.248704344883855,
+                  "s22_db": -0.010804076284496117
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.009553452624355908,
+                  "s21_db": -31.595560581438214,
+                  "s22_db": -0.009771436009484213
+                }
+              }
+            }
+          },
+          {
+            "component": "C558",
+            "proposed_value": "2.91523084349e-12",
+            "model_score": 389.91646044498026,
+            "predicted_metrics": {
+              "simulation_converged": true,
+              "point_count": 2001,
+              "peak_s21_db": -2.5976161899904078,
+              "peak_frequency_hz": 173761000.0,
+              "peak_frequency_relative_error": 0.279,
+              "samples": {
+                "center": {
+                  "requested_frequency_hz": 241000000.0,
+                  "measured_frequency_hz": 241000000.0,
+                  "s11_db": -0.9887119708276833,
+                  "s21_db": -7.276009515649168,
+                  "s22_db": -0.9888435593369455
+                },
+                "lower_passband_edge": {
+                  "requested_frequency_hz": 214490000.0,
+                  "measured_frequency_hz": 214490000.0,
+                  "s11_db": -0.3486648749456911,
+                  "s21_db": -11.756941711992761,
+                  "s22_db": -0.3493941076483945
+                },
+                "upper_passband_edge": {
+                  "requested_frequency_hz": 267510000.00000003,
+                  "measured_frequency_hz": 267510000.0,
+                  "s11_db": -0.233236405707907,
+                  "s21_db": -13.638997644669944,
+                  "s22_db": -0.23300263608447824
+                },
+                "lower_stopband": {
+                  "requested_frequency_hz": 168700000.0,
+                  "measured_frequency_hz": 168700000.0,
+                  "s11_db": -0.9593061521904128,
+                  "s21_db": -9.681264924840635,
+                  "s22_db": -0.9663577100647381
+                },
+                "upper_stopband": {
+                  "requested_frequency_hz": 337400000.0,
+                  "measured_frequency_hz": 337400000.0,
+                  "s11_db": -0.005123977986162471,
+                  "s21_db": -35.060239828577025,
+                  "s22_db": -0.005133204394836959
+                }
+              }
+            }
+          }
+        ]
+      },
+      "shared_repair_evaluator_only": {
+        "proposal": {
+          "component": "C243",
+          "proposed_value": "6.37000252369e-11"
+        },
+        "metrics": {
+          "simulation_converged": true,
+          "point_count": 2001,
+          "peak_s21_db": -0.165775883,
+          "peak_frequency_hz": 241482000.0,
+          "peak_frequency_relative_error": 0.002,
+          "samples": {
+            "center": {
+              "requested_frequency_hz": 241000000.0,
+              "measured_frequency_hz": 241000000.0,
+              "s11_db": -37.4594792,
+              "s21_db": -0.16608893,
+              "s22_db": -34.4806246
+            },
+            "lower_passband_edge": {
+              "requested_frequency_hz": 214490000.0,
+              "measured_frequency_hz": 214490000.0,
+              "s11_db": -10.3759869,
+              "s21_db": -0.829379081,
+              "s22_db": -10.1319072
+            },
+            "upper_passband_edge": {
+              "requested_frequency_hz": 267510000.00000003,
+              "measured_frequency_hz": 267510000.0,
+              "s11_db": -24.3349262,
+              "s21_db": -0.286529582,
+              "s22_db": -43.7273084
+            },
+            "lower_stopband": {
+              "requested_frequency_hz": 168700000.0,
+              "measured_frequency_hz": 168700000.0,
+              "s11_db": -0.0199551829,
+              "s21_db": -26.33857,
+              "s22_db": -0.019526877
+            },
+            "upper_stopband": {
+              "requested_frequency_hz": 337400000.0,
+              "measured_frequency_hz": 337400000.0,
+              "s11_db": -0.0216403841,
+              "s21_db": -25.0443682,
+              "s22_db": -0.0219103105
+            }
+          }
+        },
+        "verdict": {
+          "verdict": "PASS",
+          "reason": "ALL_CONSTRAINTS_MET",
+          "checks": [
+            {
+              "name": "center_frequency_relative_tolerance",
+              "measured": 0.002,
+              "direction": "max",
+              "threshold": 0.03,
+              "passed": true
+            },
+            {
+              "name": "s21_at_center_db",
+              "measured": -0.16608893,
+              "direction": "min",
+              "threshold": -2.0,
+              "passed": true
+            },
+            {
+              "name": "s11_at_center_db",
+              "measured": -37.4594792,
+              "direction": "max",
+              "threshold": -15.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_passband_edge_db",
+              "measured": -0.829379081,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_passband_edge_db",
+              "measured": -0.286529582,
+              "direction": "min",
+              "threshold": -6.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_lower_stopband_db",
+              "measured": -26.33857,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            },
+            {
+              "name": "s21_at_upper_stopband_db",
+              "measured": -25.0443682,
+              "direction": "max",
+              "threshold": -12.0,
+              "passed": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

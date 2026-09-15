@@ -1,0 +1,541 @@
+{
+  "selection": "All predefined candidates retained; no model-based selection",
+  "cases": [
+    {
+      "case_id": "match_d1_f1",
+      "design_id": "match_design_1",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N3720 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N6305 0 DC 0 AC 1 portnum 2 z0 100\nL346 N3720 N6305 8.74477709296e-08\nC843 N6305 0 1.74895541859e-11\n.sp lin 2001 45500000 136500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N3720 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N6305 0 DC 0 AC 1 portnum 2 z0 100\nL346 N3720 N6305 4.80962740113e-08\nC843 N6305 0 1.74895541859e-11\n.sp lin 2001 45500000 136500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 91000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 100.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 91000000.0,
+          "lower_edge": 81900000.0,
+          "upper_edge": 100100000.00000001
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "L346",
+      "healthy_value": "8.74477709296e-08",
+      "faulty_value": "4.80962740113e-08",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.177787439,
+        "peak_frequency_hz": 110838000.0,
+        "peak_frequency_relative_error": 0.218,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 91000000.0,
+            "measured_frequency_hz": 91000000.0,
+            "s11_db": -13.1708269,
+            "s21_db": -0.214477308,
+            "s22_db": -13.1708269
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 81900000.0,
+            "measured_frequency_hz": 81900000.0,
+            "s11_db": -12.5448275,
+            "s21_db": -0.248700847,
+            "s22_db": -12.5448275
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 100100000.00000001,
+            "measured_frequency_hz": 100100000.0,
+            "s11_db": -13.6948089,
+            "s21_db": -0.189560109,
+            "s22_db": -13.6948089
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d1_f2",
+      "design_id": "match_design_1",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N3720 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N6305 0 DC 0 AC 1 portnum 2 z0 100\nL346 N3720 N6305 8.74477709296e-08\nC843 N6305 0 1.74895541859e-11\n.sp lin 2001 45500000 136500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N3720 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N6305 0 DC 0 AC 1 portnum 2 z0 100\nL346 N3720 N6305 8.74477709296e-08\nC843 N6305 0 3.14811975347e-11\n.sp lin 2001 45500000 136500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 91000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 100.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 91000000.0,
+          "lower_edge": 81900000.0,
+          "upper_edge": 100100000.00000001
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "C843",
+      "healthy_value": "1.74895541859e-11",
+      "faulty_value": "3.14811975347e-11",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.172395139,
+        "peak_frequency_hz": 61516000.0,
+        "peak_frequency_relative_error": 0.324,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 91000000.0,
+            "measured_frequency_hz": 91000000.0,
+            "s11_db": -8.60338007,
+            "s21_db": -0.644579892,
+            "s22_db": -8.60338007
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 81900000.0,
+            "measured_frequency_hz": 81900000.0,
+            "s11_db": -10.7869369,
+            "s21_db": -0.378329109,
+            "s22_db": -10.7869369
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 100100000.00000001,
+            "measured_frequency_hz": 100100000.0,
+            "s11_db": -6.72110218,
+            "s21_db": -1.03892793,
+            "s22_db": -6.72110218
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d2_f1",
+      "design_id": "match_design_2",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N4193 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N5734 0 DC 0 AC 1 portnum 2 z0 150\nL707 N4193 N5734 8.59080454348e-08\nC952 N5734 0 1.1454406058e-11\n.sp lin 2001 65500000 196500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N4193 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N5734 0 DC 0 AC 1 portnum 2 z0 150\nL707 N4193 N5734 1.54634481783e-07\nC952 N5734 0 1.1454406058e-11\n.sp lin 2001 65500000 196500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 131000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 150.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 131000000.0,
+          "lower_edge": 117900000.0,
+          "upper_edge": 144100000.0
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "L707",
+      "healthy_value": "8.59080454348e-08",
+      "faulty_value": "1.54634481783e-07",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.23921095,
+        "peak_frequency_hz": 93206500.0,
+        "peak_frequency_relative_error": 0.2885,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 131000000.0,
+            "measured_frequency_hz": 131000000.0,
+            "s11_db": -6.15423953,
+            "s21_db": -1.20573931,
+            "s22_db": -6.15423953
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 117900000.0,
+            "measured_frequency_hz": 117900000.0,
+            "s11_db": -8.69060287,
+            "s21_db": -0.630785382,
+            "s22_db": -8.69060287
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 144100000.0,
+            "measured_frequency_hz": 144100000.0,
+            "s11_db": -4.29792851,
+            "s21_db": -2.01841571,
+            "s22_db": -4.29792851
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d2_f2",
+      "design_id": "match_design_2",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N4193 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N5734 0 DC 0 AC 1 portnum 2 z0 150\nL707 N4193 N5734 8.59080454348e-08\nC952 N5734 0 1.1454406058e-11\n.sp lin 2001 65500000 196500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N4193 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N5734 0 DC 0 AC 1 portnum 2 z0 150\nL707 N4193 N5734 8.59080454348e-08\nC952 N5734 0 6.29992333189e-12\n.sp lin 2001 65500000 196500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 131000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 150.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 131000000.0,
+          "lower_edge": 117900000.0,
+          "upper_edge": 144100000.0
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "C952",
+      "healthy_value": "1.1454406058e-11",
+      "faulty_value": "6.29992333189e-12",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.247070811,
+        "peak_frequency_hz": 168335000.0,
+        "peak_frequency_relative_error": 0.285,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 131000000.0,
+            "measured_frequency_hz": 131000000.0,
+            "s11_db": -10.3649089,
+            "s21_db": -0.418859214,
+            "s22_db": -10.3649089
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 117900000.0,
+            "measured_frequency_hz": 117900000.0,
+            "s11_db": -9.396452,
+            "s21_db": -0.530121733,
+            "s22_db": -9.396452
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 144100000.0,
+            "measured_frequency_hz": 144100000.0,
+            "s11_db": -11.398314,
+            "s21_db": -0.326728429,
+            "s22_db": -11.398314
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d3_f1",
+      "design_id": "match_design_3",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N1588 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4131 0 DC 0 AC 1 portnum 2 z0 200\nL549 N1588 N4131 7.61503999201e-08\nC235 N4131 0 7.61503999201e-12\n.sp lin 2001 90500000 271500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N1588 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4131 0 DC 0 AC 1 portnum 2 z0 200\nL549 N1588 N4131 4.18827199561e-08\nC235 N4131 0 7.61503999201e-12\n.sp lin 2001 90500000 271500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 181000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 200.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 181000000.0,
+          "lower_edge": 162900000.0,
+          "upper_edge": 199100000.00000003
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "L549",
+      "healthy_value": "7.61503999201e-08",
+      "faulty_value": "4.18827199561e-08",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.281302354,
+        "peak_frequency_hz": 236476500.0,
+        "peak_frequency_relative_error": 0.3065,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 181000000.0,
+            "measured_frequency_hz": 181000000.0,
+            "s11_db": -8.79919062,
+            "s21_db": -0.614053526,
+            "s22_db": -8.79919062
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 162900000.0,
+            "measured_frequency_hz": 162900000.0,
+            "s11_db": -7.71515359,
+            "s21_db": -0.80520679,
+            "s22_db": -7.71515359
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 199100000.00000003,
+            "measured_frequency_hz": 199100000.0,
+            "s11_db": -10.0793481,
+            "s21_db": -0.44884728,
+            "s22_db": -10.0793481
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d3_f2",
+      "design_id": "match_design_3",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N1588 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4131 0 DC 0 AC 1 portnum 2 z0 200\nL549 N1588 N4131 7.61503999201e-08\nC235 N4131 0 7.61503999201e-12\n.sp lin 2001 90500000 271500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N1588 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4131 0 DC 0 AC 1 portnum 2 z0 200\nL549 N1588 N4131 7.61503999201e-08\nC235 N4131 0 1.37070719856e-11\n.sp lin 2001 90500000 271500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 181000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 200.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 181000000.0,
+          "lower_edge": 162900000.0,
+          "upper_edge": 199100000.00000003
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "C235",
+      "healthy_value": "7.61503999201e-12",
+      "faulty_value": "1.37070719856e-11",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.272237357,
+        "peak_frequency_hz": 130863000.0,
+        "peak_frequency_relative_error": 0.277,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 181000000.0,
+            "measured_frequency_hz": 181000000.0,
+            "s11_db": -4.89020478,
+            "s21_db": -1.70261715,
+            "s22_db": -4.89020478
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 162900000.0,
+            "measured_frequency_hz": 162900000.0,
+            "s11_db": -7.51818365,
+            "s21_db": -0.846449911,
+            "s22_db": -7.51818365
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 199100000.00000003,
+            "measured_frequency_hz": 199100000.0,
+            "s11_db": -3.18100766,
+            "s21_db": -2.84604924,
+            "s22_db": -3.18100766
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d4_f1",
+      "design_id": "match_design_4",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N7650 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9183 0 DC 0 AC 1 portnum 2 z0 250\nL699 N7650 N9183 7.13699296376e-08\nC640 N9183 0 5.70959437101e-12\n.sp lin 2001 111500000 334500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N7650 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9183 0 DC 0 AC 1 portnum 2 z0 250\nL699 N7650 N9183 1.28465873348e-07\nC640 N9183 0 5.70959437101e-12\n.sp lin 2001 111500000 334500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 223000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 250.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 223000000.0,
+          "lower_edge": 200700000.0,
+          "upper_edge": 245300000.00000003
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "L699",
+      "healthy_value": "7.13699296376e-08",
+      "faulty_value": "1.28465873348e-07",
+      "multiplier": 1.8,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.291933461,
+        "peak_frequency_hz": 162455500.0,
+        "peak_frequency_relative_error": 0.2715,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 223000000.0,
+            "measured_frequency_hz": 223000000.0,
+            "s11_db": -4.08663874,
+            "s21_db": -2.14843848,
+            "s22_db": -4.08663874
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 200700000.0,
+            "measured_frequency_hz": 200700000.0,
+            "s11_db": -6.70557602,
+            "s21_db": -1.04313359,
+            "s22_db": -6.70557602
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 245300000.00000003,
+            "measured_frequency_hz": 245300000.0,
+            "s11_db": -2.52973558,
+            "s21_db": -3.55073422,
+            "s22_db": -2.52973558
+          }
+        }
+      }
+    },
+    {
+      "case_id": "match_d4_f2",
+      "design_id": "match_design_4",
+      "family": "matching",
+      "healthy_netlist": "* Passive impedance transformer\nVPORT1 N7650 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9183 0 DC 0 AC 1 portnum 2 z0 250\nL699 N7650 N9183 7.13699296376e-08\nC640 N9183 0 5.70959437101e-12\n.sp lin 2001 111500000 334500000\n.end\n",
+      "faulty_netlist": "* Passive impedance transformer\nVPORT1 N7650 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N9183 0 DC 0 AC 1 portnum 2 z0 250\nL699 N7650 N9183 7.13699296376e-08\nC640 N9183 0 3.14027690406e-12\n.sp lin 2001 111500000 334500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 223000000.0,
+        "source_impedance_ohm": 50.0,
+        "load_impedance_ohm": 250.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 223000000.0,
+          "lower_edge": 200700000.0,
+          "upper_edge": 245300000.00000003
+        },
+        "constraints": {
+          "center": {
+            "s11_db_max": -20.0,
+            "s21_db_min": -0.25
+          },
+          "lower_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          },
+          "upper_edge": {
+            "s11_db_max": -12.0,
+            "s21_db_min": -0.5
+          }
+        }
+      },
+      "component": "C640",
+      "healthy_value": "5.70959437101e-12",
+      "faulty_value": "3.14027690406e-12",
+      "multiplier": 0.55,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.301712431,
+        "peak_frequency_hz": 293691000.0,
+        "peak_frequency_relative_error": 0.317,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 223000000.0,
+            "measured_frequency_hz": 223000000.0,
+            "s11_db": -7.73660057,
+            "s21_db": -0.80085085,
+            "s22_db": -7.73660057
+          },
+          "lower_edge": {
+            "requested_frequency_hz": 200700000.0,
+            "measured_frequency_hz": 200700000.0,
+            "s11_db": -6.6153276,
+            "s21_db": -1.06796243,
+            "s22_db": -6.6153276
+          },
+          "upper_edge": {
+            "requested_frequency_hz": 245300000.00000003,
+            "measured_frequency_hz": 245300000.0,
+            "s11_db": -9.14835892,
+            "s21_db": -0.56339596,
+            "s22_db": -9.14835892
+          }
+        }
+      }
+    }
+  ]
+}

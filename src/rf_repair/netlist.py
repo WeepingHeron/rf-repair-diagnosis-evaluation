@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import math
 
 
 _SPICE_NUMBER = re.compile(
@@ -16,14 +17,47 @@ _ENGINEERING_QUANTITY = re.compile(
     re.IGNORECASE,
 )
 
+_SCALE = {"": 1., "t": 1e12, "g": 1e9, "meg": 1e6, "k": 1e3,
+          "m": 1e-3, "u": 1e-6, "n": 1e-9, "p": 1e-12, "f": 1e-15}
+
+
+def spice_value_si(value: str) -> float:
+    """Parse a positive finite SPICE token, including exponent and suffix."""
+    match = _SPICE_NUMBER.fullmatch(value)
+    if match is None:
+        raise ValueError("value is not a permitted SPICE numeric token")
+    result = float(match.group("number")) * _SCALE[match.group("suffix").lower()]
+    if not math.isfinite(result) or result <= 0:
+        raise ValueError("SPICE value must be positive and finite")
+    return result
+
+
+def validate_component_quantity(value: str, component: str) -> float:
+    """Broad engineering bounds, independent of evaluator ground truth."""
+    result = spice_value_si(value)
+    bounds = {"C": (1e-18, 1.), "L": (1e-15, 1e3), "R": (1e-9, 1e15),
+              "V": (1e-3, 1e6)}
+    low, high = bounds[component[0].upper()]
+    if not low <= result <= high:
+        raise ValueError("value is outside the declared component range")
+    return result
+
 
 def normalize_spice_quantity(value: str, *, expected_unit: str) -> str:
     """Canonicalize a bounded engineering quantity to one SPICE value token."""
 
-    match = _ENGINEERING_QUANTITY.fullmatch(value)
+    # Explicit F is farad; a contiguous lowercase f remains the SPICE femto
+    # suffix. Parse physical units before prefixes to avoid consuming F as f.
+    token = value.strip()
+    unit_match = re.fullmatch(r"(.*?)\s*(ohm|Ω|[HF])", token, re.IGNORECASE)
+    observed_unit = ""
+    if unit_match and not (token.endswith("f") and not re.search(r"\s", token)):
+        token = unit_match.group(1).strip()
+        observed_unit = unit_match.group(2).lower()
+    match = _ENGINEERING_QUANTITY.fullmatch(token)
     if match is None:
         raise ValueError("quantity is not a permitted engineering value")
-    observed_unit = (match.group("unit") or "").lower()
+    observed_unit = observed_unit or (match.group("unit") or "").lower()
     normalized_expected = expected_unit.lower()
     allowed_units = {
         "h": {"", "h"},
@@ -35,7 +69,9 @@ def normalize_spice_quantity(value: str, *, expected_unit: str) -> str:
     if observed_unit not in allowed_units[normalized_expected]:
         raise ValueError("quantity unit does not match component type")
     prefix = (match.group("prefix") or "").lower()
-    return f"{match.group('number')}{prefix}"
+    canonical = f"{match.group('number')}{prefix}"
+    spice_value_si(canonical)
+    return canonical
 
 
 def scale_spice_value(value: str, multiplier: float) -> str:

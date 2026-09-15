@@ -1,0 +1,74 @@
+{
+  "source_docx": "/Users/taehoon/Desktop/졸업논문2/submission/ACK2026_2026-09-07_fonts/ACK2026_KimTaehoon_RF_Circuit_Repair.docx",
+  "source_sha256": "70ed75b6d207bee94aa647c0b83d9a8b5b56e3ec703695cbac92ce15ea911fa7",
+  "rendered_pdf": "/Users/taehoon/Desktop/졸업논문2/build/paper_font_alignment/render_final/ACK2026_KimTaehoon_RF_Circuit_Repair.pdf",
+  "output_pdf": "/Users/taehoon/Desktop/졸업논문2/submission/ACK2026_2026-09-07_pdf/ACK2026_KimTaehoon_RF_Circuit_Repair.pdf",
+  "pdf_sha256": "46f97a2a641a877b1feda3d048ec46b457670c0f5fde086d15baec05ea045874",
+  "page_count": 3,
+  "page_size": "A4 portrait",
+  "source_unchanged": true,
+  "byte_identical_to_inspected_render": true,
+  "text_paragraphs_verified": 141,
+  "missing_paragraphs": [],
+  "text_verification_method": "Content-stream extraction plus position-based two-column extraction; the latter preserves separate-font minus sign order.",
+  "first_page_body": true,
+  "result_tables": 6,
+  "references": 7,
+  "fonts": {
+    "/BAAAAA+NanumGothicBold": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/CAAAAA+NanumGothic": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/DAAAAA+NanumGothic": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/EAAAAA+AppleMyungjo": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/FAAAAA+AppleMyungjo": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/GAAAAA+AppleMyungjo": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/HAAAAA+NanumGothicBold": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/IAAAAA+HiraMaruPro-W4": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/JAAAAA+AppleMyungjo": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/KAAAAA+AppleMyungjo": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/LAAAAA+LiberationSerif-Italic": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/MAAAAA+LiberationSerif": {
+      "embedded": true,
+      "to_unicode": true
+    },
+    "/NAAAAA+OpenSymbol": {
+      "embedded": true,
+      "to_unicode": true
+    }
+  },
+  "encrypted": false,
+  "visual_review": "All three render_final PNGs inspected; tables 1-6 remain whole within a column; no clipping or overlap.",
+  "pagination_scope": "Fixed PDF is 3 pages. The editable DOCX remains 4 pages when imported by Apple Pages."
+}

@@ -1,0 +1,20 @@
+{
+  "experiment_id": "reference_diagnosis_v1",
+  "status": "ABORTED_PRECHECK",
+  "recorded_at_utc": "2026-09-06T06:54:57.588106+00:00",
+  "api_calls": 0,
+  "manifest": "faults/holdout/reference_diagnosis_v1.json",
+  "reason": "reference_d4 normal S11=-13.170451 dB fails -15 dB limit; no circuit/spec/seed retuning",
+  "excluded_case_ids": [
+    "reference_d4_f1",
+    "reference_d4_f2"
+  ],
+  "file_sha256": {
+    "src/rf_repair/reference.py": "1dbe413aa77f61f7197cf774cc6c9d92ad4e600c5866c791ff696f5148ff5c18",
+    "scripts/run_reference_diagnosis.py": "d299daeb5b9cf312367f91f660d2c54208602dcffa21531b08f5a18743d391c0",
+    "scripts/prepare_reference_diagnosis.py": "2a52da8160b23378316d58ab1fe2175c191d3b418724d22cceccf47c3e9e9c08",
+    "docs/reference_diagnosis_v1_protocol.md": "4b6bff6bcaa13ef75e05e486eee182b0159eebaab49e5bc39982d3db96ea4167",
+    "faults/holdout/reference_diagnosis_v1.json": "319d25edefe457c67ed49b71de02f21be2ca13b3949a7b571590968661d7e4ef",
+    "build/reference_diagnosis_v1_prescreen/summary.json": "75215617a2862f79d990be5e56e6230bf33990552a86d46c8ebbc883245200f6"
+  }
+}

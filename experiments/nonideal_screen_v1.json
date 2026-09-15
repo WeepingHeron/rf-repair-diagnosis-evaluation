@@ -1,0 +1,26 @@
+{
+  "experiment_id": "nonideal_screen_v1",
+  "frozen_at_utc": "2026-09-06T05:52:21.787606+00:00",
+  "manifest": "faults/holdout/nonideal_screen_v1.json",
+  "condition_count": 320,
+  "faults_per_condition": 2,
+  "max_baseline_candidates": 3,
+  "max_api_calls": 0,
+  "selection": "All predefined conditions retained, including ineligible ones",
+  "eligibility": "healthy PASS and faulty FAIL and exact single-component oracle PASS",
+  "specification": "Unchanged relative BPF limits from v4/v5; no post-result relaxation",
+  "model": "Synthetic fixed-R finite nominal Q; inductor Cp=0/0.1pF, capacitor ESL=0/0.2nH; not vendor or measured data",
+  "tolerance": "0/1/3/5 percent; 3 paired uniform draws for nonzero levels, all six main L/C affected",
+  "repair": "One main L/C edit on original faulty deck; all R/ESL/Cp/ports fixed; oracle restores pre-fault toleranced value",
+  "baseline": "Observed primary connectivity and values only; ideal-resonance candidates, largest detuning then name, at most three",
+  "file_sha256": {
+    "src/rf_repair/nonideal.py": "8f51cfafa2440bb602e932ed4a5bdb4feec6d45344654dbec49363405f9605f1",
+    "src/rf_repair/extensions.py": "edda90f62f9bcbbe7d3db97e061be395f84a149abf9662860ced282e9be518bf",
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "scripts/run_nonideal_screen.py": "36de8cf1048f9b26a89cc13e575cc540d1a469b94506554f79e161a93c114cfb",
+    "faults/holdout/nonideal_screen_v1.json": "cb54b1217cbe797fe75976fe8b7553dbe8de29a97b49b8e8520fb2c0c89b18e3"
+  }
+}

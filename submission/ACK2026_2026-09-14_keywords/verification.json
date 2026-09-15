@@ -1,0 +1,28 @@
+{
+  "source_sha256": "70ed75b6d207bee94aa647c0b83d9a8b5b56e3ec703695cbac92ce15ea911fa7",
+  "output_sha256": "67bb19642b73fa5525449ef918b2605417f8e7205f5dd3a77f2c7e2f87b47f71",
+  "before": "키워드: LLM, 집중소자 RF 회로, 성능 복구, 원인 진단, 판단 보류",
+  "after": "키워드: LLM, 집중소자 RF 회로, 성능 복구, 원인 진단, SPICE 시뮬레이션",
+  "only_keyword_text_changed": true,
+  "pdf_sha256": "bd056ed58b7521d29a62e29facea570053ffabd9bb7ef0583e0c698754b63dec",
+  "pages": 3,
+  "all_page_text_unchanged_except_keyword": true,
+  "all_fonts_embedded_unicode": true,
+  "font_names": [
+    "/BAAAAA+NanumGothicBold",
+    "/CAAAAA+NanumGothic",
+    "/DAAAAA+NanumGothic",
+    "/EAAAAA+AppleMyungjo",
+    "/FAAAAA+AppleMyungjo",
+    "/GAAAAA+AppleMyungjo",
+    "/HAAAAA+NanumGothicBold",
+    "/IAAAAA+HiraMaruPro-W4",
+    "/JAAAAA+AppleMyungjo",
+    "/KAAAAA+AppleMyungjo",
+    "/LAAAAA+LiberationSerif-Italic",
+    "/MAAAAA+LiberationSerif",
+    "/NAAAAA+OpenSymbol"
+  ],
+  "all_pages_visually_inspected": true,
+  "source_pdf_unchanged": true
+}

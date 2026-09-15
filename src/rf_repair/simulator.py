@@ -51,6 +51,13 @@ def _nearest(rows: list[dict[str, float]], frequency: float) -> dict[str, float]
 
 
 def _measure(rows: list[dict[str, float]], spec: dict[str, Any]) -> dict[str, Any]:
+    if not rows or not all(
+        all(math.isfinite(row[key]) for key in
+            ("frequency", "db(s_1_1)", "db(s_2_1)", "db(s_2_2)")) for row in rows
+    ):
+        raise ValueError("S-parameter evidence must contain finite samples")
+    if any(a["frequency"] >= b["frequency"] for a, b in zip(rows, rows[1:])):
+        raise ValueError("frequency grid must be strictly increasing")
     frequencies = spec["measurement_frequencies_hz"]
     if not isinstance(frequencies, dict):
         raise TypeError("measurement_frequencies_hz must be an object")
@@ -59,6 +66,11 @@ def _measure(rows: list[dict[str, float]], spec: dict[str, Any]) -> dict[str, An
     samples: dict[str, dict[str, float]] = {}
     for name, requested in frequencies.items():
         row = _nearest(rows, float(requested))
+        tolerance = float(spec.get("measurement_frequency_tolerance_hz", 1.0))
+        if not math.isfinite(tolerance) or tolerance < 0:
+            raise ValueError("invalid measurement frequency tolerance")
+        if abs(row["frequency"] - float(requested)) > tolerance:
+            raise ValueError(f"missing required measurement frequency: {name}")
         samples[name] = {
             "requested_frequency_hz": float(requested),
             "measured_frequency_hz": row["frequency"],
@@ -131,5 +143,10 @@ def run_sparameter_simulation(
             "simulation_converged": False,
             "failure_reason": "MISSING_SPARAMETER_EVIDENCE",
         }
-    return _measure(_read_table(data_path), spec)
-
+    try:
+        return _measure(_read_table(data_path), spec)
+    except (ValueError, OverflowError):
+        return {
+            "simulation_converged": False,
+            "failure_reason": "INVALID_SPARAMETER_EVIDENCE",
+        }

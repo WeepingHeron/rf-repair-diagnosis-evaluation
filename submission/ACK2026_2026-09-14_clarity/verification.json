@@ -1,0 +1,20 @@
+{
+  "source_sha256": "67bb19642b73fa5525449ef918b2605417f8e7205f5dd3a77f2c7e2f87b47f71",
+  "docx_sha256": "894ac85e59ff0b601e0ade89b41830dde2727ee762d7e34cda0b96e39e98b3a2",
+  "replacements": [
+    [
+      "본 연구는 주입 정답과의 진단 일치와 수정 후 RF 성능을 같은 실행에서 대조하여, 기능 복구 성공률만으로 가려지는 진단 오류를 분석한다.",
+      "본 연구는 동일 실행의 성능 복구와 주입 고장 진단을 교차 평가하여, 복구 성공률만으로 드러나지 않는 진단 오류를 분석한다."
+    ],
+    [
+      "기준 없음·기준만·기준+역추정은 각 3/12·3/12·12/12 정답이고 역추정 자체도 6/6이었다.",
+      "고장 전 측정 미제공, 측정만 제공, 측정과 수치 역추정 결과 제공 조건의 진단 정답은 각각 3/12, 3/12, 12/12였고, 역추정 자체도 6/6이었다."
+    ]
+  ],
+  "only_two_text_replacements": true,
+  "pdf_sha256": "967bb6e56c9c83a760da1de7f1d37f999d425eed380c39e5cf2471fa51d122c0",
+  "pages": 3,
+  "all_fonts_embedded_unicode": true,
+  "pdf_text_matches_only_two_replacements": true,
+  "all_pages_visually_inspected": true
+}

@@ -1,0 +1,43 @@
+{
+  "experiment_id": "lossy_repair_v1",
+  "frozen_at_utc": "2026-09-06T06:10:55.751736+00:00",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "max_output_tokens": 2000,
+  "max_input_chars": 50000,
+  "case_count": 8,
+  "repetitions": 2,
+  "conditions": [
+    "numerical_feedback"
+  ],
+  "max_iterations": 3,
+  "max_api_calls": 48,
+  "manifest": "faults/holdout/lossy_repair_v1.json",
+  "automatic_api_retries": 0,
+  "store": false,
+  "stop_on_success": true,
+  "prices_per_million": {
+    "input": 0.2,
+    "cached_input": 0.02,
+    "cache_write": 0.25,
+    "output": 1.2
+  },
+  "price_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+  "scope": "Exploratory loss-aware synthesized models with fixed public ESR; shared numerical candidates, not equal total cost to ideal algebra",
+  "file_sha256": {
+    "src/rf_repair/lossy.py": "67ff2cd38134bc5feeb8de58f0780a7c1d45d0c9b017653d6350ecccd801108b",
+    "src/rf_repair/nonideal.py": "8f51cfafa2440bb602e932ed4a5bdb4feec6d45344654dbec49363405f9605f1",
+    "src/rf_repair/extensions.py": "edda90f62f9bcbbe7d3db97e061be395f84a149abf9662860ced282e9be518bf",
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "src/rf_repair/agent.py": "bced892ae2eb7df2c42185abdcede2ac08767b8e3aee57c288cdbb1a55f75b78",
+    "scripts/prepare_lossy_repair.py": "b3a18a58c9b0601d6bbb1795e03ab29a6c10eda4ea688f725a692db06ece1298",
+    "scripts/run_lossy_repair.py": "426dce104a2e57407d1e5bfb087e472b9c95800a00ce88384450666bb6b58741",
+    "scripts/run_lossy_baselines.py": "5cd7b1992680a7425ece157c1b3e6223bfb74342b33dff918a75908995c2449d",
+    "scripts/run_budget_transfer.py": "b2e79ba653d5b579cb6a32ed861478f0bf60999a3ff60a0e2eb100801cdcb3e4",
+    "docs/lossy_repair_v1_protocol.md": "d68f488750d1a28386ff34b15bc03201fbb9fc299381a5bbe21a469d01f97614",
+    "faults/holdout/lossy_repair_v1.json": "c489fd20804cbe0b4e5cd86be6078e4e66c26ba30aefeb623166da20cf815943"
+  }
+}

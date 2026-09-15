@@ -21,11 +21,11 @@ def main() -> int:
     initial_spice = _summary("comparison_spice_v1_0")
     value_loop = _summary("closed_loop_value_repeat_v1_0")
     grid = _summary("deterministic_grid_value_v1_0")
-    structural_strict = _summary("closed_loop_structural_repeat_v1_0")
-    structural_normalized = _summary("closed_loop_structural_normalized_v1_1")
-    structural_unit_only = _summary("structural_unit_normalization_ablation_v1_2")
-    structural_port_only = _summary("structural_port_role_ablation_v1_4")
-    structural_holdout = _summary("structural_interface_holdout_v1_0")
+    structural_strict = _summary("closed_loop_structural_blind_v2")
+    structural_normalized = _summary("closed_loop_structural_blind_combined_v2_3")
+    structural_unit_only = _summary("closed_loop_structural_blind_unit_adapter_v2_1")
+    structural_port_only = _summary("closed_loop_structural_blind_label_guidance_v2_2")
+    structural_holdout = _summary("closed_loop_structural_blind_holdout_combined_v3_0")
 
     rows = [
         {
@@ -69,7 +69,7 @@ def main() -> int:
             "tokens": 0,
         },
         {
-            "condition": "structural_strict",
+            "condition": "blind_structural_strict",
             "trajectories": structural_strict["trajectory_count"],
             "localization": structural_strict["final_component_localization_count"],
             "diagnosis": structural_strict["final_full_diagnosis_count"],
@@ -81,7 +81,7 @@ def main() -> int:
             "tokens": structural_strict["recorded_total_tokens"],
         },
         {
-            "condition": "structural_normalized_post_hoc",
+            "condition": "blind_combined_development",
             "trajectories": structural_normalized["trajectory_count"],
             "localization": structural_normalized[
                 "final_component_localization_count"
@@ -97,20 +97,21 @@ def main() -> int:
     ]
     payload = {
         "status": "CURRENT_SIMULATOR_ONLY_RESULTS",
+        "interface_holdout_strict": _summary("closed_loop_structural_blind_holdout_strict_v3_0"),
         "rows": rows,
-        "normalized_combined": {
+        "primary_combined": {
             "trajectories": value_loop["trajectory_count"]
-            + structural_normalized["trajectory_count"],
+            + structural_strict["trajectory_count"],
             "localization": value_loop["final_component_localization_count"]
-            + structural_normalized["final_component_localization_count"],
+            + structural_strict["final_component_localization_count"],
             "diagnosis": value_loop["final_full_diagnosis_count"]
-            + structural_normalized["final_full_diagnosis_count"],
+            + structural_strict["final_full_diagnosis_count"],
             "recovery": value_loop["final_recovery_count"]
-            + structural_normalized["final_recovery_count"],
+            + structural_strict["final_recovery_count"],
             "agent_calls": value_loop["total_agent_calls"]
-            + structural_normalized["total_agent_calls"],
+            + structural_strict["total_agent_calls"],
             "candidate_simulations": value_loop["accepted_candidate_simulation_calls"]
-            + structural_normalized["accepted_candidate_simulation_calls"],
+            + structural_strict["accepted_candidate_simulation_calls"],
         },
         "interface_ablation": [
             {
@@ -129,11 +130,11 @@ def main() -> int:
             for name, summary in [
                 ("strict", structural_strict),
                 ("unit_only", structural_unit_only),
-                ("port_role_only", structural_port_only),
-                ("unit_and_port_role", structural_normalized),
+                ("label_guidance", structural_port_only),
+                ("unit_and_label_guidance", structural_normalized),
             ]
         ],
-        "interface_holdout": {
+        "interface_holdout_combined": {
             "trajectories": structural_holdout["trajectory_count"],
             "first_recovery": structural_holdout["first_iteration_recovery_count"],
             "final_recovery": structural_holdout["final_recovery_count"],

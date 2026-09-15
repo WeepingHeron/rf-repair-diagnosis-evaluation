@@ -1,0 +1,37 @@
+{
+  "experiment_id": "budget_transfer_v4",
+  "frozen_at_utc": "2026-09-06T04:50:43.961914+00:00",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "max_output_tokens": 2000,
+  "repetitions": 3,
+  "max_iterations": 3,
+  "case_count": 12,
+  "design_count": 4,
+  "conditions": [
+    "no_feedback",
+    "feedback"
+  ],
+  "max_api_calls": 216,
+  "max_input_chars": 40000,
+  "manifest": "faults/holdout/budget_transfer_v4.json",
+  "stop_on_success": true,
+  "automatic_api_retries": 0,
+  "sampling_order": "case, repetition, alternating condition order",
+  "api_prices_usd_per_million_tokens": {
+    "input": 0.2,
+    "cached_input": 0.02,
+    "output": 1.2
+  },
+  "price_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+  "claim_boundary": "Same Butterworth topology with unseen parameters and renamed elements; not unseen-topology or hardware evidence.",
+  "file_sha256": {
+    "src/rf_repair/transfer.py": "14d7741271b6e2e4ea587a49fd1e555c941f80068e00fd56dcff6b8bdd73a5a2",
+    "src/rf_repair/netlist.py": "41143b93a47a466b47df640656336b6960b82a60837dd28c791405d826dab24d",
+    "src/rf_repair/simulator.py": "93891ea6b4112f3720eb17fbc59943c907dee99332770268a6b1b615e41c582f",
+    "src/rf_repair/validator.py": "90251b60bf144fe1884534bbf83092b83da77475aacd46be9b193f10fa9fe8f7",
+    "scripts/run_budget_transfer.py": "b2e79ba653d5b579cb6a32ed861478f0bf60999a3ff60a0e2eb100801cdcb3e4",
+    "scripts/prepare_budget_transfer.py": "0821297d5e921293545ff265def887dd725328d7896d444d349144da1be4a747",
+    "faults/holdout/budget_transfer_v4.json": "3cf32efd79402e517d515ccda726df145267c4feedc900d2d225849446e61d71"
+  }
+}

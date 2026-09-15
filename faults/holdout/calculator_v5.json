@@ -1,0 +1,621 @@
+{
+  "selection": "All predefined candidates retained; no model-based selection",
+  "cases": [
+    {
+      "case_id": "calc_d1_f1",
+      "design_id": "calc_design_1",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N2345 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7807 0 DC 0 AC 1 portnum 2 z0 50\nL424 N2345 N8584 7.45805731452e-07\nL963 N8091 0 4.51212467529e-09\nC919 N8584 N8091 3.60969974023e-12\nL138 N8091 N9085 7.45805731452e-07\nC561 N9085 N7807 3.60969974023e-12\nC707 N8091 0 5.96644585162e-10\n.sp lin 2001 48500000 145500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N2345 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7807 0 DC 0 AC 1 portnum 2 z0 50\nL424 N2345 N8584 7.45805731452e-07\nL963 N8091 0 2.43654732465e-09\nC919 N8584 N8091 3.60969974023e-12\nL138 N8091 N9085 7.45805731452e-07\nC561 N9085 N7807 3.60969974023e-12\nC707 N8091 0 5.96644585162e-10\n.sp lin 2001 48500000 145500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 97000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 97000000.0,
+          "lower_passband_edge": 91665000.0,
+          "upper_passband_edge": 102335000.0,
+          "lower_stopband": 67900000.0,
+          "upper_stopband": 135800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "L963",
+      "healthy_value": "4.51212467529e-09",
+      "faulty_value": "2.43654732465e-09",
+      "multiplier": 0.54,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.00268486067,
+        "peak_frequency_hz": 132890000.0,
+        "peak_frequency_relative_error": 0.37,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 97000000.0,
+            "measured_frequency_hz": 97000000.0,
+            "s11_db": -0.0718200309,
+            "s21_db": -17.8512478,
+            "s22_db": -0.0718200309
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 91665000.0,
+            "measured_frequency_hz": 91665000.0,
+            "s11_db": -0.0134380163,
+            "s21_db": -25.1012088,
+            "s22_db": -0.0134380163
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 102335000.0,
+            "measured_frequency_hz": 102335000.0,
+            "s11_db": -0.0241941047,
+            "s21_db": -22.552839,
+            "s22_db": -0.0241941047
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 67900000.0,
+            "measured_frequency_hz": 67900000.0,
+            "s11_db": -7.01278497e-06,
+            "s21_db": -57.9189414,
+            "s22_db": -7.01278497e-06
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 135800000.0,
+            "measured_frequency_hz": 135800000.0,
+            "s11_db": -0.00916386643,
+            "s21_db": -26.7616367,
+            "s22_db": -0.00916386643
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d1_f2",
+      "design_id": "calc_design_1",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N2345 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7807 0 DC 0 AC 1 portnum 2 z0 50\nL424 N2345 N8584 7.45805731452e-07\nL963 N8091 0 4.51212467529e-09\nC919 N8584 N8091 3.60969974023e-12\nL138 N8091 N9085 7.45805731452e-07\nC561 N9085 N7807 3.60969974023e-12\nC707 N8091 0 5.96644585162e-10\n.sp lin 2001 48500000 145500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N2345 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7807 0 DC 0 AC 1 portnum 2 z0 50\nL424 N2345 N8584 7.45805731452e-07\nL963 N8091 0 4.51212467529e-09\nC919 N8584 N8091 3.60969974023e-12\nL138 N8091 N9085 7.45805731452e-07\nC561 N9085 N7807 3.60969974023e-12\nC707 N8091 0 1.10379248255e-09\n.sp lin 2001 48500000 145500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 97000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 97000000.0,
+          "lower_passband_edge": 91665000.0,
+          "upper_passband_edge": 102335000.0,
+          "lower_stopband": 67900000.0,
+          "upper_stopband": 135800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "C707",
+      "healthy_value": "5.96644585162e-10",
+      "faulty_value": "1.10379248255e-09",
+      "multiplier": 1.85,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.34075337,
+        "peak_frequency_hz": 70858500.0,
+        "peak_frequency_relative_error": 0.2695,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 97000000.0,
+            "measured_frequency_hz": 97000000.0,
+            "s11_db": -0.0721307258,
+            "s21_db": -17.8326555,
+            "s22_db": -0.0721307258
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 91665000.0,
+            "measured_frequency_hz": 91665000.0,
+            "s11_db": -0.0222730361,
+            "s21_db": -22.9111807,
+            "s22_db": -0.0222730361
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 102335000.0,
+            "measured_frequency_hz": 102335000.0,
+            "s11_db": -0.0153439785,
+            "s21_db": -24.526133,
+            "s22_db": -0.0153439785
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 67900000.0,
+            "measured_frequency_hz": 67900000.0,
+            "s11_db": -0.00189554509,
+            "s21_db": -33.6014497,
+            "s22_db": -0.00189554509
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 135800000.0,
+            "measured_frequency_hz": 135800000.0,
+            "s11_db": -9.57563817e-06,
+            "s21_db": -56.5661706,
+            "s22_db": -9.57563817e-06
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d2_f1",
+      "design_id": "calc_design_2",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N8958 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7599 0 DC 0 AC 1 portnum 2 z0 50\nC489 N4084 0 3.85596470241e-10\nL590 N4084 0 4.07286271692e-09\nL562 N4084 N6032 4.81995587801e-07\nC501 N5865 N4084 3.25829017353e-12\nL927 N8958 N5865 4.81995587801e-07\nC148 N6032 N7599 3.25829017353e-12\n.sp lin 2001 63500000 190500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N8958 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7599 0 DC 0 AC 1 portnum 2 z0 50\nC489 N4084 0 3.85596470241e-10\nL590 N4084 0 4.07286271692e-09\nL562 N4084 N6032 4.81995587801e-07\nC501 N5865 N4084 3.25829017353e-12\nL927 N8958 N5865 8.91691837432e-07\nC148 N6032 N7599 3.25829017353e-12\n.sp lin 2001 63500000 190500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 127000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 127000000.0,
+          "lower_passband_edge": 118745000.0,
+          "upper_passband_edge": 135255000.0,
+          "lower_stopband": 88900000.0,
+          "upper_stopband": 177800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "L927",
+      "healthy_value": "4.81995587801e-07",
+      "faulty_value": "8.91691837432e-07",
+      "multiplier": 1.85,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -10.6142013,
+        "peak_frequency_hz": 125603000.0,
+        "peak_frequency_relative_error": 0.011,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 127000000.0,
+            "measured_frequency_hz": 127000000.0,
+            "s11_db": -0.388442104,
+            "s21_db": -10.6773537,
+            "s22_db": -0.388442104
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 118745000.0,
+            "measured_frequency_hz": 118745000.0,
+            "s11_db": -0.0940316958,
+            "s21_db": -16.6920314,
+            "s22_db": -0.0940316958
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 135255000.0,
+            "measured_frequency_hz": 135255000.0,
+            "s11_db": -0.0701944061,
+            "s21_db": -17.949868,
+            "s22_db": -0.0701944061
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 88900000.0,
+            "measured_frequency_hz": 88900000.0,
+            "s11_db": -0.00234385943,
+            "s21_db": -32.6796994,
+            "s22_db": -0.00234385943
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 177800000.0,
+            "measured_frequency_hz": 177800000.0,
+            "s11_db": -2.71716135e-05,
+            "s21_db": -52.0367024,
+            "s22_db": -2.71716135e-05
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d2_f2",
+      "design_id": "calc_design_2",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N8958 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7599 0 DC 0 AC 1 portnum 2 z0 50\nC489 N4084 0 3.85596470241e-10\nL590 N4084 0 4.07286271692e-09\nL562 N4084 N6032 4.81995587801e-07\nC501 N5865 N4084 3.25829017353e-12\nL927 N8958 N5865 4.81995587801e-07\nC148 N6032 N7599 3.25829017353e-12\n.sp lin 2001 63500000 190500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N8958 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N7599 0 DC 0 AC 1 portnum 2 z0 50\nC489 N4084 0 3.85596470241e-10\nL590 N4084 0 4.07286271692e-09\nL562 N4084 N6032 4.81995587801e-07\nC501 N5865 N4084 3.25829017353e-12\nL927 N8958 N5865 4.81995587801e-07\nC148 N6032 N7599 1.75947669371e-12\n.sp lin 2001 63500000 190500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 127000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 127000000.0,
+          "lower_passband_edge": 118745000.0,
+          "upper_passband_edge": 135255000.0,
+          "lower_stopband": 88900000.0,
+          "upper_stopband": 177800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "C148",
+      "healthy_value": "3.25829017353e-12",
+      "faulty_value": "1.75947669371e-12",
+      "multiplier": 0.54,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -10.6314784,
+        "peak_frequency_hz": 128397000.0,
+        "peak_frequency_relative_error": 0.011,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 127000000.0,
+            "measured_frequency_hz": 127000000.0,
+            "s11_db": -0.386828007,
+            "s21_db": -10.6946425,
+            "s22_db": -0.386828007
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 118745000.0,
+            "measured_frequency_hz": 118745000.0,
+            "s11_db": -0.0548509704,
+            "s21_db": -19.0133966,
+            "s22_db": -0.0548509704
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 135255000.0,
+            "measured_frequency_hz": 135255000.0,
+            "s11_db": -0.110499972,
+            "s21_db": -15.9993543,
+            "s22_db": -0.110499972
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 88900000.0,
+            "measured_frequency_hz": 88900000.0,
+            "s11_db": -1.9801538e-05,
+            "s21_db": -53.4108638,
+            "s22_db": -1.9801538e-05
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 177800000.0,
+            "measured_frequency_hz": 177800000.0,
+            "s11_db": -0.00449482798,
+            "s21_db": -29.8529596,
+            "s22_db": -0.00449482798
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d3_f1",
+      "design_id": "calc_design_3",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N2247 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8069 0 DC 0 AC 1 portnum 2 z0 50\nC445 N1028 N8069 3.04117725653e-12\nL183 N2247 N8384 3.37908584059e-07\nC691 N4016 0 2.70326867247e-10\nC119 N8384 N4016 3.04117725653e-12\nL277 N4016 0 3.80147157067e-09\nL767 N4016 N1028 3.37908584059e-07\n.sp lin 2001 78500000 235500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N2247 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8069 0 DC 0 AC 1 portnum 2 z0 50\nC445 N1028 N8069 3.04117725653e-12\nL183 N2247 N8384 3.37908584059e-07\nC691 N4016 0 2.70326867247e-10\nC119 N8384 N4016 3.04117725653e-12\nL277 N4016 0 2.05279464816e-09\nL767 N4016 N1028 3.37908584059e-07\n.sp lin 2001 78500000 235500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 157000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 157000000.0,
+          "lower_passband_edge": 145225000.0,
+          "upper_passband_edge": 168775000.0,
+          "lower_stopband": 109900000.0,
+          "upper_stopband": 219800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "L277",
+      "healthy_value": "3.80147157067e-09",
+      "faulty_value": "2.05279464816e-09",
+      "multiplier": 0.54,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.00921392188,
+        "peak_frequency_hz": 216267500.0,
+        "peak_frequency_relative_error": 0.3775,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 157000000.0,
+            "measured_frequency_hz": 157000000.0,
+            "s11_db": -0.132614523,
+            "s21_db": -15.2180708,
+            "s22_db": -0.132614523
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 145225000.0,
+            "measured_frequency_hz": 145225000.0,
+            "s11_db": -0.0223766637,
+            "s21_db": -22.8910733,
+            "s22_db": -0.0223766637
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 168775000.0,
+            "measured_frequency_hz": 168775000.0,
+            "s11_db": -0.0498771027,
+            "s21_db": -19.4237456,
+            "s22_db": -0.0498771027
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 109900000.0,
+            "measured_frequency_hz": 109900000.0,
+            "s11_db": -4.40197792e-05,
+            "s21_db": -49.9413865,
+            "s22_db": -4.40197792e-05
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 219800000.0,
+            "measured_frequency_hz": 219800000.0,
+            "s11_db": -0.0955201119,
+            "s21_db": -16.6245674,
+            "s22_db": -0.0955201119
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d3_f2",
+      "design_id": "calc_design_3",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N2247 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8069 0 DC 0 AC 1 portnum 2 z0 50\nC445 N1028 N8069 3.04117725653e-12\nL183 N2247 N8384 3.37908584059e-07\nC691 N4016 0 2.70326867247e-10\nC119 N8384 N4016 3.04117725653e-12\nL277 N4016 0 3.80147157067e-09\nL767 N4016 N1028 3.37908584059e-07\n.sp lin 2001 78500000 235500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N2247 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N8069 0 DC 0 AC 1 portnum 2 z0 50\nC445 N1028 N8069 3.04117725653e-12\nL183 N2247 N8384 3.37908584059e-07\nC691 N4016 0 5.00104704408e-10\nC119 N8384 N4016 3.04117725653e-12\nL277 N4016 0 3.80147157067e-09\nL767 N4016 N1028 3.37908584059e-07\n.sp lin 2001 78500000 235500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 157000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 157000000.0,
+          "lower_passband_edge": 145225000.0,
+          "upper_passband_edge": 168775000.0,
+          "lower_stopband": 109900000.0,
+          "upper_stopband": 219800000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "C691",
+      "healthy_value": "2.70326867247e-10",
+      "faulty_value": "5.00104704408e-10",
+      "multiplier": 1.85,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -0.013894862,
+        "peak_frequency_hz": 114060500.0,
+        "peak_frequency_relative_error": 0.2735,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 157000000.0,
+            "measured_frequency_hz": 157000000.0,
+            "s11_db": -0.133184213,
+            "s21_db": -15.1997375,
+            "s22_db": -0.133184213
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 145225000.0,
+            "measured_frequency_hz": 145225000.0,
+            "s11_db": -0.0450748218,
+            "s21_db": -19.8610209,
+            "s22_db": -0.0450748218
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 168775000.0,
+            "measured_frequency_hz": 168775000.0,
+            "s11_db": -0.0269925526,
+            "s21_db": -22.0788928,
+            "s22_db": -0.0269925526
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 109900000.0,
+            "measured_frequency_hz": 109900000.0,
+            "s11_db": -0.0149290471,
+            "s21_db": -24.6449846,
+            "s22_db": -0.0149290471
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 219800000.0,
+            "measured_frequency_hz": 219800000.0,
+            "s11_db": -5.99026759e-05,
+            "s21_db": -48.6034108,
+            "s22_db": -5.99026759e-05
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d4_f1",
+      "design_id": "calc_design_4",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N8619 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4046 0 DC 0 AC 1 portnum 2 z0 50\nC714 N2337 0 1.94032237844e-10\nC213 N5238 N2337 2.80376583685e-12\nL530 N8619 N5238 2.42540297306e-07\nL269 N2337 0 3.50470729607e-09\nL975 N2337 N1612 2.42540297306e-07\nC810 N1612 N4046 2.80376583685e-12\n.sp lin 2001 96500000 289500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N8619 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4046 0 DC 0 AC 1 portnum 2 z0 50\nC714 N2337 0 1.94032237844e-10\nC213 N5238 N2337 5.18696679818e-12\nL530 N8619 N5238 2.42540297306e-07\nL269 N2337 0 3.50470729607e-09\nL975 N2337 N1612 2.42540297306e-07\nC810 N1612 N4046 2.80376583685e-12\n.sp lin 2001 96500000 289500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 193000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 193000000.0,
+          "lower_passband_edge": 176595000.0,
+          "upper_passband_edge": 209405000.0,
+          "lower_stopband": 135100000.0,
+          "upper_stopband": 270200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "C213",
+      "healthy_value": "2.80376583685e-12",
+      "faulty_value": "5.18696679818e-12",
+      "multiplier": 1.85,
+      "fault_type": "value_too_high",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.36783268,
+        "peak_frequency_hz": 198114500.0,
+        "peak_frequency_relative_error": 0.0265,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 193000000.0,
+            "measured_frequency_hz": 193000000.0,
+            "s11_db": -1.89658721,
+            "s21_db": -4.51195282,
+            "s22_db": -1.89658721
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 176595000.0,
+            "measured_frequency_hz": 176595000.0,
+            "s11_db": -0.416776331,
+            "s21_db": -10.3855344,
+            "s22_db": -0.416776331
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 209405000.0,
+            "measured_frequency_hz": 209405000.0,
+            "s11_db": -0.434805721,
+            "s21_db": -10.2104798,
+            "s22_db": -0.434805721
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 135100000.0,
+            "measured_frequency_hz": 135100000.0,
+            "s11_db": -0.0117692887,
+            "s21_db": -25.6762243,
+            "s22_db": -0.0117692887
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 270200000.0,
+            "measured_frequency_hz": 270200000.0,
+            "s11_db": -0.00046744585,
+            "s21_db": -39.6807638,
+            "s22_db": -0.00046744585
+          }
+        }
+      }
+    },
+    {
+      "case_id": "calc_d4_f2",
+      "design_id": "calc_design_4",
+      "family": "bpf",
+      "healthy_netlist": "* Passive two-port test network\nVPORT1 N8619 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4046 0 DC 0 AC 1 portnum 2 z0 50\nC714 N2337 0 1.94032237844e-10\nC213 N5238 N2337 2.80376583685e-12\nL530 N8619 N5238 2.42540297306e-07\nL269 N2337 0 3.50470729607e-09\nL975 N2337 N1612 2.42540297306e-07\nC810 N1612 N4046 2.80376583685e-12\n.sp lin 2001 96500000 289500000\n.end\n",
+      "faulty_netlist": "* Passive two-port test network\nVPORT1 N8619 0 DC 0 AC 1 portnum 1 z0 50\nVPORT2 N4046 0 DC 0 AC 1 portnum 2 z0 50\nC714 N2337 0 1.94032237844e-10\nC213 N5238 N2337 2.80376583685e-12\nL530 N8619 N5238 2.42540297306e-07\nL269 N2337 0 3.50470729607e-09\nL975 N2337 N1612 1.30971760545e-07\nC810 N1612 N4046 2.80376583685e-12\n.sp lin 2001 96500000 289500000\n.end\n",
+      "spec": {
+        "target_center_frequency_hz": 193000000.0,
+        "reference_impedance_ohm": 50.0,
+        "measurement_frequency_tolerance_hz": 1.0,
+        "measurement_frequencies_hz": {
+          "center": 193000000.0,
+          "lower_passband_edge": 176595000.0,
+          "upper_passband_edge": 209405000.0,
+          "lower_stopband": 135100000.0,
+          "upper_stopband": 270200000.0
+        },
+        "constraints": {
+          "center_frequency_relative_tolerance_max": 0.02,
+          "s21_at_center_db_min": -0.25,
+          "s11_at_center_db_max": -20.0,
+          "s21_at_lower_passband_edge_db_min": -4.0,
+          "s21_at_upper_passband_edge_db_min": -4.0,
+          "s21_at_lower_stopband_db_max": -15.0,
+          "s21_at_upper_stopband_db_max": -15.0
+        }
+      },
+      "component": "L975",
+      "healthy_value": "2.42540297306e-07",
+      "faulty_value": "1.30971760545e-07",
+      "multiplier": 0.54,
+      "fault_type": "value_too_low",
+      "initial_metrics": {
+        "simulation_converged": true,
+        "point_count": 2001,
+        "peak_s21_db": -4.3744144,
+        "peak_frequency_hz": 188078500.0,
+        "peak_frequency_relative_error": 0.0255,
+        "samples": {
+          "center": {
+            "requested_frequency_hz": 193000000.0,
+            "measured_frequency_hz": 193000000.0,
+            "s11_db": -1.89297632,
+            "s21_db": -4.51855461,
+            "s22_db": -1.89297632
+          },
+          "lower_passband_edge": {
+            "requested_frequency_hz": 176595000.0,
+            "measured_frequency_hz": 176595000.0,
+            "s11_db": -0.308733856,
+            "s21_db": -11.635453,
+            "s22_db": -0.308733856
+          },
+          "upper_passband_edge": {
+            "requested_frequency_hz": 209405000.0,
+            "measured_frequency_hz": 209405000.0,
+            "s11_db": -0.506526147,
+            "s21_db": -9.58262623,
+            "s22_db": -0.506526147
+          },
+          "lower_stopband": {
+            "requested_frequency_hz": 135100000.0,
+            "measured_frequency_hz": 135100000.0,
+            "s11_db": -0.00034099319,
+            "s21_db": -41.0505566,
+            "s22_db": -0.00034099319
+          },
+          "upper_stopband": {
+            "requested_frequency_hz": 270200000.0,
+            "measured_frequency_hz": 270200000.0,
+            "s11_db": -0.0161666162,
+            "s21_db": -24.2997326,
+            "s22_db": -0.0161666162
+          }
+        }
+      }
+    }
+  ]
+}
