@@ -1,39 +1,67 @@
-# SPICE-Grounded RF Circuit Fault Diagnosis and Repair
+# 집중소자 RF 회로에서 LLM 기반 복구와 원인 진단의 분리 평가
 
-LLM Agent가 집중소자 RF 회로의 고장을 진단하고 제한된 수정안을 제안한 뒤,
-ngspice와 결정적 검증기가 성능 복구 여부를 판정하는 연구 프로젝트입니다.
+**Separate Evaluation of LLM-Based Repair and Fault Diagnosis in Lumped RF Circuits**
+
+LLM이 제안한 수정으로 RF 성능이 복구되었는지와 주입한 고장 원인을 정확히
+진단했는지를 같은 실행에서 따로 평가하는 ACK 2026 논문 연구 저장소입니다.
+복구 여부는 ngspice와 결정적 검증기가, 진단 정답 여부는 평가기가 보관한
+주입 고장 정보와의 대조로 판정합니다.
+
+주 실험 48회에서 복구는 46회, 전체 진단 정답은 37회였으며,
+**복구에 성공했지만 진단은 틀린 실행이 11회**였습니다.
+성능 복구 성공률만으로 원인 진단의 정확성을 판단할 수 없다는 점을 분석합니다.
+
+| 같은 실행의 결과 | 진단 정답 | 진단 오답 | 합계 |
+|---|---:|---:|---:|
+| 복구 성공 | 35 | 11 | 46 |
+| 복구 실패 | 2 | 0 | 2 |
+| 합계 | 37 | 11 | 48 |
+
+같은 회로의 고장별 반복 결과이며, 서로 독립인 48개 회로의 성능을 뜻하지 않습니다.
+복구만 성공한 11회는 위치 오진 3회와 위치는 맞지만 유형이 틀린 8회로 나뉩니다.
+수치 대조 근거는 [최종 내용 점검](docs/final_submission_review_2026-09-14.md)에 있습니다.
+
+## 최신 원고
+
+2026-09-14 문구 수정본입니다. PDF는 A4 3쪽이며 글꼴 포함·텍스트 추출·페이지 배치를 확인했습니다.
+
+- [제출용 PDF](submission/ACK2026_2026-09-14_clarity/ACK2026_KimTaehoon_RF_Circuit_Repair.pdf)
+- [편집용 DOCX](submission/ACK2026_2026-09-14_clarity/ACK2026_KimTaehoon_RF_Circuit_Repair.docx)
+- [수정 내역](submission/ACK2026_2026-09-14_clarity/README.md) · [파일 검증 기록](submission/ACK2026_2026-09-14_clarity/verification.json)
+
+분량은 PDF 기준이며 DOCX는 편집기에 따라 글꼴과 페이지 수가 달라질 수 있습니다.
+`submission/`의 이전 날짜 폴더와 `paper/`의 초안은 이력 보관용입니다.
 
 ## 연구 범위
 
 - 주 회로: 수동 2-port band-pass filter
-- 선택적 일반화 회로: matching network
+- 보조 탐색 회로: L형 matching network
 - 초기 fault 범위: 단일 부품 값 오류, open, short/shunt, source/load mismatch
 - 최종 판정 권한: LLM이 아닌 ngspice 출력과 rule-based validator
-- 주장 범위: SPICE로 정의된 집중소자 RF 회로의 simulator-verified repair
+- 주장 범위: 합성 고장을 주입한 집중소자 RF 회로에서 복구와 원인 진단의 분리 평가
 - 제외 범위: 실제 PCB/RFIC 동작, 하드웨어 측정, fabrication sign-off
 
-상세한 범위와 연구질문은 [docs/research_scope.md](docs/research_scope.md)와
-[docs/research_questions.md](docs/research_questions.md)에 기록합니다. 합성 fault의
+초기 범위 결정은 [연구 범위 기록](docs/research_scope.md)에, 후속 연구질문과 판단은
+[연구질문](docs/research_questions.md)에 기록합니다. 합성 fault의
 정확한 의미와 한계는 [docs/fault_model.md](docs/fault_model.md)를 따릅니다.
 
-## 현재 상태
+## 실험 결과와 해석 범위
 
-`2026-09-06`: 기존 주 실험은 복구 46/48, 위치 진단 45/48, 전체 진단 37/48입니다.
+아래 결과는 서로 다른 조건과 평가 집합에서 얻었으며 하나의 성공률로 합산하지 않습니다.
+주 실험의 전체 진단 정답과 보조 탐색의 위치·방향 정답도 구분합니다.
+
+### 주 실험과 검증
+
+기존 주 실험은 복구 46/48, 위치 진단 45/48, 전체 진단 37/48입니다.
 같은 회로의 holdout에서는 strict 14/18, 결합 인터페이스 17/18 복구를 기록했습니다.
-주요 7개 실험의 138개 trajectory와 총 185회 재시뮬레이션으로 기존 판정을 확인했습니다.
-단위·허용값·측정 주파수 검증을 보강했으며, 표 생성기는 최신 Blind 실험을 사용합니다.
-초기 파일럿 기록은 [docs/live_pilot_log.md](docs/live_pilot_log.md), 최신 점검은
-[docs/project_review_2026-09-06.md](docs/project_review_2026-09-06.md)를 참고합니다.
+2026-09-06 점검에서는 주요 7개 실험의 138개 trajectory와 총 185회 재시뮬레이션으로
+기존 판정을 확인했습니다. 단위·허용값·측정 주파수 검증을 보강했고 표 생성기는
+해당 Blind 실험을 사용합니다. [프로젝트 점검](docs/project_review_2026-09-06.md)과
+[2026-09-14 내용 점검](docs/final_submission_review_2026-09-14.md)에 검증 범위를 기록했습니다.
+후자는 문구 수정 전 PDF를 대상으로 한 기록이며, 최신 파일 검증은 위 링크를 따릅니다.
 
-전체 내용을 유지하고 글꼴·표 배치를 확인한 3쪽 제출용 파일은
-`submission/ACK2026_2026-09-14_clarity/ACK2026_KimTaehoon_RF_Circuit_Repair.pdf`입니다.
-편집용 DOCX도 `submission/ACK2026_2026-09-14_clarity/`에 있습니다. 키워드를 SPICE 시뮬레이션으로 교체하고, 기여 문장과 기준 측정 비교 조건의 표현을 명확히 했습니다.
-3쪽 확인은 PDF 기준입니다. 이전 DOCX는 Apple Pages에서 4쪽으로 표시됐으며, 편집기 가져오기 결과와 PDF 배치는 다를 수 있습니다.
-제목은 「집중소자 RF 회로에서 LLM 기반 복구와 원인 진단의 분리 평가」이며,
-주 실험의 복구·진단 교차표와 두 평가 경로를 제시하고, 기준 측정·보류 실험은 보조 탐색으로
-정리했습니다. 기존 결과표 5개를 보존하고 교차표 1개를 추가했으며 공식 양식을 유지합니다.
-최종 배치와 글꼴 포함 검증은 [제출용 PDF 안내](submission/ACK2026_2026-09-14_clarity/README.md),
-수정 후 완결성과 추가 작업 판단은 [재평가](docs/paper_completeness_review_2026-09-07.md)에 있습니다.
+### 동일 예산 비교와 회로 확장
+
 새 설계 파라미터의 동일 예산 비교는 [docs/budget_transfer_v4_protocol.md](docs/budget_transfer_v4_protocol.md)를
 따릅니다. 기존 주 결과와 별도로 집계하며 다른 topology 일반화를 뜻하지 않습니다.
 새 사례의 동일 최대 호출 예산 비교 72개 경로를 완료했습니다. 무피드백은 33/36,
@@ -46,6 +74,8 @@ ngspice와 결정적 검증기가 성능 복구 여부를 판정하는 연구 �
 8/8을 복구했습니다. 별도의 L형 정합회로 one-shot 파일럿은 5/8 복구입니다.
 두 확장의 근거와 한계는 [docs/priority_extensions_results.md](docs/priority_extensions_results.md)에
 정리했으며, 최신 원고에는 v4와 탐색적 후속 결과를 구분해서 반영했습니다.
+
+### 비이상적 소자와 손실 모델
 
 비이상적 소자 조건 확인도 완료했습니다. 새 설계 4개의 Q·기생·공차 320조건 중
 기존 기준을 만족한 정상 상태는 8개였고, 유한 Q에서는 정상 PASS가 없었습니다.
@@ -62,6 +92,8 @@ LLM은 16번 모두 수치 탐색의 최상위 후보를 그대로 골랐고 위
 추가 복구 이점은 확인되지 않았으며 성능 복구와 고장 원인 진단을 분리해야 합니다.
 [손실 보상 설계 비교 결과](docs/lossy_repair_v1_results.md)에 예산과 독립 검증을 기록했습니다.
 
+### 진단 전용 비교와 고장 전 측정
+
 후속 진단 전용 비교는 새 8고장에서 후보 미공개/공개를 각각 16회 평가했습니다.
 두 조건 모두 위치·방향 정답은 0/16이었고, 미공개는 판단 보류 15회·오진 1회,
 공개는 판단 보류 16회였습니다. 같은 지시문과 판단 보류 선택지에서 후보 공개 여부만
@@ -77,8 +109,10 @@ LLM은 16번 모두 수치 탐색의 최상위 후보를 그대로 골랐고 위
 LLM 없는 역추정도 6/6을 진단·복구했으므로 LLM의 독자적 기여로 해석하지 않습니다.
 원본 API 36응답과 native SPICE 30기록을 검증했으며,
 [기준 측정 비교 결과](docs/reference_diagnosis_v2_results.md)에 제외 사유와 비용을 기록했습니다.
-이는 잡음·환경 변화가 없는 합성 실험으로, 다음 우선순위는 측정·모델 오차에 대한
-역추정의 진단 및 보류 경계 확인입니다.
+이는 잡음·환경 변화가 없는 합성 실험이며, 측정·모델 오차에 대한 진단 및 보류 경계는
+아래 후속 실험에서 별도로 확인했습니다.
+
+### 오차 민감도와 진단 보류 기준
 
 이어진 [오차 민감도 확인](docs/reference_robustness_v1_results.md)은 API 없이 945건을
 완료했습니다. 같은 6고장을 반복한 630건 중 정답 190·보류 440·오진 0이었고,
@@ -86,8 +120,8 @@ LLM 없는 역추정도 6/6을 진단·복구했으므로 LLM의 독자적 기�
 0.02 dB는 33/60 진단했지만 0.05 dB부터 모두 보류했습니다. L/C 동시 변화 ±0.1%,
 손실 또는 기생 모델 불일치 ±10%부터도 모두 보류했습니다. 최상위 가설 순위는
 630/630 정답이었으나 440건이 기존 잔차 문턱을 넘었습니다. 이 관찰은 실제 운용
-허용치가 아니며, 다음에는 별도 개발 집합에서 작은 고장·비균일 오차를 확인한 뒤
-오차를 반영한 보류 기준을 고정하고 미사용 설계로 평가해야 합니다.
+허용치를 뜻하지 않습니다. 이후 별도 개발 집합에서 작은 고장·비균일 오차를 확인하고,
+보류 기준의 보정과 미사용 설계 평가를 분리해 수행했습니다.
 
 별도 개발 집합의 [작은 값 변화·비균일 오차 확인](docs/diagnosis_development_v1_results.md)도
 완료했습니다. 새 4설계에서 ±1/3/10% 변화를 주입한 2,304건은 정답 509·보류 1,795·
@@ -98,7 +132,7 @@ LLM 없는 역추정도 6/6을 진단·복구했으므로 LLM의 독자적 기�
 사전 계획대로 포함한 값 변화 진단 개발 실험이며, 기존 보류 기준은 변경하지 않았습니다.
 보고서에 보류 기준의 의미와 개발·보정·최종 평가를 분리하는 절차를 정리했습니다.
 
-추천한 다중 보류 기준은 별도 보정 4설계에서 선택한 뒤 미사용 4설계에서 검증해
+다중 보류 기준은 별도 보정 4설계에서 선택한 뒤 미사용 4설계에서 검증해
 새 진단 명령의 기본 정책으로 연결했습니다. 최선 잔차≤0.02 dB, 후보 간격≥0.03 dB,
 차선/max(최선,0.01)≥3, 무고장 대조 점수≥8.054607, 측정 재검사 4/4 일치를 요구합니다.
 미사용 주입 변화 2,304건에서 기존 487건을 유지하고 128건을 추가해 615건을 진단했으며,
@@ -138,7 +172,7 @@ python3 -m venv .venv
 Smoke test:
 
 ```bash
-python3 scripts/run_smoke.py
+.venv/bin/python scripts/run_smoke.py
 ```
 
 성공하면 `build/smoke/` 아래에 ngspice 로그와 raw 결과가 생성됩니다.
@@ -146,12 +180,17 @@ python3 scripts/run_smoke.py
 100 MHz band-pass baseline과 결정적 specification 검사:
 
 ```bash
-python3 scripts/run_bpf_baseline.py
-PYTHONPATH=src python3 -m unittest discover -s tests -v
+.venv/bin/python scripts/run_bpf_baseline.py
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
 baseline은 이상적인 집중소자 시뮬레이션이며 실제 RF 부품 또는 하드웨어 측정값이
-아닙니다. 현재 specification은 fault pilot 이전의 draft 상태입니다.
+아닙니다. `specs/bpf_100mhz.json`은 초기 baseline용 draft 표기를 유지합니다.
+각 실험의 비교 조건과 동결된 설정은 해당 `experiments/` 프로토콜을 따릅니다.
+
+## 초기 파일럿 실행과 이력
+
+아래는 초기 파이프라인 검증용 명령과 결과입니다. 최신 원고의 주 실험·보조 탐색과 구분합니다.
 
 실제 LLM pilot은 저장소 루트의 `.env.local`에 `OPENAI_API_KEY`가 있을 때만
 명시적으로 실행합니다. 정상 netlist와 fault manifest는 Agent 입력에서 제외되며,
@@ -161,7 +200,7 @@ baseline은 이상적인 집중소자 시뮬레이션이며 실제 RF 부품 또
 PYTHONPATH=src .venv/bin/python scripts/run_llm_fault_pilot.py
 ```
 
-현재 pilot 모델은 `gpt-5.6-luna`, reasoning effort는 `low`, 출력 상한은 700 token,
+초기 pilot 스크립트의 기본 모델은 `gpt-5.6-luna`, reasoning effort는 `low`, 출력 상한은 700 token,
 API 저장은 비활성화합니다. 단일 호출 결과는 benchmark 성능으로 주장하지 않습니다.
 
 동결된 10개 value fault를 각각 3회 실행하는 반복 파일럿:
@@ -192,8 +231,8 @@ v0.2 결과는 [docs/value_fault_repeat_v0_2_results.md](docs/value_fault_repeat
 
 동일 설정에서 수행한 one-shot `LLM only` 대 `+ initial SPICE evidence` 비교는
 [docs/preliminary_comparison_v1_0.md](docs/preliminary_comparison_v1_0.md)에 기록합니다.
-현재 10-case pilot에서는 raw SPICE metrics 추가가 성능을 높이지 않았으며, 다음 단계는
-실패한 repair 결과를 다시 제공하는 최대 3-iteration closed loop입니다.
+이 10-case pilot에서는 raw SPICE metrics 추가가 성능을 높이지 않았습니다.
+이후 실패한 repair 결과를 다시 제공하는 최대 3-iteration closed loop를 평가했습니다.
 
 최대 3-iteration closed-loop pipeline pilot 결과는
 [docs/closed_loop_value_pilot_v0_1_results.md](docs/closed_loop_value_pilot_v0_1_results.md)에
@@ -215,10 +254,22 @@ strict syntax 실패 후 별도로 수행한 단위-normalized structural v1.1 �
 기록합니다. 이는 두 interface 변경을 함께 적용한 post-hoc 결과이므로 최종 benchmark와
 구분합니다.
 
+## 저장소에 포함된 자료
+
+`src/`, `scripts/`, `tests/`에는 구현·실행·검증 코드가, `experiments/`, `faults/`,
+`configs/`에는 실험 정의와 진단 정책이 있습니다. `docs/`에는 프로토콜과 결과 해석을,
+`paper/`와 `submission/`에는 초안과 제출본을 보관합니다.
+
+원시 API 응답, 시뮬레이션 로그와 렌더링 등 `build/`, `results/`, `work/`의 로컬 산출물은
+Git에 포함하지 않습니다. 보고서에 연결된 해당 경로는 새 clone에 없으므로, 저장된
+원시 결과의 해시 검증에는 별도로 보관한 산출물이 필요합니다. 재실행에는 각 프로토콜의
+선행 자료와 환경이 필요하며, LLM 실험은 API 비용이 발생하고 과거 응답과 같을 것을 보장하지 않습니다.
+`.env`와 `.env.local`의 인증 정보도 제외합니다.
+
 ## 재현성과 신뢰성 원칙
 
 1. Agent는 구조화된 repair patch만 제안합니다.
-2. 정상 netlist와 fault manifest는 평가기에만 보관합니다.
+2. 주 실험의 정상 netlist와 fault 정답은 평가기에만 보관합니다. 보조 탐색에서 제공한 기준 측정·공개 모델·수치 후보는 각 프로토콜에 명시합니다.
 3. 문법, 허용된 수정, simulation convergence, specification 만족 여부를 각각 검사합니다.
 4. 실패한 simulator call도 실험 비용에 포함합니다.
 5. 파일럿 이후 prompt, specification, validator를 동결하고 최종 평가와 분리합니다.
