@@ -7,3 +7,6 @@ dependencies = [
   "openai==3.7.0",
   "pydantic==2.13.5",
 ]
+
+[tool.setuptools.packages.find]
+where = ["code/src"]

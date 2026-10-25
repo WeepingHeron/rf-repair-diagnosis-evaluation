@@ -8,3 +8,15 @@ results/
 work/
 .env
 .env.local
+
+# Research organization (2026-10-25)
+/results/
+!/.env.example
+/submissions/2026_ACK/*.mp4
+/submissions/2026_ACK/presentation/
+/references/source/*.pdf
+
+# Private local management records and optional compatibility links
+/.local/
+/presentation
+/code/.env.local
