@@ -3,7 +3,7 @@
 # Separate Evaluation of LLM-Based Repair and Fault Diagnosis in Lumped RF Circuits
 
 **KIPS_C2026B0047 · ACK 2026**
-Separate Evaluation of LLM-Based Repair and Fault Diagnosis in Lumped RF Circuits
+Paper (English translation): Separate Evaluation of LLM-Based Repair and Fault Diagnosis in Lumped RF Circuits
 
 ## Overview
 
